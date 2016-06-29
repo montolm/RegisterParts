@@ -12,12 +12,15 @@ if (!defined('BASEPATH')) {
 class Login_control extends CI_Controller {
 
     public function __construct() {
+
         parent::__construct();
         $this->load->model('Login_model');
+        
     }
 
     function index() {
         $this->load->view('login');
+       
     }
 
     /* Retorna si existe el usuario via ajax */
@@ -51,12 +54,13 @@ class Login_control extends CI_Controller {
 
             /* Si es cero no existe usuario de lo contrario existe */
             if ($register == 0) {
-                redirect($this->config->item('CONSTANT_LOADVIEW') . 'login' . '');
+                redirect($this->config->item('CONSTANT_LOADVIEW') . 'login');
             } else {
-                redirect($this->config->item('CONSTANT_LOADVIEW') . 'home' . '');
+
+                redirect($this->config->item('CONSTANT_LOAD_USER_SESION') . $user_name);
             }
         } else {
-            redirect($this->config->item('CONSTANT_LOADVIEW') . 'login' . '');
+            redirect($this->config->item('CONSTANT_LOADVIEW') . 'login');
         }
     }
 

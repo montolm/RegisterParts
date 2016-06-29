@@ -10,15 +10,7 @@ class Home_control extends CI_Controller {
 
     function index() {
         $this->load->view('home');
-        
     }
 
     /* Llama la vista user */
-    function urlLogin() {
-
-        $viewUsuario = 'login';
-        //esto va en una constante
-        redirect('/helpers/api/loadView/' . $viewUsuario . '');
-    }
-
 }

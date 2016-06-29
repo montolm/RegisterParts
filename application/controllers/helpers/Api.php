@@ -11,8 +11,21 @@ class Api extends CI_Controller {
 
     function loadView($view) {
         //$prueba = $this->session->userdata('email');
-       // echo '$view';
+        // echo '$view';
+//        if ($view == 'home') {
+//            $this->starSession();
+//        }
+
         $this->load->view($view);
+    }
+
+    /* Coloca el usuario en sesion al loguerase */
+
+    function loadViewS($user) {
+        //$prueba = $this->session->userdata('email');
+        // echo '$view';
+        $this->starSession($user);
+        $this->load->view('home');
     }
 
     /* funcion como modelo de un ws que retorna un json */
@@ -27,14 +40,17 @@ class Api extends CI_Controller {
     /* Metodo encargado para menejar sessiones de usuario todavia
       no esta en uso */
 
-    public function starSession() {
-        $this->session->sess_destroy();
+    public function starSession($user_sesion) {
+        // $this->session->sess_destroy();
         $newdata = array(
-            'username' => 'johndoe',
+            'username' => $user_sesion,
             'email' => 'johndoe@some-site.com',
             'logged_in' => TRUE
         );
+
         $this->session->set_userdata($newdata);
+
+        // echo 'Name ' . $name;
     }
 
     /* Retorna el nombre de la vista */

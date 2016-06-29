@@ -18,8 +18,16 @@ class Category_model extends CI_Model {
         parent::__construct();
     }
 
-    public function createCategoryModel() {
-        
+    public function createCategoryModel($id_categorySum, $name_category, $creation_date, $fec_actu, $mca_inh, $user_name) {
+        //echo $id_categorySum . ' ' . $name_category . ' ' . $creation_date . ' ' . $fec_actu . ' ' . $mca_inh . ' ' . $user_name;
+        $this->id_category    = $id_categorySum;
+        $this->name_category   = $name_category;
+        $this->creation_date  = $creation_date;
+        $this->fec_actu       = $fec_actu;
+        $this->mca_inh        = $mca_inh;
+        $this->user_username  = $user_name;
+        $this->db->insert('category', $this);
+       return 'S';
     }
 
     public function updateCategoryModel() {

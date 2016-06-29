@@ -499,4 +499,5 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
-$config['CONSTANT_LOADVIEW'] = '/helpers/api/loadView/';
+$config['CONSTANT_LOADVIEW'] = '/helpers/Api/loadView/';
+$config['CONSTANT_LOAD_USER_SESION'] = '/helpers/Api/loadViewS/';
