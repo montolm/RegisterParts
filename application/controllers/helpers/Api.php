@@ -10,20 +10,16 @@ class Api extends CI_Controller {
     /* Carga la vista del view solicitado */
 
     function loadView($view) {
-        //$prueba = $this->session->userdata('email');
-        // echo '$view';
-//        if ($view == 'home') {
-//            $this->starSession();
-//        }
-
         $this->load->view($view);
+    }
+    /*Carga las vista de las consultas*/
+    function loadView_c($view) {
+        
+        $this->load->view($this->config->item('CONSTANT_CARPETA_C').$view);
     }
 
     /* Coloca el usuario en sesion al loguerase */
-
     function loadViewS($user) {
-        //$prueba = $this->session->userdata('email');
-        // echo '$view';
         $this->starSession($user);
         $this->load->view('home');
     }

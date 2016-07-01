@@ -42,8 +42,8 @@
                             Consultas<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href=<?= site_url('/category/urlCategory'); ?>>Categoria</a></li>
-                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Marca</a></li>
+                            <li><a href=<?= site_url('/category_control/urlCategoryConsult'); ?>>Categoria</a></li>
+                            <li><a href=<?= site_url('/manager_control/urlManager'); ?>>Marca</a></li>
                             <li><a href=<?= site_url('/category/urlCategory'); ?>>Tipo Vehiculo</a></li>
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Pieza</a></li>
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Modelo</a></li> 

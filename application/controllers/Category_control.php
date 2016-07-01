@@ -30,6 +30,11 @@ class Category_control extends CI_Controller {
         redirect($this->config->item('CONSTANT_LOADVIEW') . 'category');
     }
 
+    function urlCategoryConsult() {
+         //$this->load->view('consultas/category_c');
+        redirect($this->config->item('CONSTANT_LOADVIEW_C').'category_c');
+    }
+
     public function createCategory() {
         $id_categorySum = $this->api_model->getMaxNUMId('category') + 1;
         $name_category = $this->input->post('categoria');
