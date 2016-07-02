@@ -22,161 +22,51 @@
     <?php include ('/../header.php'); ?>
     <body>
         <?php include ('/../menu.php'); ?>
-     
-        <div class="container">
-            <table class="table table-striped table-bordered table-hover table-responsive" id="mydata">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>LastName</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>LastName</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Manuel</td>
-                        <td>Montolio</td>
-                        <td>manueljax@gmail.com</td>
-                        <td>829-707-1002</td>
-                        <td>Villas Pantojas</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Mirely</td>
-                        <td>Ortiz</td>
-                        <td>mirely@gmail.com</td>
-                        <td>829-707-2010</td>
-                        <td>Villas Pantojas</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Manuel</td>
-                        <td>Gonzalez</td>
-                        <td>manuelG@gmail.com</td>
-                        <td>829-567-1002</td>
-                        <td>Villas Olimpica</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr><tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr><tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr><tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr><tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>4</td>
-                        <td>Suleica</td>
-                        <td>Perez</td>
-                        <td>manuelG@hotmail</td>
-                        <td>809-756-8596</td>
-                        <td>Santo domingo</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!--    <script src="js/bootstrap.min.js"></script>-->
+        <div class="container">
+            <?php
+            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydata'>";
+            echo"<thead>";
+            echo"<tr>";
+            echo"<th>ID</th>";
+            echo"<th>Categoria</th>";
+            echo"<th>Fecha de Creacion</th>";
+            echo"<th>Fecha actualizacion</th>";
+            echo"<th>Inhabilitado</th>";
+            echo"<th>Usuario</th>";
+            echo"</tr>";
+            echo"</thead>";
+            echo"<tfoot>";
+            echo"<tr>";
+            echo"<th>ID</th>";
+            echo"<th>Categoria</th>";
+            echo"<th>Fecha de Creacion</th>";
+            echo"<th>Fecha actualizacion</th>";
+            echo"<th>Inhabilitado</th>";
+            echo"<th>Usuario</th>";
+            echo"</tr>";
+            echo"</tfoot>";
+            echo "<tbody>";
+            foreach ($categoria as $row) {
+                echo"<tr>
+                <td>$row->id_category </td>
+                <td>$row->name_category</td>
+                <td>$row->creation_date </td>
+                <td>$row->fec_actu </td>
+                <td>$row->mca_inh</td>
+                <td>$row->user_username</td>";
+                echo"</tr>";
+            }
+            echo"</tbody>";
+            echo"</table>";
+            ?>
+        </div>
         <script src="<?php echo base_url(); ?>js/jquery-2.1.1.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script>
-         $('#mydata').dataTable();
+            $('#mydata').dataTable();
         </script>
     </body>
 </html>

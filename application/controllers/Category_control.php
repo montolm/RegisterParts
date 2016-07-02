@@ -31,10 +31,11 @@ class Category_control extends CI_Controller {
     }
 
     function urlCategoryConsult() {
-         //$this->load->view('consultas/category_c');
-        redirect($this->config->item('CONSTANT_LOADVIEW_C').'category_c');
+        //$this->load->view('consultas/category_c');
+        redirect($this->config->item('CONSTANT_LOADVIEW_C') . 'category_c');
     }
 
+    /*Inserta categoria*/
     public function createCategory() {
         $id_categorySum = $this->api_model->getMaxNUMId('category') + 1;
         $name_category = $this->input->post('categoria');
@@ -44,7 +45,7 @@ class Category_control extends CI_Controller {
         $user_name = $this->session->userdata('username');
         $result = $this->category_model->createCategoryModel($id_categorySum, $name_category, $creation_date, $fec_actu, $mca_inh, $user_name);
         if ($result == 'S') {
-            //echo '<div class=alert alert-success>Categoria Enviada</div>';
+            
             redirect($this->config->item('CONSTANT_LOADVIEW') . 'category');
         }
     }
@@ -56,9 +57,14 @@ class Category_control extends CI_Controller {
     public function deleteCategory() {
         
     }
-
+    /*Retorna todas las categorias existentes*/
     public function consultCategory() {
-        
+        $data = array(
+            'categoria' => $this->category_model->consultCategoryModel()
+        );
+        /*Refactorizar mas adelante para colocar la llamada al metodo CONSTANT_LOADVIEW_C y asi esconder
+        el controlador llamado para mas seguridad de la app. */
+        $this->load->view('consultas/category_c', $data);
     }
 
 }
