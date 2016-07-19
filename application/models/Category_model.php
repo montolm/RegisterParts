@@ -16,9 +16,12 @@ class Category_model extends CI_Model {
     //put your code here
     public function __construct() {
         parent::__construct();
+        $this->load->database();
+
     }
-   
-    /*Inserta categoria*/
+
+    /* Inserta categoria */
+
     public function createCategoryModel($id_categorySum, $name_category, $creation_date, $fec_actu, $mca_inh, $user_name) {
         //echo $id_categorySum . ' ' . $name_category . ' ' . $creation_date . ' ' . $fec_actu . ' ' . $mca_inh . ' ' . $user_name;
         $this->id_category = $id_categorySum;
@@ -31,14 +34,25 @@ class Category_model extends CI_Model {
         return 'S';
     }
 
-    public function updateCategoryModel() {
-        
+    public function updateCategoryModel($idCategory, $datos) {
+ 
+        $this->db->where('id_category', $idCategory);
+        $this->db->update('category', $datos);
+        $affect = $this->db->affected_rows();
+        if ($affect > 0){
+            return 'TRUE';
+        }else{
+            return 'FALSE';
+        }
+            
     }
 
     public function deleteCategoryModel() {
         
     }
-    /*Retorna todas las categorias existentes*/
+
+    /* Retorna todas las categorias existentes */
+
     public function consultCategoryModel() {
 
         $query = $this->db->query("select * from category");

@@ -35,7 +35,8 @@ class Category_control extends CI_Controller {
         redirect($this->config->item('CONSTANT_LOADVIEW_C') . 'category_c');
     }
 
-    /*Inserta categoria*/
+    /* Inserta categoria */
+
     public function createCategory() {
         $id_categorySum = $this->api_model->getMaxNUMId('category') + 1;
         $name_category = $this->input->post('categoria');
@@ -45,25 +46,37 @@ class Category_control extends CI_Controller {
         $user_name = $this->session->userdata('username');
         $result = $this->category_model->createCategoryModel($id_categorySum, $name_category, $creation_date, $fec_actu, $mca_inh, $user_name);
         if ($result == 'S') {
-            
+
             redirect($this->config->item('CONSTANT_LOADVIEW') . 'category');
         }
     }
 
     public function updateCategory() {
-        
+        $id_category = $this->input->post('editIDCategory');
+        $name_category = $this->input->post('editNameCategory');
+        $inh_category = $this->input->post('inhaCategory');
+        $user_name = $this->session->userdata('username');
+        $fec_actu = date("y-m-d", time());
+        $datos = array("name_category" => $name_category,
+            "mca_inh" => $inh_category,
+            "user_username" => $user_name,
+            "fec_actu" => $fec_actu);
+        //echo $name_category.' '.$inh_category.' '.$user_name.' '.$fec_actu;
+        echo $result = $this->category_model->updateCategoryModel($id_category, $datos);
     }
 
     public function deleteCategory() {
         
     }
-    /*Retorna todas las categorias existentes*/
+
+    /* Retorna todas las categorias existentes */
+
     public function consultCategory() {
         $data = array(
             'categoria' => $this->category_model->consultCategoryModel()
         );
-        /*Refactorizar mas adelante para colocar la llamada al metodo CONSTANT_LOADVIEW_C y asi esconder
-        el controlador llamado para mas seguridad de la app. */
+        /* Refactorizar mas adelante para colocar la llamada al metodo CONSTANT_LOADVIEW_C y asi esconder
+          el controlador llamado para mas seguridad de la app. */
         $this->load->view('consultas/category_c', $data);
     }
 

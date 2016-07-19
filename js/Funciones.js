@@ -1,37 +1,7 @@
-/*Valida el campo username para verificar si existe*/
-//$(document).ready(function () {
-//    $("#user_name").focusout(function (e) {
-//        /*Remueve el mensaje de usuario inexistente*/
-//        $(".error_user_exist").remove();
-//        e.preventDefault();
-//        /*Se consulta el usuario introducido 
-//         * para saber si no existe y mostrar mensaj al usuario*/
-//        if ($("#user_name").val() !== "") {
-//            var fullName = $("#user_name").val();
-//            $.ajax({
-//                type: 'POST',
-//                data: {fullName: fullName},
-//                url: 'http://localhost/RegisterParts/index.php/Login_control/userExist',
-//                success: function (result) {
-//					alert(result);
-//                    if (result !== 'true') {
-//                        //alert('ENTROOOO_RESULT');
-//                        $("#mensaje").focus().after("<span class='error_user_exist'>Usuario no existe</span>");
-//                        return false;
-//                    }
-//                }
-//            });
-//        }
-//
-//    });
-//
-//});
-
-
 /*Valida el campo email de la pantalla password para verificar si existe*/
 $(document).ready(function () {
     $("#btnsend").click(function (e) {
-      
+
         /*Remueve el mensaje de usuario inexistente*/
         $(".error_user_exist").remove();
         e.preventDefault();
@@ -71,7 +41,7 @@ $(document).ready(function () {
          * para saber si no existe y mostrar mensaje al usuario*/
         if ($("#idemail").val() !== "") {
             var fullName = $("#idemail").val();
-             //alert(fullName);
+            //alert(fullName);
             $.ajax({
                 type: 'POST',
                 data: {fullName: fullName},
@@ -79,9 +49,9 @@ $(document).ready(function () {
                 success: function (result) {
                     //alert(result);
                     if (result === 'true') {
-                       $("#mensaje").focus().after("<span class='error_user_exist'>El correo existe favor verificar</span>");
+                        $("#mensaje").focus().after("<span class='error_user_exist'>El correo existe favor verificar</span>");
                         return false;
-                    } 
+                    }
                 }
             });
         }
@@ -101,7 +71,7 @@ $(document).ready(function () {
          * para saber si no existe y mostrar mensaje al usuario*/
         if ($("#iduser").val() !== "") {
             var fullName = $("#iduser").val();
-             //alert(fullName);
+            //alert(fullName);
             $.ajax({
                 type: 'POST',
                 data: {fullName: fullName},
@@ -109,13 +79,43 @@ $(document).ready(function () {
                 success: function (result) {
                     //alert(result);
                     if (result === 'true') {
-                       $("#mensajeuser").focus().after("<span class='error_user_exist'>Existen registro para este usuario</span>");
+                        $("#mensajeuser").focus().after("<span class='error_user_exist'>Existen registro para este usuario</span>");
                         return false;
-                    } 
+                    }
                 }
             });
         }
 
     });
 
+});
+$(document).ready(function () {
+    $("body").on("click", "#mydata a", function (e) {
+        e.preventDefault();
+        idsele = $(this).attr("href");
+        categorySelect = $(this).parent().parent().children("td:eq(1)").text();
+        crationDateSelect  =$(this).parent().parent().children("td:eq(2)").text();
+        inhabilitadoSelect = $(this).parent().parent().children("td:eq(4)").text();
+        
+        $("#editIDCategory").val(idsele);
+        $("#editNameCategory").val(categorySelect);
+        $("#inhaCategory").val(inhabilitadoSelect);
+    });
+});
+
+$(document).ready(function () {
+    
+    $("#updateButton").click(function (e) {
+        e.preventDefault();
+        location.reload();
+        $.ajax({
+            url: 'http://localhost/RegisterParts/index.php/Category_control/updateCategory',
+            type: 'POST',
+            data: $("#editForm").serialize(),
+            success: function (respuesta) {
+                $("#updateButton").load('http://localhost/RegisterParts/index.php/Category_control/consultCategory');
+                alert(respuesta);
+            }
+        });
+    });
 });
