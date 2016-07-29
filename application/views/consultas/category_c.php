@@ -35,7 +35,7 @@
             echo"<th>Inhabilitado</th>";
             echo"<th>Usuario</th>";
             echo"<th>Editar</th>";
-            echo"<th>Eliminar</th>";
+           // echo"<th>Eliminar</th>";
             echo"</tr>";
             echo"</thead>";
             echo"<tfoot>";
@@ -47,7 +47,7 @@
             echo"<th>Inhabilitado</th>";
             echo"<th>Usuario</th>";
             echo"<th>Editar</th>";
-            echo"<th>Eliminar</th>";
+            //echo"<th>Eliminar</th>";
 
             echo"</tr>";
             echo"</tfoot>";
@@ -63,11 +63,10 @@
                 echo"<td>";
                 echo"<a href=$row->id_category class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
                 echo"</td>";
-                echo"<td>";
-                echo"<p data-placement = 'top' data-toggle = 'tooltip' title = 'Eliminar'>";
-                echo "<button class = 'btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete'><span class = 'glyphicon glyphicon-trash'></span></button>";
-                echo"</p>";
-                echo"</td>";
+                //echo"<td>";
+                //echo"<a href=$row->id_category class='btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete' id=''><span class='glyphicon glyphicon-trash'></span></a>";
+                //echo "<button class = 'btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete'><span class = 'glyphicon glyphicon-trash'></span></button>";
+                //echo"</td>";
                 echo"</tr>";
                 echo"</tr>";
             }
@@ -108,15 +107,14 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+                            <h4 class="modal-title custom_align" id="Heading">Eliminar este registro</h4>
                         </div>
                         <div class="modal-body">
-
-                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
-
+                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Está seguro de que desea eliminar este registro ?</div>
+                            <input  class="form-control " type="hidden" id="idDeleteCategory" name="idDeleteCategory">
                         </div>
                         <div class="modal-footer ">
-                            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+                            <button type="button" class="btn btn-success" id="deleteButton"><span class="glyphicon glyphicon-ok-sign"></span> Si</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
                         </div>
                     </div>
@@ -133,8 +131,24 @@
             $('#mydata').dataTable({
                 "paging": true,
                 "ordering": true,
-                "info": false
+                "info": false,
+                "language": {
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "Nothing found - sorry",
+                    "info": "Showing page _PAGE_ of _PAGES_",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "sSearch": "Buscar:",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    }
+
+                }
             });
         </script>
     </body>
 </html>
+

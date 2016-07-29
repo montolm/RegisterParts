@@ -17,7 +17,6 @@ class Category_model extends CI_Model {
     public function __construct() {
         parent::__construct();
         $this->load->database();
-
     }
 
     /* Inserta categoria */
@@ -35,20 +34,27 @@ class Category_model extends CI_Model {
     }
 
     public function updateCategoryModel($idCategory, $datos) {
- 
+
         $this->db->where('id_category', $idCategory);
         $this->db->update('category', $datos);
         $affect = $this->db->affected_rows();
-        if ($affect > 0){
+        if ($affect > 0) {
             return 'TRUE';
-        }else{
+        } else {
             return 'FALSE';
         }
-            
     }
 
-    public function deleteCategoryModel() {
+    public function deleteCategoryModel($idCategory) {
         
+        $this->db->where('id_category', $idCategory);
+        $this->db->delete('category');
+        $affect = $this->db->affected_rows();
+        if ($affect > 0) {
+            return 'TRUE';
+        } else {
+            return 'FALSE';
+        }
     }
 
     /* Retorna todas las categorias existentes */

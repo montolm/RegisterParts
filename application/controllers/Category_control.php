@@ -52,21 +52,31 @@ class Category_control extends CI_Controller {
     }
 
     public function updateCategory() {
+
         $id_category = $this->input->post('editIDCategory');
         $name_category = $this->input->post('editNameCategory');
         $inh_category = $this->input->post('inhaCategory');
         $user_name = $this->session->userdata('username');
         $fec_actu = date("y-m-d", time());
-        $datos = array("name_category" => $name_category,
-            "mca_inh" => $inh_category,
-            "user_username" => $user_name,
-            "fec_actu" => $fec_actu);
-        //echo $name_category.' '.$inh_category.' '.$user_name.' '.$fec_actu;
-        echo $result = $this->category_model->updateCategoryModel($id_category, $datos);
+        if ($id_category !== '' && $name_category && $inh_category != '' && $user_name != '' && $fec_actu != '') {
+            $datos = array("name_category" => $name_category,
+                "mca_inh" => $inh_category,
+                "user_username" => $user_name,
+                "fec_actu" => $fec_actu);
+            //echo $name_category.' '.$inh_category.' '.$user_name.' '.$fec_actu;
+            echo $result = $this->category_model->updateCategoryModel($id_category, $datos);
+        } else {
+            echo 'FALSE';
+        }
     }
 
     public function deleteCategory() {
-        
+        $id_category = $this->input->post('idDeletect');
+        if ($id_category !== '') {
+            echo $result = $this->category_model->deleteCategoryModel($id_category);
+        }else{
+            echo "FALSE";
+        }
     }
 
     /* Retorna todas las categorias existentes */

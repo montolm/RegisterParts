@@ -45,7 +45,7 @@ $(document).ready(function () {
             $.ajax({
                 type: 'POST',
                 data: {fullName: fullName},
-                url: 'http://www.devetechnologies.com/RegisterParts/index.php/User_control/emailExist',
+                url: 'http://localhost/RegisterParts/index.php/User_control/emailExist',
                 success: function (result) {
                     //alert(result);
                     if (result === 'true') {
@@ -75,7 +75,7 @@ $(document).ready(function () {
             $.ajax({
                 type: 'POST',
                 data: {fullName: fullName},
-                url: 'http://www.devetechnologies.com/RegisterParts/index.php/User_control/userExist',
+                url: 'http://localhost/RegisterParts/index.php/User_control/userExist',
                 success: function (result) {
                     //alert(result);
                     if (result === 'true') {
@@ -89,22 +89,27 @@ $(document).ready(function () {
     });
 
 });
+
+/*Aqui se recibe los datos de la fila seleccionada en la lista de categorias*/
 $(document).ready(function () {
     $("body").on("click", "#mydata a", function (e) {
         e.preventDefault();
         idsele = $(this).attr("href");
         categorySelect = $(this).parent().parent().children("td:eq(1)").text();
-        crationDateSelect  =$(this).parent().parent().children("td:eq(2)").text();
+        crationDateSelect = $(this).parent().parent().children("td:eq(2)").text();
         inhabilitadoSelect = $(this).parent().parent().children("td:eq(4)").text();
-        
+        // alert(idsele);
         $("#editIDCategory").val(idsele);
+        /*Asignaba el ID a eliminar de las categorias ya no se usa*/
+       // $('#idDeleteCategory').val(idsele);
         $("#editNameCategory").val(categorySelect);
         $("#inhaCategory").val(inhabilitadoSelect);
+
     });
 });
 
+/*Actualiza los registros de las categorias*/
 $(document).ready(function () {
-    
     $("#updateButton").click(function (e) {
         e.preventDefault();
         location.reload();
@@ -113,9 +118,37 @@ $(document).ready(function () {
             type: 'POST',
             data: $("#editForm").serialize(),
             success: function (respuesta) {
-                $("#updateButton").load('http://localhost/RegisterParts/index.php/Category_control/consultCategory');
-                alert(respuesta);
+                if (respuesta !== 'TRUE') {
+                    alert('El registro no pudo ser actualizado');
+                }
             }
         });
     });
+});
+
+/*Sirve para cargar nuevamente la pagina*/
+function loadView(control, method) {
+    $("#deleteButton").load('http://localhost/RegisterParts/index.php/' + control + '/' + method + '');
+    //$("#updateButton").load('http://localhost/RegisterParts/index.php/Category_control/consultCategory');
+}
+/*Elimina los registros de la pantalla Category pero no se esta usando ya que fue comentado el boton*/
+$(document).ready(function () {
+    $("#deleteButton").click(function (e) {
+        var idselectDelete = $("#idDeleteCategory").val();
+        alert(idselectDelete);
+        e.preventDefault();
+        location.reload();
+        $.ajax({
+            url: 'http://localhost/RegisterParts/index.php/Category_control/deleteCategory',
+            type: 'POST',
+            data: {idDeSletect:1},
+            success: function (respuesta) {
+                alert(respuesta);
+                 /*if (respuesta !== 'TRUE') {
+                    alert('El registro no pudo ser eliminado');
+                }*/
+            }
+        });
+    });
+
 });

@@ -50,6 +50,7 @@ class User_control extends CI_Controller {
     }
 
     function createUser() {
+        /*falta validar que no sea nulo para entrar.*/
         $name = $this->input->post('name');
         $lastname = $this->input->post('lastname');
         $username = $this->input->post('user');
