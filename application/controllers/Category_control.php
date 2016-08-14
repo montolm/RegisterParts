@@ -38,7 +38,7 @@ class Category_control extends CI_Controller {
     /* Inserta categoria */
 
     public function createCategory() {
-        $id_categorySum = $this->api_model->getMaxNUMId('category') + 1;
+        $id_categorySum = $this->api_model->getMaxNUMId('category','id_category') + 1;
         $name_category = $this->input->post('categoria');
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
@@ -54,11 +54,11 @@ class Category_control extends CI_Controller {
     public function updateCategory() {
 
         $id_category = $this->input->post('editIDCategory');
-        $name_category = $this->input->post('editNameCategory');
+        $name_category = $this->input->post('nameCategory');
         $inh_category = $this->input->post('inhaCategory');
         $user_name = $this->session->userdata('username');
-        $fec_actu = date("y-m-d", time());
-        if ($id_category !== '' && $name_category && $inh_category != '' && $user_name != '' && $fec_actu != '') {
+        $fec_actu = date("y-m-d", time());//&& $name_category = '' &
+        if ($id_category !='' &&$name_category != '' && $inh_category != '' && $user_name != '' && $fec_actu != '') {
             $datos = array("name_category" => $name_category,
                 "mca_inh" => $inh_category,
                 "user_username" => $user_name,
@@ -74,7 +74,7 @@ class Category_control extends CI_Controller {
         $id_category = $this->input->post('idDeletect');
         if ($id_category !== '') {
             echo $result = $this->category_model->deleteCategoryModel($id_category);
-        }else{
+        } else {
             echo "FALSE";
         }
     }

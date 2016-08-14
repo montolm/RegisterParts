@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="<?= base_url() ?>css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?= base_url() ?>css/Bootstrap.min.css">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
     </head>
     <div class="container">
@@ -30,13 +30,13 @@
                         </a>
                         <ul class="dropdown-menu">  
                             <li><a href=<?= site_url('/category_control/urlCategory'); ?>>Categoria</a></li>
+                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Vehiculo de motor</a></li> 
+                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Combustible</a></li> 
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Marca</a></li>
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Modelo</a></li>
-                            
                             <li><a href=<?= site_url('/category/urlCategory'); ?>>Tipo Vehiculo</a></li>
-                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Pieza</a></li>                         
+                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Pieza</a></li>  
                         </ul>
-
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -44,10 +44,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href=<?= site_url('/category_control/consultCategory'); ?>>Categoria</a></li>
-                            <li><a href=<?= site_url('/manager_control/urlManager'); ?>>Marca</a></li>
+                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Vehiculo de motor</a></li> 
+                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Combustible</a></li>
+                            <li><a href=<?= site_url('/manager_control/urlManager');?>>Marca</a></li>
+                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Modelo</a></li> 
                             <li><a href=<?= site_url('/category/urlCategory'); ?>>Tipo Vehiculo</a></li>
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Pieza</a></li>
-                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Modelo</a></li> 
                         </ul>
                     </li>
                     <li class="dropdown">

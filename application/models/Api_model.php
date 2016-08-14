@@ -17,17 +17,17 @@ Class Api_model extends CI_Model {
 
     /* Retorna max num_id de la tabla solicitada */
 
-    public function getMaxNUMId($tableName) {
+    public function getMaxNUMId($tableName,$field) {
         $table = $tableName;
-        $query = $this->db->query('select id_category
+        $query = $this->db->query('select '.$field.'
                                         from ' . $table . '
-                                       where id_category = (select max(id_category)
+                                       where '.$field.' = (select max('.$field.')
                                                               from ' . $table . ')');
 
 
         if ($query->num_rows() > 0) {
             $row = $query->row();
-            $value = $row->id_category;
+            $value = $row->$field;
         } else {
             $value = 0;
         }

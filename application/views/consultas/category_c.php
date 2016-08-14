@@ -9,7 +9,7 @@
 
         <!-- Bootstrap -->
         <!--    <link href="css/bootstrap.min.css" rel="stylesheet">-->
-        <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/bootstrap.min.css"> 
+        <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/Bootstrap.min.css"> 
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/dataTables.bootstrap.min.css">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -35,7 +35,7 @@
             echo"<th>Inhabilitado</th>";
             echo"<th>Usuario</th>";
             echo"<th>Editar</th>";
-           // echo"<th>Eliminar</th>";
+            // echo"<th>Eliminar</th>";
             echo"</tr>";
             echo"</thead>";
             echo"<tfoot>";
@@ -86,10 +86,9 @@
                                     <input class="form-control " type="text" id="editIDCategory" name="editIDCategory">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="editNameCategory" name="editNameCategory">
+                                    <input class="form-control " type="text" id="editNameCategory" name="nameCategory">
                                 </div>
                                 <div class="form-group">
-
                                     <input class="form-control " type="text" id="inhaCategory" name="inhaCategory">
                                 </div>
                             </div>
@@ -122,11 +121,13 @@
             </div>
         </div>
 
-        <script src="<?php echo base_url(); ?>js/jquery-2.1.1.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/Jquery-2.1.1.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/Bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
+        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>
         <script>
             $('#mydata').dataTable({
                 "paging": true,

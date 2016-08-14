@@ -98,7 +98,7 @@ $(document).ready(function () {
         categorySelect = $(this).parent().parent().children("td:eq(1)").text();
         crationDateSelect = $(this).parent().parent().children("td:eq(2)").text();
         inhabilitadoSelect = $(this).parent().parent().children("td:eq(4)").text();
-        // alert(idsele);
+        //alert(categorySelect);
         $("#editIDCategory").val(idsele);
         /*Asignaba el ID a eliminar de las categorias ya no se usa*/
        // $('#idDeleteCategory').val(idsele);
@@ -118,8 +118,9 @@ $(document).ready(function () {
             type: 'POST',
             data: $("#editForm").serialize(),
             success: function (respuesta) {
+                alert(respuesta);
                 if (respuesta !== 'TRUE') {
-                    alert('El registro no pudo ser actualizado');
+                   alert('El registro no pudo ser actualizado');
                 }
             }
         });

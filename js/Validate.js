@@ -180,3 +180,32 @@ $(document).ready(function () {
         
     });
 });
+
+/*Valida formulario category*/
+$(document).ready(function () {
+    $('#editForm').bootstrapValidator({ 
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            nameCategory: {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo Obligatorio'
+                    }
+                }
+            },
+            inhaCategory: {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo Obligatorio'
+                    }
+                }
+            }
+        }
+        
+    });
+});
