@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Lista</title>
+        <title>Tipo de vehiculo motor</title>
 
         <!-- Bootstrap -->
         <!--    <link href="css/bootstrap.min.css" rel="stylesheet">-->
@@ -25,11 +25,11 @@
 
         <div class="container">
             <?php
-            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydata'>";
+            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataVehicleMotor'>";
             echo"<thead>";
             echo"<tr>";
             echo"<th>ID</th>";
-            echo"<th>Categoria</th>";
+            echo"<th>Tipo Vehiculo Motor</th>";
             echo"<th>Fecha de Creacion</th>";
             echo"<th>Fecha actualizacion</th>";
             echo"<th>Inhabilitado</th>";
@@ -41,7 +41,7 @@
             echo"<tfoot>";
             echo"<tr>";
             echo"<th>ID</th>";
-            echo"<th>Categoria</th>";
+            echo"<th>Tipo Vehiculo Motor</th>";
             echo"<th>Fecha de Creacion</th>";
             echo"<th>Fecha actualizacion</th>";
             echo"<th>Inhabilitado</th>";
@@ -52,16 +52,16 @@
             echo"</tr>";
             echo"</tfoot>";
             echo "<tbody>";
-            foreach ($categoria as $row) {
+            foreach ($vehicleMotor as $row) {
                 echo"<tr>
-                <td>$row->id_category </td>
-                <td>$row->name_category</td>
+                <td>$row->id_type_vehicle_motor </td>
+                <td>$row->type_name_vehicle</td>
                 <td>$row->creation_date </td>
                 <td>$row->fec_actu </td>
                 <td>$row->mca_inh</td>
-                <td>$row->username</td>";
+                <td>$row->id_username</td>";
                 echo"<td>";
-                echo"<a href=$row->id_category class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
+                echo"<a href=$row->id_type_vehicle_motor class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
                 echo"</td>";
                 //echo"<td>";
                 //echo"<a href=$row->id_category class='btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete' id=''><span class='glyphicon glyphicon-trash'></span></a>";
@@ -78,23 +78,23 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Edita Categoria</h4>
+                            <h4 class="modal-title custom_align" id="Heading">Edita vehiculo Motor</h4>
                         </div>
-                        <form id="editForm" method="POST">
+                        <form id="editFormVehicleMotor" method="POST">
                             <div class="modal-body">
                                 <div class="form-group hidden">
-                                    <input class="form-control " type="text" id="editIDCategory" name="editIDCategory">
+                                    <input class="form-control " type="text" id="editVehicleMotor" name="vehicleMotor">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="editNameCategory" name="nameCategory">
+                                    <input class="form-control " type="text" id="editNameVehicleMotor" name="nameVehicleMotor">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="inhaCategory" name="inhaCategory">
+                                    <input class="form-control " type="text" id="inhaVehicleMotor" name="inhaVehicleMotor">
                                 </div>
                             </div>
                         </form>
                         <div class="modal-footer ">
-                            <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButton"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+                            <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleMotor"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -126,10 +126,10 @@
         <script src="<?php echo base_url(); ?>js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
-        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
-        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>
+<!--        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
+<!--        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>-->
         <script>
-            $('#mydata').dataTable({
+            $('#mydataVehicleMotor').dataTable({
                 "paging": true,
                 "ordering": true,
                 "info": false,

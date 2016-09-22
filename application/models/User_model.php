@@ -45,8 +45,6 @@ class User_model extends CI_Model {
             return 1;
         endif;
     }
-    
-    
 
     public function createUserModel($id_userSum,$name, $lastname, $username, $password, $email,$creation_date,$fec_actu) {
         $this->id_username =  $id_userSum;

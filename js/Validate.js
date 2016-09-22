@@ -181,7 +181,29 @@ $(document).ready(function () {
     });
 });
 
-/*Valida formulario category*/
+/*Valida formulario vehiculo motor*/
+$(document).ready(function () {
+    $('#vehicleMotorForm').bootstrapValidator({ 
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            vehicleMotor: {
+                validators: {
+                    notEmpty: {
+                        message: 'Tipo de vehiculo obligatorio'
+                    }
+                }
+            }
+        }
+        
+    });
+});
+
+/*Valida formulario category al editar*/
 $(document).ready(function () {
     $('#editForm').bootstrapValidator({ 
         message: 'Este valor no es valido',

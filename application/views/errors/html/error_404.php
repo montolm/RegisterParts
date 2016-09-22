@@ -62,8 +62,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php echo $message; ?>
             </h1>-->
             <h1>Esta pagina no existe</h1>
-
-
         </div>
     </body>
 </html>

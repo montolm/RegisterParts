@@ -11,7 +11,7 @@
  *
  * @author montolio
  */
-class Error404 extends CI_Controller{
+class Error404_control extends CI_Controller{
     //put your code here
     public function index() {
         echo 'Error 404. Usted está intentando acceder a una página que no existe.';

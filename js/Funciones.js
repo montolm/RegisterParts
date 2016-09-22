@@ -96,36 +96,111 @@ $(document).ready(function () {
         e.preventDefault();
         idsele = $(this).attr("href");
         categorySelect = $(this).parent().parent().children("td:eq(1)").text();
-        crationDateSelect = $(this).parent().parent().children("td:eq(2)").text();
         inhabilitadoSelect = $(this).parent().parent().children("td:eq(4)").text();
-        //alert(categorySelect);
         $("#editIDCategory").val(idsele);
-        /*Asignaba el ID a eliminar de las categorias ya no se usa*/
-       // $('#idDeleteCategory').val(idsele);
         $("#editNameCategory").val(categorySelect);
         $("#inhaCategory").val(inhabilitadoSelect);
 
     });
 });
 
-/*Actualiza los registros de las categorias*/
+
+/*Actualiza los registros de las categorias */
 $(document).ready(function () {
     $("#updateButton").click(function (e) {
-        e.preventDefault();
         location.reload();
         $.ajax({
             url: 'http://localhost/RegisterParts/index.php/Category_control/updateCategory',
             type: 'POST',
             data: $("#editForm").serialize(),
             success: function (respuesta) {
-                alert(respuesta);
-                if (respuesta !== 'TRUE') {
-                   alert('El registro no pudo ser actualizado');
+                if (respuesta === 'TRUE') {
+                    location.reload();
+                } else {
+                    alert('El registro no pudo ser actualizado');
                 }
             }
         });
     });
 });
+
+/*Aqui se recibe los datos de la fila seleccionada en la lista de tipos de vehiculos*/
+$(document).ready(function () {
+    $("body").on("click", "#mydataVehicleMotor a", function (e) {
+        e.preventDefault();
+        idsele = $(this).attr("href");
+        typeVehicleSelect = $(this).parent().parent().children("td:eq(1)").text();
+        inhaVehicleMotor = $(this).parent().parent().children("td:eq(4)").text();
+        //alert(categorySelect);
+        $("#editVehicleMotor").val(idsele);
+        $("#editNameVehicleMotor").val(typeVehicleSelect);
+        $("#inhaVehicleMotor").val(inhaVehicleMotor);
+
+    });
+});
+
+/*Actualiza los registros de los tipos de vehiculos de motor*/
+$(document).ready(function () {
+    $("#updateButtonVehicleMotor").click(function (e) {
+        //e.preventDefault();
+        location.reload();
+        $.ajax({
+            url: 'http://localhost/RegisterParts/index.php/Vehicle_motor_control/updateVehicleMotor',
+            type: 'POST',
+            data: $("#editFormVehicleMotor").serialize(),
+            success: function (respuesta) {
+                alert(respuesta);
+//                if (respuesta !== 'TRUE') {
+//                   alert('El registro no pudo ser actualizado');
+//                }
+            }
+        });
+    });
+});
+/*Inserta los tipos de vehiculos de motor*/
+$(document).ready(function () {
+    $("#btnVehicleMotor").click(function (e) {
+        if ($("#idVehicleMotor").val() !== "") {
+            $.ajax({
+                url: 'http://localhost/RegisterParts/index.php/Vehicle_motor_control/createVehicleMotor',
+                type: 'POST',
+                data: $("#vehicleMotorForm").serialize(),
+                success: function (respuesta) {
+                    if (respuesta === 'TRUE') {
+                        $("#idVehicleMotor").val('');
+                        $("#idmensaje").overhang({
+                            type: "success",
+                            upper: false,
+                            speed: 500,
+                            message: "Su registro ha sido guardado!"
+                        });
+                    } else {
+                        $("#idVehicleMotor").val('');
+                        $("#idmensaje").overhang({
+                            type: "error",
+                            upper: false,
+                            speed: 500,
+                            message: "Error al guardar registro"
+                        });
+                    }
+                }, error: function (jqXHR, textStatus, errorThrown) {
+                    //alert('ERROR111');
+                    /* $("#idVehicleMotor").val('');
+                     $("#idmensaje").overhang({
+                     type: "error",
+                     upper: false,
+                     speed: 1000,
+                     message: "Ocurrio un error favor verificar"
+                     });*/
+
+                    console.log('ERROR DESCONOCIDO'.errorThrown);
+                }
+            });
+        }
+    });
+});
+
+
 
 /*Sirve para cargar nuevamente la pagina*/
 function loadView(control, method) {
@@ -142,12 +217,12 @@ $(document).ready(function () {
         $.ajax({
             url: 'http://localhost/RegisterParts/index.php/Category_control/deleteCategory',
             type: 'POST',
-            data: {idDeSletect:1},
+            data: {idDeSletect: 1},
             success: function (respuesta) {
                 alert(respuesta);
-                 /*if (respuesta !== 'TRUE') {
-                    alert('El registro no pudo ser eliminado');
-                }*/
+                /*if (respuesta !== 'TRUE') {
+                 alert('El registro no pudo ser eliminado');
+                 }*/
             }
         });
     });

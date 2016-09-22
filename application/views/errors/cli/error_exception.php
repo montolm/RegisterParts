@@ -10,8 +10,8 @@ Filename: <?php echo $exception->getFile(); ?>
 Line Number: <?php echo $exception->getLine(); ?>
 
 <?php if (defined('SHOW_DEBUG_BACKTRACE') && SHOW_DEBUG_BACKTRACE === TRUE): ?>
-
 Backtrace:
+
 	<?php foreach ($exception->getTrace() as $error): ?>
 		<?php if (isset($error['file']) && strpos($error['file'], realpath(BASEPATH)) !== 0): ?>
 

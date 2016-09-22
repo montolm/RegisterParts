@@ -38,15 +38,16 @@ class Category_control extends CI_Controller {
     /* Inserta categoria */
 
     public function createCategory() {
-        $id_categorySum = $this->api_model->getMaxNUMId('category','id_category') + 1;
+        $user_name = $this->session->userdata('username');
+        $id_categorySum = $this->api_model->getMaxNUMId('category', 'id_category') + 1;
+        $user_id_exist = $this->api_model->getId('user', 'username', 'id_username', $user_name);
         $name_category = $this->input->post('categoria');
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
-        $user_name = $this->session->userdata('username');
-        $result = $this->category_model->createCategoryModel($id_categorySum, $name_category, $creation_date, $fec_actu, $mca_inh, $user_name);
-        if ($result == 'S') {
-
+        $result = $this->category_model->createCategoryModel($id_categorySum, $name_category, $creation_date, $fec_actu, $mca_inh, $user_id_exist);
+        $returnValue = $this->api_model->getException($result);
+        if ($returnValue == 1) {
             redirect($this->config->item('CONSTANT_LOADVIEW') . 'category');
         }
     }
@@ -57,13 +58,13 @@ class Category_control extends CI_Controller {
         $name_category = $this->input->post('nameCategory');
         $inh_category = $this->input->post('inhaCategory');
         $user_name = $this->session->userdata('username');
-        $fec_actu = date("y-m-d", time());//&& $name_category = '' &
-        if ($id_category !='' &&$name_category != '' && $inh_category != '' && $user_name != '' && $fec_actu != '') {
+        $user_id_exist = $this->api_model->getId('user', 'username', 'id_username', $user_name);
+        $fec_actu = date("y-m-d", time()); 
+        if ($id_category != '' && $name_category != '' && $inh_category != '' && $user_name != '' && $fec_actu != '') {
             $datos = array("name_category" => $name_category,
                 "mca_inh" => $inh_category,
-                "user_username" => $user_name,
+                "id_username" => $user_id_exist,
                 "fec_actu" => $fec_actu);
-            //echo $name_category.' '.$inh_category.' '.$user_name.' '.$fec_actu;
             echo $result = $this->category_model->updateCategoryModel($id_category, $datos);
         } else {
             echo 'FALSE';

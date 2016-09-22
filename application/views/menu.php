@@ -30,7 +30,7 @@
                         </a>
                         <ul class="dropdown-menu">  
                             <li><a href=<?= site_url('/category_control/urlCategory'); ?>>Categoria</a></li>
-                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Vehiculo de motor</a></li> 
+                            <li><a href=<?= site_url('/Vehicle_motor_control/urlVehicleMotor'); ?>>Vehiculo de motor</a></li> 
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Combustible</a></li> 
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Marca</a></li>
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Modelo</a></li>
@@ -44,7 +44,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href=<?= site_url('/category_control/consultCategory'); ?>>Categoria</a></li>
-                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Vehiculo de motor</a></li> 
+                            <li><a href=<?= site_url('/Vehicle_motor_control/consultVehicleMotor'); ?>>Vehiculo de motor</a></li> 
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Combustible</a></li>
                             <li><a href=<?= site_url('/manager_control/urlManager');?>>Marca</a></li>
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Modelo</a></li> 
