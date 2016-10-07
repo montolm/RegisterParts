@@ -47,7 +47,6 @@ class User_control extends CI_Controller {
     function urlUser() {
        //$this->load->view('user');
         redirect($this->config->item('CONSTANT_LOADVIEW') . 'user' . '');
-        echo'dasd';
     }
 
     function createUser() {

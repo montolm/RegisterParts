@@ -59,7 +59,7 @@ Class Api_model extends CI_Model {
             if ($value != 1) {
                 throw new Exception("Error al insertar registro",0);
             }else{
-                return 1;
+                return $value;
             }
         } catch (Exception $e) {
             return $e->getCode();//echo $e->getMessage();

@@ -44,7 +44,6 @@ class Vehicle_motor_control extends CI_Controller {
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
-
         if ($user_id_exist > 0 & $type_name_vehicle != '') {
             $datos = array("id_type_vehicle_motor" => $id_type_vehicleSum,
                 "type_name_vehicle" => $type_name_vehicle,
@@ -65,19 +64,19 @@ class Vehicle_motor_control extends CI_Controller {
     }
 
     public function updateVehicleMotor() {
-
+        $user_name = $this->session->userdata('username');
         $id_vehicleMotor = $this->input->post('vehicleMotor');
         $name_vehicleMotor = $this->input->post('nameVehicleMotor');
         $inha_vehicleMotor = $this->input->post('inhaVehicleMotor');
-        $user_name = $this->session->userdata('username');
+        $user_id_exist = $this->api_model->getId('user', 'username', 'id_username', $user_name);
         $fec_actu = date("y-m-d", time());
-        // echo $id_vehicleMotor . ' ' . $name_vehicleMotor . ' ' . $inha_vehicleMotor . ' ' . $user_name . ' ' . $fec_actu;
-        if ($id_vehicleMotor != '' && $name_vehicleMotor != '' && $inha_vehicleMotor != '' && $user_name != '' && $fec_actu != '') {
+        echo $id_vehicleMotor . ' ' . $name_vehicleMotor . ' ' . $inha_vehicleMotor . ' ' . $user_name . ' ' . $fec_actu.' '.$user_id_exist;
+        if ($id_vehicleMotor != '' && $name_vehicleMotor != '' && $inha_vehicleMotor != '' && $user_id_exist != '' && $fec_actu != '') {
 
             $datos = array("type_name_vehicle" => $name_vehicleMotor,
                 "mca_inh" => $inha_vehicleMotor,
                 "fec_actu" => $fec_actu,
-                "user_username" => $user_name);
+                "id_username" => $user_id_exist);
 
             echo $result = $this->vehicle_motor_model->updateVehicleMotorModel($id_vehicleMotor, $datos);
         } else {

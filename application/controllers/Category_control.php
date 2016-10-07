@@ -59,7 +59,7 @@ class Category_control extends CI_Controller {
         $inh_category = $this->input->post('inhaCategory');
         $user_name = $this->session->userdata('username');
         $user_id_exist = $this->api_model->getId('user', 'username', 'id_username', $user_name);
-        $fec_actu = date("y-m-d", time()); 
+        $fec_actu = date("y-m-d", time());
         if ($id_category != '' && $name_category != '' && $inh_category != '' && $user_name != '' && $fec_actu != '') {
             $datos = array("name_category" => $name_category,
                 "mca_inh" => $inh_category,
