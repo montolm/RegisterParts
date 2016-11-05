@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Modelo</title>
+        <link rel="stylesheet" href="<?= base_url() ?>css/Bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
+    </head>   
+    <?php include ('header.php'); ?>
+    <body>
+        <?php include ('menu.php'); ?>
+        <br>
+        <div class="container col-lg-3" style="margin-left: 20%">
+            <form id="vehicleModelForm" method="post">
+                <div class="form-group">
+                    <?php
+                    echo "<div class='container col-lg-5' style='margin-left:-4%'>
+                            <select id= 'listVehicleModel'class='form-control' name='selectVehicleModel'>
+                            <option value='0' selected>Marcas</option>";
+                    foreach ($make as $row) {
+                        echo "<option value=$row->id_vehicle_make>$row->name_vehicle_make</option>";
+                    }
+                    echo"</select>
+                    </div>";
+                    ?>  
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="vehicleModel" id="idvehicleModel" placeholder="Modelo">
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input  type='text' class="form-control" name="star_generatioModel" placeholder="Ini. Generacion"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+           
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <div class='input-group date' id='datetimepicker2'>
+                                    <input  type='text' class="form-control" name="end_generatioModel" placeholder="Fin. Generacion"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="idmensaje"></div>
+            </form>   
+            <div>
+                <button type="button" class="btn btn-lg btn-primary" id="btnVehicleModel" onclick="insertVehicleModel()" >Enviar</button>
+            </div>
+
+        </div>
+        <script src="<?php echo base_url(); ?>js/Jquery-2.1.1.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/Bootstrap.min.js" type="text/javascript"></script>
+        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+        <script src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/overhang.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker1').datetimepicker({format: 'YYYY', locale: 'ES'});
+                        $('#datetimepicker2').datetimepicker({format: 'YYYY', locale: 'ES'});
+                    });
+        </script>
+    </body>
+</html>

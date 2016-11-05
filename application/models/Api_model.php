@@ -66,5 +66,19 @@ Class Api_model extends CI_Model {
             //return $e->getMessage(); //echo 'Excepción capturada: ', $e->getCode(), "\n";
         }
     }
+    
+  /*Retorna las marcas seleccionada*/
+    public function consultMake() {
+        $query = $this->db->query("select a.id_vehicle_make,a.name_vehicle_make,a.creation_date,a.fec_actu,a.mca_inh,b.username
+                                    from make a
+                                        inner join user b
+                                        on a.id_username = b.id_username
+                                   order by a.id_vehicle_make;");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
 
 }

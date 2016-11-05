@@ -22,7 +22,6 @@
             <div>
                 <button type="button" class="btn btn-lg btn-primary" id="btnVehicleMotor" >Enviar</button>
             </div>
-
         </div>
         <script src="<?php echo base_url(); ?>js/Jquery-2.1.1.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Bootstrap.min.js" type="text/javascript"></script>

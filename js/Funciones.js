@@ -126,13 +126,13 @@ $(document).ready(function () {
 $(document).ready(function () {
     getCampEdit("#mydataVehicleMotor", "#editVehicleMotor", "#editNameVehicleMotor", "#inhaVehicleMotor");
     $("#updateButtonVehicleMotor").click(function (e) {
-       // location.reload();
+        // location.reload();
         $.ajax({
             url: getHostUrl('Vehicle_motor_control/updateVehicleMotor'),
             type: 'POST',
             data: $("#editFormVehicleMotor").serialize(),
             success: function (respuesta) {
-                 location.reload();
+                location.reload();
             }
         });
     });
@@ -152,14 +152,14 @@ $(document).ready(function () {
 $(document).ready(function () {
     getCampEdit("#mydataCombustible", "#editCombustible", "#editNameCombustible", "#inhaCombustible");
     $("#updateButtonCombustible").click(function (e) {
-       // location.reload();
+        // location.reload();
         $.ajax({
             url: getHostUrl('Combustible_control/updateCombustible'),
             type: 'POST',
             data: $("#editFormCombustible").serialize(),
             success: function (respuesta) {
-                  alert(respuesta);
-                 location.reload();
+                alert(respuesta);
+                location.reload();
             }
         });
     });
@@ -169,24 +169,32 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#btnCombustible").click(function (e) {
         var idCamp = "#idCombustible";
-        var url = getHostUrl('Combustible_control/createCombustible');
+        var url = getHostUrl('VehicleModel_control/createCombustible');
         var idForm = "#combustibleForm";
         insertRegyster(idCamp, url, idForm);
     });
 });
-
+/*Inserta los modelos de las marca seleccionada*/
+function insertVehicleModel() {
+    var idCamp = "#idvehicleModel";
+    var idCampList = "#listVehicleModel";
+    var url = getHostUrl('VehicleModel_control/createVehicleModel');
+    var idForm = "#vehicleModelForm";
+   // alert($(idCampList).val());
+    insertRegyster(idCamp, url, idForm);
+}
 /*Actualiza los registros tipos de combustibles*/
 $(document).ready(function () {
     getCampEdit("#mydataCombustible", "#editCombustible", "#editNameCombustible", "#inhaCombustible");
     $("#updateButtonCombustible").click(function (e) {
-       // location.reload();
+        // location.reload();
         $.ajax({
             url: getHostUrl('Combustible_control/updateCombustible'),
             type: 'POST',
             data: $("#editFormCombustible").serialize(),
             success: function (respuesta) {
-                  //alert(respuesta);
-                 location.reload();
+                //alert(respuesta);
+                location.reload();
             }
         });
     });
@@ -196,13 +204,13 @@ $(document).ready(function () {
 $(document).ready(function () {
     getCampEdit("#mydataMake", "#editMake", "#editNameMake", "#inhaMake");
     $("#updateButtonMake").click(function (e) {
-       // location.reload();
+        // location.reload();
         $.ajax({
             url: getHostUrl('Make_control/updateMake'),
             type: 'POST',
             data: $("#editFormMake").serialize(),
             success: function (respuesta) {
-                 location.reload();
+                location.reload();
             }
         });
     });
@@ -211,7 +219,7 @@ $(document).ready(function () {
 /*inserta marcas de vehiculos*/
 $(document).ready(function () {
     $("#btnMake").click(function (e) {
-       // alert('ENTROOOO');
+        // alert('ENTROOOO');
         var idCamp = "#idMake";
         var url = getHostUrl('Make_control/createMake');
         var idForm = "#makeForm";
@@ -229,7 +237,7 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                // alert(respuesta);
+                 //alert(respuesta);
                 if (respuesta === 'TRUE') {
                     $(idCamp).val('');
                     $("#idmensaje").overhang({
@@ -313,15 +321,15 @@ $(document).ready(function () {
 
 /*Aqui se recibe los datos de la fila seleccionada en la lista de tipos de vehiculos*/
 /*$(document).ready(function () {
-    $("body").on("click", "#mydataVehicleMotor a", function (e) {
-        e.preventDefault();
-        idsele = $(this).attr("href");
-        typeVehicleSelect = $(this).parent().parent().children("td:eq(1)").text();
-        inhaVehicleMotor = $(this).parent().parent().children("td:eq(4)").text();
-        //alert(categorySelect);
-        $("#editVehicleMotor").val(idsele);
-        $("#editNameVehicleMotor").val(typeVehicleSelect);
-        $("#inhaVehicleMotor").val(inhaVehicleMotor);
-
-    });
-});*/
+ $("body").on("click", "#mydataVehicleMotor a", function (e) {
+ e.preventDefault();
+ idsele = $(this).attr("href");
+ typeVehicleSelect = $(this).parent().parent().children("td:eq(1)").text();
+ inhaVehicleMotor = $(this).parent().parent().children("td:eq(4)").text();
+ //alert(categorySelect);
+ $("#editVehicleMotor").val(idsele);
+ $("#editNameVehicleMotor").val(typeVehicleSelect);
+ $("#inhaVehicleMotor").val(inhaVehicleMotor);
+ 
+ });
+ });*/

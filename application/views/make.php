@@ -25,8 +25,8 @@
         </div>
         <script src="<?php echo base_url(); ?>js/Jquery-2.1.1.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Bootstrap.min.js" type="text/javascript"></script>
-<!--        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
-<!--        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>-->
+        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/overhang.min.js" type="text/javascript"></script>
     </body>
