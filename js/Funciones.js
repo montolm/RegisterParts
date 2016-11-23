@@ -176,11 +176,12 @@ $(document).ready(function () {
 });
 /*Inserta los modelos de las marca seleccionada*/
 function insertVehicleModel() {
+    //alert('Click');
     var idCamp = "#idvehicleModel";
     var idCampList = "#listVehicleModel";
     var url = getHostUrl('VehicleModel_control/createVehicleModel');
     var idForm = "#vehicleModelForm";
-   // alert($(idCampList).val());
+    //alert($(idCampList).val());
     insertRegyster(idCamp, url, idForm);
 }
 /*Actualiza los registros tipos de combustibles*/
@@ -230,22 +231,23 @@ $(document).ready(function () {
 
 /*Inserta registros en la DB de manera dinamica*/
 function insertRegyster(idCamp, url, idForm) {
-    //alert(idCamp + " " + url + " " + idForm);
+    alert(idCamp + " " + url + " " + idForm);
     if ($(idCamp).val() !== "") {
         $.ajax({
             url: url,
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                 //alert(respuesta);
-                if (respuesta === 'TRUE') {
-                    $(idCamp).val('');
+                alert(respuesta);
+                /*if (respuesta === 'TRUE') {
+
                     $("#idmensaje").overhang({
                         type: "success",
                         upper: false,
                         speed: 500,
                         message: "Su registro ha sido guardado!"
                     });
+
                 } else {
                     $(idCamp).val('');
                     $("#idmensaje").overhang({
@@ -254,9 +256,9 @@ function insertRegyster(idCamp, url, idForm) {
                         speed: 500,
                         message: "Error al guardar registro"
                     });
-                }
+                }*/
             }, error: function (jqXHR, textStatus, errorThrown) {
-                //alert('ERROR111');
+                alert('ERROR111');
                 $(idCamp).val('');
                 $("#idmensaje").overhang({
                     type: "error",

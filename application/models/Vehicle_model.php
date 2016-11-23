@@ -11,7 +11,7 @@
  *
  * @author montolio
  */
-class VehicleModel_model extends CI_Model {
+class Vehicle_model extends CI_Model {
 
     //put your code here
     public function __construct() {

@@ -136,7 +136,7 @@ $(document).ready(function () {
 
 /*Valida formulario correo(Olvido contraseña)*/
 $(document).ready(function () {
-    $('#emailform').bootstrapValidator({ 
+    $('#emailform').bootstrapValidator({
         message: 'Este valor no es valido',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -149,19 +149,19 @@ $(document).ready(function () {
                     notEmpty: {
                         message: 'El correo es requerido'
                     },
-                     emailAddress: {
+                    emailAddress: {
                         message: 'El formato es incorrecto'
                     }
                 }
             }
         }
-        
+
     });
 });
 
 /*Valida formulario category*/
 $(document).ready(function () {
-    $('#categoryForm').bootstrapValidator({ 
+    $('#categoryForm').bootstrapValidator({
         message: 'Este valor no es valido',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -177,13 +177,13 @@ $(document).ready(function () {
                 }
             }
         }
-        
+
     });
 });
 
 /*Valida formulario vehiculo motor*/
 $(document).ready(function () {
-    $('#vehicleMotorForm').bootstrapValidator({ 
+    $('#vehicleMotorForm').bootstrapValidator({
         message: 'Este valor no es valido',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -199,13 +199,13 @@ $(document).ready(function () {
                 }
             }
         }
-        
+
     });
 });
 
 /*Valida formulario category al editar*/
 $(document).ready(function () {
-    $('#editForm').bootstrapValidator({ 
+    $('#editForm').bootstrapValidator({
         message: 'Este valor no es valido',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -228,6 +228,74 @@ $(document).ready(function () {
                 }
             }
         }
-        
+
     });
 });
+/*Valida formulario de los Modelos de vehiculos*/
+$(document).ready(function () {
+    $('#vehicleModelForm').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            selectVehicleModel: {
+                validators: {
+                    greaterThan: {
+                        value:1,
+                        message: 'Campo obligatorio'
+                    }
+                }
+            },
+            vehicleModel: {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo obligatorio'
+                    }
+                }
+            },
+            star_generatioModel: {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^\d{4}$/,
+                        message: 'Formato incorrecto'
+                    }
+                }
+            },
+//            datetimepickerMes: {
+//                validators: {
+//                    notEmpty: {
+//                        message: 'La fecha de nacimiento no puede ser vacia'
+//                    },
+//                    regexp: {
+//                        regexp: /^(0[1-9])|(1[0-2])$/,
+//                        message: 'La fecha de nacimiento no es valida'
+//                    }
+//                }
+//            },
+            end_generatioModel: {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^\d{4}$/,
+                        message: 'Formato Incorrecto'
+                    }
+                }
+            }
+        }
+
+    });
+    validator.on("success.form.bv", function (e) {
+        e.preventDefault();
+        $("#vehicleModelForm").addClass("hiden");
+        $("confirmation").removeClass()("hiden");
+    });
+
+});
+

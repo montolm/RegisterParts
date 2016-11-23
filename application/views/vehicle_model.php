@@ -12,79 +12,75 @@
     <body>
         <?php include ('menu.php'); ?>
         <br>
-        <div class="container col-lg-3" style="margin-left: 20%">
+        <div class="container col-lg-2" style="margin-left: 20%">
             <form id="vehicleModelForm" method="post">
                 <div class="form-group">
                     <?php
-                    echo "<div class='container col-lg-5' style='margin-left:-4%'>
+                    if (isset($_POST['Submit'])) {
+                        $marca = $_SESSION['marca'];
+                        echo "<div class='container col-lg-10' style='margin-left:-4%'>
+                            <select id= 'listVehicleModel'class='form-control' name='selectVehicleModel'>
+                            <option value='0' selected>$marca</option>";
+                        foreach ($make as $row) {
+                            echo "<option value=$row->id_vehicle_make>$row->name_vehicle_make</option>";
+                        }
+                        echo"</select>
+                    </div>";
+                    } else {
+                        echo "<div class='container col-lg-10' style='margin-left:-4%'>
                             <select id= 'listVehicleModel'class='form-control' name='selectVehicleModel'>
                             <option value='0' selected>Marcas</option>";
-                    foreach ($make as $row) {
-                        echo "<option value=$row->id_vehicle_make>$row->name_vehicle_make</option>";
-                    }
-                    echo"</select>
+                        foreach ($make as $row) {
+                            echo "<option value=$row->id_vehicle_make>$row->name_vehicle_make</option>";
+                        }
+                        echo"</select>
                     </div>";
-                    ?>  
+                    }
+                    ?>
+
                 </div>
                 <br>
                 <br>
                 <br>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="vehicleModel" id="idvehicleModel" placeholder="Modelo">
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div>
-                                <div class='input-group date' id='datetimepicker1'>
-                                    <input  type='text' class="form-control" name="star_generatioModel" placeholder="Ini. Generacion"/>
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-           
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div>
-                                <div class='input-group date' id='datetimepicker2'>
-                                    <input  type='text' class="form-control" name="end_generatioModel" placeholder="Fin. Generacion"/>
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                <div class = "form-group">
+                    <input type = "text" class = "form-control" name = "vehicleModel" id = "idvehicleModel" value = "<?php
+                    if (isset($_POST['Submit'])) {
+                        echo $_SESSION['modelo'];
+                    }
+                    ?>" placeholder = "Modelo">
                 </div>
 
+                <div class="form-group" id="datetimepicker2">
+                    <input type="text" class="form-control date"  name="star_generatioModel" id="idstar_generatioModel" placeholder="Ini.Generacion 1985" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="end_generatioModel" id="idend_generatioModel" placeholder="Fin.Generacion 1989" value=""/>
+                </div>
                 <div id="idmensaje"></div>
-            </form>   
-            <div>
-                <button type="button" class="btn btn-lg btn-primary" id="btnVehicleModel" onclick="insertVehicleModel()" >Enviar</button>
+                <div>
+                    <button type="submit" class="btn btn-lg btn-primary" id="btnVehicleModel" name="Submit" onclick="insertVehicleModel()" >Enviar</button>
+                </div>
+            </form>
+            <div id="confirmation" class="alert alert-success hidden">
+                <span class="glyphicon glyphicon-star"> Su registro fue guardado</span>
             </div>
-
-        </div>
+        </div>    
         <script src="<?php echo base_url(); ?>js/Jquery-2.1.1.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Bootstrap.min.js" type="text/javascript"></script>
         <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
         <script src="http://momentjs.com/downloads/moment-with-locales.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
         <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>js/overhang.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-                    $(function () {
-                        $('#datetimepicker1').datetimepicker({format: 'YYYY', locale: 'ES'});
-                        $('#datetimepicker2').datetimepicker({format: 'YYYY', locale: 'ES'});
-                    });
-        </script>
+        <script src="<?php echo base_url(); ?>js/overhang.min.js" type="text/javascript"></script> 
+        <!--<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({format: 'YYYY', locale: 'ES'});
+                $('#datetimepicker2').datetimepicker({format: 'YYYY', locale: 'ES'});
+                $('#prueba').datetimepicker({format: 'YYYY', locale: 'ES'});
+            });
+        </script>-->
+
     </body>
 </html>

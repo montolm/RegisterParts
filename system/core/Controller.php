@@ -92,5 +92,17 @@ class CI_Controller {
 	{
 		return self::$instance;
 	}
+        
+           
+    /* Coloca los datos en sesion al insertar un modelo de vehiculo*/
+   public function loadSesionModel($marca,$modelo) {
+        $newdataModel = array(
+            'marca' => $marca,
+            'modelo' => $modelo
+            //'logged_in' => TRUE
+        );
+
+        $this->session->set_userdata($newdataModel);
+    }
 
 }

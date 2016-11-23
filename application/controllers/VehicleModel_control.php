@@ -17,7 +17,7 @@ class VehicleModel_control extends CI_Controller {
     public function __construct() {
         parent::__construct();
         // $this->load->model('api_model');
-        $this->load->model('VehicleModel_model');
+        $this->load->model('Vehicle_model');
         $this->load->model('Api_model');
     }
 
@@ -39,7 +39,6 @@ class VehicleModel_control extends CI_Controller {
 
     public function createVehicleModel() {
         $user_name = $this->session->userdata('username');
-
         $id_vehicleModel_Sum = $this->Api_model->getMaxNUMId('vehicle_model', 'id_model') + 1;
         $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
         $name_model = $this->input->post('vehicleModel');
@@ -60,15 +59,17 @@ class VehicleModel_control extends CI_Controller {
                 "id_vehicle_brand" => $mca_inh,
                 "id_username" => $user_id_exist,
                 "id_vehicle_brand" => $id_vehicle_brand);
-            $result = $this->VehicleModel_model->createVehicleModel($datos);
+            $result = $this->Vehicle_model->createVehicleModel($datos);
             $returnValue = $this->Api_model->getException($result);
             if ($returnValue == 1) {
-                echo 'TRUE';
+                $NameMake = $this->Api_model->consultMakeName($id_vehicle_brand);
+                $this->loadSesionModel($NameMake,$name_model);
+                echo 'TRUE';      
             } else {
                 echo 'FALSE';
             }
         } else {
-            echo 'FALSEEE';
+            echo 'FALSE';
         }
     }
 
@@ -126,7 +127,12 @@ class VehicleModel_control extends CI_Controller {
         $data = array(
             'make' => $this->Api_model->consultMake()
         );
+       //   redirect($this->config->item('CONSTANT_LOADVIEW') . 'vehicle_model');
         $this->load->view('vehicle_model', $data);
+    }
+    
+    public function loadSesionModel($marca, $modelo) {
+        parent::loadSesionModel($marca, $modelo);
     }
 
 }

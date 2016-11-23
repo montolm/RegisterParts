@@ -11,7 +11,6 @@ Class Api_model extends CI_Model {
     var $prueba = null;
 
     function __construct() {
-
         parent::__construct();
     }
 
@@ -57,17 +56,18 @@ Class Api_model extends CI_Model {
     public function getException($value) {
         try {
             if ($value != 1) {
-                throw new Exception("Error al insertar registro",0);
-            }else{
+                throw new Exception("Error al insertar registro", 0);
+            } else {
                 return $value;
             }
         } catch (Exception $e) {
-            return $e->getCode();//echo $e->getMessage();
+            return $e->getCode(); //echo $e->getMessage();
             //return $e->getMessage(); //echo 'Excepción capturada: ', $e->getCode(), "\n";
         }
     }
-    
-  /*Retorna las marcas seleccionada*/
+
+    /* Retorna las marcas seleccionada */
+
     public function consultMake() {
         $query = $this->db->query("select a.id_vehicle_make,a.name_vehicle_make,a.creation_date,a.fec_actu,a.mca_inh,b.username
                                     from make a
@@ -76,6 +76,22 @@ Class Api_model extends CI_Model {
                                    order by a.id_vehicle_make;");
         if ($query->num_rows() > 0) {
             return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    /* Retorna las marcas seleccionada */
+
+    public function consultMakeName($idMake) {
+
+        $query = $this->db->query("select a.name_vehicle_make
+                                    from make a
+                                     where  a.id_vehicle_make = $idMake
+                                   order by a.id_vehicle_make;");
+        if ($query->num_rows() > 0) {
+            $row = $query->row();
+            return $value = $row->name_vehicle_make;
         } else {
             return false;
         }

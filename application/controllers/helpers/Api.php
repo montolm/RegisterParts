@@ -12,9 +12,9 @@ class Api extends CI_Controller {
     function loadView($view) {
         $this->load->view($view);
     }
+
     /*Carga las vista de las consultas*/
     function loadView_c($view) {
-        
         $this->load->view($this->config->item('CONSTANT_CARPETA_C').$view);
     }
 
@@ -55,4 +55,5 @@ class Api extends CI_Controller {
         return $ViewName;
     }
 
+   
 }

@@ -503,3 +503,4 @@ $config['CONSTANT_LOADVIEW']   = '/helpers/Api/loadView/';
 $config['CONSTANT_LOADVIEW_C'] = '/helpers/Api/loadView_c/';
 $config['CONSTANT_CARPETA_C']  = 'consultas/';
 $config['CONSTANT_LOAD_USER_SESION'] = '/helpers/Api/loadViewS/';
+$config['CONSTANT_LOAD_MODEL_SESION'] = '/helpers/Api/loadSesionModel/';
