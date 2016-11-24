@@ -243,7 +243,7 @@ $(document).ready(function () {
             selectVehicleModel: {
                 validators: {
                     greaterThan: {
-                        value:1,
+                        value:0,
                         message: 'Campo obligatorio'
                     }
                 }
@@ -290,11 +290,6 @@ $(document).ready(function () {
             }
         }
 
-    });
-    validator.on("success.form.bv", function (e) {
-        e.preventDefault();
-        $("#vehicleModelForm").addClass("hiden");
-        $("confirmation").removeClass()("hiden");
     });
 
 });

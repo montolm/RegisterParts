@@ -95,11 +95,11 @@ class CI_Controller {
         
            
     /* Coloca los datos en sesion al insertar un modelo de vehiculo*/
-   public function loadSesionModel($marca,$modelo) {
+   public function loadSesionModel($marca,$modelo,$value) {
         $newdataModel = array(
             'marca' => $marca,
-            'modelo' => $modelo
-            //'logged_in' => TRUE
+            'modelo' => $modelo,
+            'value' => $value
         );
 
         $this->session->set_userdata($newdataModel);

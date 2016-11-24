@@ -18,9 +18,12 @@
                     <?php
                     if (isset($_POST['Submit'])) {
                         $marca = $_SESSION['marca'];
+                         $value = $_SESSION['value'];
+                        /*Me falta capturar el id del campo seleccionado y asgnar a la session y asi poder validar 
+                        cuando sea obligatorio el campo*/
                         echo "<div class='container col-lg-10' style='margin-left:-4%'>
                             <select id= 'listVehicleModel'class='form-control' name='selectVehicleModel'>
-                            <option value='0' selected>$marca</option>";
+                            <option value=$value selected>$marca</option>";
                         foreach ($make as $row) {
                             echo "<option value=$row->id_vehicle_make>$row->name_vehicle_make</option>";
                         }

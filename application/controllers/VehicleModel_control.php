@@ -63,7 +63,7 @@ class VehicleModel_control extends CI_Controller {
             $returnValue = $this->Api_model->getException($result);
             if ($returnValue == 1) {
                 $NameMake = $this->Api_model->consultMakeName($id_vehicle_brand);
-                $this->loadSesionModel($NameMake,$name_model);
+                $this->loadSesionModel($NameMake,$name_model,$id_vehicle_brand);
                 echo 'TRUE';      
             } else {
                 echo 'FALSE';
@@ -131,8 +131,8 @@ class VehicleModel_control extends CI_Controller {
         $this->load->view('vehicle_model', $data);
     }
     
-    public function loadSesionModel($marca, $modelo) {
-        parent::loadSesionModel($marca, $modelo);
+    public function loadSesionModel($marca, $modelo,$value) {
+        parent::loadSesionModel($marca, $modelo,$value);
     }
 
 }
