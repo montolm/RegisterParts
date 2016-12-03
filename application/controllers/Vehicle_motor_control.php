@@ -70,14 +70,12 @@ class Vehicle_motor_control extends CI_Controller {
         $inha_vehicleMotor = $this->input->post('inhaVehicleMotor');
         $user_id_exist = $this->api_model->getId('user', 'username', 'id_username', $user_name);
         $fec_actu = date("y-m-d", time());
-        echo $id_vehicleMotor . ' ' . $name_vehicleMotor . ' ' . $inha_vehicleMotor . ' ' . $user_name . ' ' . $fec_actu.' '.$user_id_exist;
+       // echo $id_vehicleMotor . ' ' . $name_vehicleMotor . ' ' . $inha_vehicleMotor . ' ' . $user_name . ' ' . $fec_actu.' '.$user_id_exist;
         if ($id_vehicleMotor != '' && $name_vehicleMotor != '' && $inha_vehicleMotor != '' && $user_id_exist != '' && $fec_actu != '') {
-
             $datos = array("type_name_vehicle" => $name_vehicleMotor,
                 "mca_inh" => $inha_vehicleMotor,
                 "fec_actu" => $fec_actu,
                 "id_username" => $user_id_exist);
-
             echo $result = $this->vehicle_motor_model->updateVehicleMotorModel($id_vehicleMotor, $datos);
         } else {
             echo 'FALSE';

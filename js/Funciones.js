@@ -126,7 +126,6 @@ $(document).ready(function () {
 $(document).ready(function () {
     getCampEdit("#mydataVehicleMotor", "#editVehicleMotor", "#editNameVehicleMotor", "#inhaVehicleMotor");
     $("#updateButtonVehicleMotor").click(function (e) {
-        // location.reload();
         $.ajax({
             url: getHostUrl('Vehicle_motor_control/updateVehicleMotor'),
             type: 'POST',
@@ -137,6 +136,23 @@ $(document).ready(function () {
         });
     });
 });
+
+/*Actualiza los registros de los modelos de vehiculos*/
+$(document).ready(function () {  
+    getCampEditVehicleModel("#mydataVehicleModel", "#editVehicleModel", "#editNameVehicleModel", "#inhaVehicleModel");
+    $("#updateButtonVehicleModel").click(function (e) {
+        $.ajax({
+            url: getHostUrl('VehicleModel_control/updateVehicleModel'),
+            type: 'POST',
+            data: $("#editFormVehicleModel").serialize(),
+            success: function (respuesta) {
+                alert(respuesta);
+                location.reload();
+            }
+        });
+    });
+});
+
 /*Inserta los tipos de vehiculos de motor*/
 $(document).ready(function () {
     $("#btnVehicleMotor").click(function (e) {
@@ -272,7 +288,6 @@ function insertRegyster(idCamp, url, idForm) {
     }
 }
 
-
 function getCampEdit(idDataTable, idCamp, editNameSelect, mca_inha) {
     $("body").on("click", idDataTable + " a", function (e) {
         e.preventDefault();
@@ -287,6 +302,19 @@ function getCampEdit(idDataTable, idCamp, editNameSelect, mca_inha) {
     });
 }
 
+function getCampEditVehicleModel(idDataTable, idCamp, editNameSelect, mca_inha) {
+    $("body").on("click", idDataTable + " a", function (e) {
+        e.preventDefault();
+        idsele = $(this).attr("href");
+        nameSelect = $(this).parent().parent().children("td:eq(2)").text();
+        inhaSelect = $(this).parent().parent().children("td:eq(7)").text();
+        if (idsele > 0) {
+            $(idCamp).val(idsele);
+            $(editNameSelect).val(nameSelect);
+            $(mca_inha).val(inhaSelect);
+        }
+    });
+}
 function getHostUrl(urlControl) {
     var hostUrl = 'http://localhost/RegisterParts/index.php/';
     return hostUrl + urlControl;

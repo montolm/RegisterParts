@@ -243,7 +243,7 @@ $(document).ready(function () {
             selectVehicleModel: {
                 validators: {
                     greaterThan: {
-                        value:0,
+                        value:1,
                         message: 'Campo obligatorio'
                     }
                 }

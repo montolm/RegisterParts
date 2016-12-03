@@ -76,20 +76,23 @@ class VehicleModel_control extends CI_Controller {
     /* Actualiza Marca de vehiculo */
 
     public function updateVehicleModel() {
-        $user_name = $this->session->userdata('username');
-        if ($user_name != FALSE) {
+       
+       $user_name = $this->session->userdata('username');
+        //echo'ENTROO '.$user_name;
+       if ($user_name != FALSE) {
             $id_vehicleModel = $this->input->post('vehicleModel');
             $nam_vehicleModel = $this->input->post('nameVehicleModel');
             $inha_vehicleModel = $this->input->post('inhaVehicleModel');
-            $user_id_exist = $this->api_model->getId('user', 'username', 'id_username', $user_name);
+            $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
             $fec_actu = date("y-m-d", time());
-            // echo $id_vehicleModel . ' ' . $type_vehicleModel . ' ' . $inha_vehicleModel . ' ' . $user_name . ' ' . $fec_actu . ' ' . $user_id_exist;
-            if ($id_vehicleModel != '' & $nam_vehicleModel != '' & $inha_vehicleModel != '' && $user_id_exist != '' && $fec_actu != '') {
-                $datos = array("name_vehicle_vehicleModel" => $nam_vehicleModel,
+            //echo 'ENTROOO '.$id_vehicleModel.' '.$nam_vehicleModel.' '.$fec_actu.' '.$user_id_exist.' '.$inha_vehicleModel.' '; 
+            if ($id_vehicleModel != '' && $nam_vehicleModel != '' && $inha_vehicleModel != '' && $user_id_exist != '' && $fec_actu != '') {
+                
+                $datos = array("model_name" => $nam_vehicleModel,
                     "mca_inh" => $inha_vehicleModel,
                     "fec_actu" => $fec_actu,
                     "id_username" => $user_id_exist);
-                echo $result = $this->vehicleModel_model->updateVehicleModelModel($id_vehicleModel, $datos);
+                echo $result = $this->Vehicle_model->updateVehicleModel($id_vehicleModel, $datos);
             } else {
                 echo 'FALSE';
             }
@@ -109,17 +112,18 @@ class VehicleModel_control extends CI_Controller {
         }
     }
 
-    /* Retorna las Marcas de vehiculos existentes */
+    /* Retorna las modelos por cada marca de vehiculos existentes */
 
     public function consultVehicleModel() {
 
         $data = array(
-            'vehicleModel' => $this->vehicleModel_model->consultVehicleModel()
+            'vehicleModel' => $this->Vehicle_model->consultVechicleModel()
         );
         /* Refactorizar mas adelante para colocar la llamada al metodo CONSTANT_LOADVIEW_C y asi esconder
           el controlador llamado para mas seguridad de la app. */
-        $this->load->view('consultas/vehicleModel_c', $data);
+        $this->load->view('consultas/vehicle_model_c', $data);
     }
+    
 
     /* Retorna las Marcas de vehiculos existentes para llenar la lista en el view */
 

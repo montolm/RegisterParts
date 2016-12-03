@@ -55,13 +55,16 @@ class Vehicle_model extends CI_Model {
 
     /* Retorna todas las categorias existentes */
 
-    public function consultVehicleMotor() {
+    public function consultVechicleModel() {
 
-        $query = $this->db->query("select a.id_type_vehicle_motor,a.type_name_vehicle,a.creation_date,a.fec_actu,a.mca_inh,b.username
-                                    from type_vehicle_motor a
-                                    inner join user b
-                                    on a.id_username = b.id_username
-                                order by a.id_type_vehicle_motor;");
+        $query = $this->db->query("select a.id_model,a.model_name,b.name_vehicle_make,a.start_generation,a.end_generation,
+                                           a.creation_date,a.fec_actu,a.mca_inh,c.username
+                                    from vehicle_model a
+                                   inner join make b
+                                     on a.id_vehicle_brand = b.id_vehicle_make
+                                   inner join user c 
+                                     on a.id_username = c.id_username
+                                   order by a.id_model;");
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {
