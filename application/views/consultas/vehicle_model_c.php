@@ -139,7 +139,7 @@
 <!--        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
 <!--        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>-->
         <script>
-            $('#mydataVehicleMotor').dataTable({
+            $('#mydataVehicleModel').dataTable({
                 "paging": true,
                 "ordering": true,
                 "info": false,
