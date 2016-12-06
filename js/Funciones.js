@@ -139,7 +139,8 @@ $(document).ready(function () {
 
 /*Actualiza los registros de los modelos de vehiculos*/
 $(document).ready(function () {  
-    getCampEditVehicleModel("#mydataVehicleModel", "#editVehicleModel", "#editNameVehicleModel", "#inhaVehicleModel");
+    getCampEditVehicleModel("#mydataVehicleModel", "#editVehicleModel", "#editNameVehicleModel",
+                             "#inhaVehicleModel","#editIniGeneration","#editEndGeneration");
     $("#updateButtonVehicleModel").click(function (e) {
         $.ajax({
             url: getHostUrl('VehicleModel_control/updateVehicleModel'),
@@ -302,15 +303,20 @@ function getCampEdit(idDataTable, idCamp, editNameSelect, mca_inha) {
     });
 }
 
-function getCampEditVehicleModel(idDataTable, idCamp, editNameSelect, mca_inha) {
+function getCampEditVehicleModel(idDataTable, idCamp, editNameSelect, mca_inha,editIniGenerationSelect,editEndGenerationSelect) {
     $("body").on("click", idDataTable + " a", function (e) {
         e.preventDefault();
         idsele = $(this).attr("href");
         nameSelect = $(this).parent().parent().children("td:eq(2)").text();
+        iniGenerationSelect = $(this).parent().parent().children("td:eq(3)").text();
+        endGenerationSelect = $(this).parent().parent().children("td:eq(4)").text();
         inhaSelect = $(this).parent().parent().children("td:eq(7)").text();
+        alert(endGenerationSelect);
         if (idsele > 0) {
             $(idCamp).val(idsele);
             $(editNameSelect).val(nameSelect);
+            $(editIniGenerationSelect).val(iniGenerationSelect);
+            $(editEndGenerationSelect).val(endGenerationSelect);
             $(mca_inha).val(inhaSelect);
         }
     });
