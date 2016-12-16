@@ -186,7 +186,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#btnCombustible").click(function (e) {
         var idCamp = "#idCombustible";
-        var url = getHostUrl('VehicleModel_control/createCombustible');
+        var url = getHostUrl('Combustible_control/createCombustible');
         var idForm = "#combustibleForm";
         insertRegyster(idCamp, url, idForm);
     });
@@ -237,7 +237,7 @@ $(document).ready(function () {
 /*inserta marcas de vehiculos*/
 $(document).ready(function () {
     $("#btnMake").click(function (e) {
-        // alert('ENTROOOO');
+         alert('ENTROOOO');
         var idCamp = "#idMake";
         var url = getHostUrl('Make_control/createMake');
         var idForm = "#makeForm";
@@ -248,14 +248,14 @@ $(document).ready(function () {
 
 /*Inserta registros en la DB de manera dinamica*/
 function insertRegyster(idCamp, url, idForm) {
-    alert(idCamp + " " + url + " " + idForm);
+    //alert(idCamp + " " + url + " " + idForm);
     if ($(idCamp).val() !== "") {
         $.ajax({
             url: url,
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                alert(respuesta);
+                //alert(respuesta);
                 /*if (respuesta === 'TRUE') {
 
                     $("#idmensaje").overhang({
@@ -311,7 +311,6 @@ function getCampEditVehicleModel(idDataTable, idCamp, editNameSelect, mca_inha,e
         iniGenerationSelect = $(this).parent().parent().children("td:eq(3)").text();
         endGenerationSelect = $(this).parent().parent().children("td:eq(4)").text();
         inhaSelect = $(this).parent().parent().children("td:eq(7)").text();
-        alert(endGenerationSelect);
         if (idsele > 0) {
             $(idCamp).val(idsele);
             $(editNameSelect).val(nameSelect);

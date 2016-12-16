@@ -18,10 +18,10 @@
                     <input type="text" class="form-control" name="name_make" id="idMake">   
                 </div>
                 <div id="idmensaje"></div>
+                <div>
+                    <button type="submit" class="btn btn-lg btn-primary" id="btnMake" >Enviar</button>
+                </div>
             </form>   
-            <div>
-                <button type="button" class="btn btn-lg btn-primary" id="btnMake" >Enviar</button>
-            </div>
         </div>
         <script src="<?php echo base_url(); ?>js/Jquery-2.1.1.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Bootstrap.min.js" type="text/javascript"></script>

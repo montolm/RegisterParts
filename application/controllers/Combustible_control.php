@@ -16,8 +16,8 @@ class Combustible_control extends CI_Controller {
     //put your code here
     public function __construct() {
         parent::__construct();
-        $this->load->model('api_model');
-        $this->load->model('combustible_model');
+        $this->load->model('Api_model');
+        $this->load->model('Combustible_model');
     }
 
     public function index() {
@@ -38,22 +38,23 @@ class Combustible_control extends CI_Controller {
 
     public function createCombustible() {
         $user_name = $this->session->userdata('username');
-        $id_combustible_Sum = $this->api_model->getMaxNUMId('combustible', 'id_combustible') + 1;
-        $user_id_exist = $this->api_model->getId('user', 'username', 'id_username', $user_name);
+        $id_combustible_Sum = $this->Api_model->getMaxNUMId('combustible', 'id_combustible') + 1;
+        $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
         $type_combustible = $this->input->post('name_combustible');
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
-        //echo $user_id_exist.' '.$type_combustible;
+       
         if ($user_id_exist > 0 & $type_combustible != '') {
+            echo $user_id_exist.' '.$type_combustible;
             $datos = array("id_combustible" => $id_combustible_Sum,
                 "type_combustible" => $type_combustible,
                 "creation_date" => $creation_date,
                 "fec_actu" => $fec_actu,
                 "mca_inh" => $mca_inh,
                 "id_username" => $user_id_exist);
-            $result = $this->combustible_model->createCombustibleModel($datos);
-            $returnValue = $this->api_model->getException($result);
+            $result = $this->Combustible_model->createCombustibleModel($datos);
+            $returnValue = $this->Api_model->getException($result);
 
             if ($returnValue == 1) {
                 echo 'TRUE';
@@ -81,7 +82,7 @@ class Combustible_control extends CI_Controller {
                     "mca_inh" => $inha_combustible,
                     "fec_actu" => $fec_actu,
                     "id_username" => $user_id_exist);
-                echo $result = $this->combustible_model->updateCombustibleModel($id_combustible, $datos);
+                echo $result = $this->Combustible_model->updateCombustibleModel($id_combustible, $datos);
             } else {
                 echo 'FALSE';
             }
@@ -93,7 +94,7 @@ class Combustible_control extends CI_Controller {
     public function deleteCombustible() {
         $id_category = $this->input->post('idDeletect');
         if ($id_category !== '') {
-            echo $result = $this->combustible_model->deleteCategoryModel($id_category);
+            echo $result = $this->Combustible_model->deleteCategoryModel($id_category);
         } else {
             echo "FALSE";
         }
@@ -103,7 +104,7 @@ class Combustible_control extends CI_Controller {
     public function consultCombustible() {
 
         $data = array(
-            'combustible' => $this->combustible_model->consultCombustible()
+            'combustible' => $this->Combustible_model->consultCombustible()
         );
         /* Refactorizar mas adelante para colocar la llamada al metodo CONSTANT_LOADVIEW_C y asi esconder
           el controlador llamado para mas seguridad de la app. */

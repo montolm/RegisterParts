@@ -54,7 +54,7 @@ class VehicleModel_control extends CI_Controller {
                 "creation_date" => $creation_date,
                 "fec_actu" => $fec_actu,
                 "mca_inh" => $mca_inh,
-                "start_generation" =>$star_generatioModel,
+                "start_generation" => $star_generatioModel,
                 "end_generation" => $end_generatioModel,
                 "id_vehicle_brand" => $mca_inh,
                 "id_username" => $user_id_exist,
@@ -63,8 +63,8 @@ class VehicleModel_control extends CI_Controller {
             $returnValue = $this->Api_model->getException($result);
             if ($returnValue == 1) {
                 $NameMake = $this->Api_model->consultMakeName($id_vehicle_brand);
-                $this->loadSesionModel($NameMake,$name_model,$id_vehicle_brand);
-                echo 'TRUE';      
+                $this->loadSesionModel($NameMake, $name_model, $id_vehicle_brand);
+                echo 'TRUE';
             } else {
                 echo 'FALSE';
             }
@@ -76,20 +76,22 @@ class VehicleModel_control extends CI_Controller {
     /* Actualiza Marca de vehiculo */
 
     public function updateVehicleModel() {
-       
-       $user_name = $this->session->userdata('username');
-        //echo'ENTROO '.$user_name;
-       if ($user_name != FALSE) {
+
+        $user_name = $this->session->userdata('username');
+        if ($user_name != FALSE) {
             $id_vehicleModel = $this->input->post('vehicleModel');
             $nam_vehicleModel = $this->input->post('nameVehicleModel');
             $inha_vehicleModel = $this->input->post('inhaVehicleModel');
+            $iniGeneration = $this->input->post('iniGeneration');
+            $endGeneration = $this->input->post('endGeneration');
             $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
             $fec_actu = date("y-m-d", time());
-            //echo 'ENTROOO '.$id_vehicleModel.' '.$nam_vehicleModel.' '.$fec_actu.' '.$user_id_exist.' '.$inha_vehicleModel.' '; 
+
             if ($id_vehicleModel != '' && $nam_vehicleModel != '' && $inha_vehicleModel != '' && $user_id_exist != '' && $fec_actu != '') {
-                
                 $datos = array("model_name" => $nam_vehicleModel,
                     "mca_inh" => $inha_vehicleModel,
+                    "start_generation" => $iniGeneration,
+                    "end_generation" => $endGeneration,
                     "fec_actu" => $fec_actu,
                     "id_username" => $user_id_exist);
                 echo $result = $this->Vehicle_model->updateVehicleModel($id_vehicleModel, $datos);
@@ -123,7 +125,6 @@ class VehicleModel_control extends CI_Controller {
           el controlador llamado para mas seguridad de la app. */
         $this->load->view('consultas/vehicle_model_c', $data);
     }
-    
 
     /* Retorna las Marcas de vehiculos existentes para llenar la lista en el view */
 
@@ -131,12 +132,12 @@ class VehicleModel_control extends CI_Controller {
         $data = array(
             'make' => $this->Api_model->consultMake()
         );
-       //   redirect($this->config->item('CONSTANT_LOADVIEW') . 'vehicle_model');
+        //   redirect($this->config->item('CONSTANT_LOADVIEW') . 'vehicle_model');
         $this->load->view('vehicle_model', $data);
     }
-    
-    public function loadSesionModel($marca, $modelo,$value) {
-        parent::loadSesionModel($marca, $modelo,$value);
+
+    public function loadSesionModel($marca, $modelo, $value) {
+        parent::loadSesionModel($marca, $modelo, $value);
     }
 
 }
