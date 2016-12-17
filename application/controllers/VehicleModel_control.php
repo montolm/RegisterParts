@@ -76,7 +76,6 @@ class VehicleModel_control extends CI_Controller {
     /* Actualiza Marca de vehiculo */
 
     public function updateVehicleModel() {
-
         $user_name = $this->session->userdata('username');
         if ($user_name != FALSE) {
             $id_vehicleModel = $this->input->post('vehicleModel');

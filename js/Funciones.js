@@ -147,7 +147,7 @@ $(document).ready(function () {
             type: 'POST',
             data: $("#editFormVehicleModel").serialize(),
             success: function (respuesta) {
-                alert(respuesta);
+               // alert(respuesta);
                 location.reload();
             }
         });
@@ -307,7 +307,7 @@ function getCampEditVehicleModel(idDataTable, idCamp, editNameSelect, mca_inha,e
     $("body").on("click", idDataTable + " a", function (e) {
         e.preventDefault();
         idsele = $(this).attr("href");
-        nameSelect = $(this).parent().parent().children("td:eq(2)").text();
+        nameSelect = $(this).parent().parent().children("td:eq(1)").text();
         iniGenerationSelect = $(this).parent().parent().children("td:eq(3)").text();
         endGenerationSelect = $(this).parent().parent().children("td:eq(4)").text();
         inhaSelect = $(this).parent().parent().children("td:eq(7)").text();
