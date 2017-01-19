@@ -7,57 +7,63 @@
  */
 
 /**
- * Description of Model_control
+ * Description of Vehicle_type
  *
  * @author montolio
  */
-class VehicleModel_control extends CI_Controller {
+class Vehicle_type_control extends CI_Controller {
 
     //put your code here
     public function __construct() {
         parent::__construct();
+        // $this->load->model('api_model');
         $this->load->model('Vehicle_model');
         $this->load->model('Api_model');
     }
 
     public function index() {
-        $this->load->view('vehicle_Model');
+        $this->load->view('vehicle_type');
     }
 
     public function urlVehicleModel() {
 
-        redirect($this->config->item('CONSTANT_LOADVIEW') . 'vehicle_model');
+        redirect($this->config->item('CONSTANT_LOADVIEW') . 'vehicle_type');
     }
 
     function urlVehicleModelConsult() {
-        redirect($this->config->item('CONSTANT_LOADVIEW_C') . 'vehicle_model_c');
+        //$this->load->view('consultas/vehicleModel_c');
+        redirect($this->config->item('CONSTANT_LOADVIEW_C') . 'vehicle_type_c');
     }
 
     /* Inserta Marca de vehiculo */
 
-    public function createVehicleModel() {
+    public function createVehicleType() {
         $user_name = $this->session->userdata('username');
         $id_vehicleModel_Sum = $this->Api_model->getMaxNUMId('vehicle_model', 'id_model') + 1;
         $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
         $name_model = $this->input->post('vehicleModel');
+        $star_generatioModel = $this->input->post('star_generatioModel');
+        $end_generatioModel = $this->input->post('end_generatioModel');
         $id_vehicle_brand = $this->input->post('selectVehicleModel');
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
-        
         if ($user_id_exist > 0 & $name_model != '') {
             $datos = array("id_model" => $id_vehicleModel_Sum,
                 "model_name" => $name_model,
                 "creation_date" => $creation_date,
                 "fec_actu" => $fec_actu,
                 "mca_inh" => $mca_inh,
+                "start_generation" => $star_generatioModel,
+                "end_generation" => $end_generatioModel,
+                "id_vehicle_brand" => $mca_inh,
                 "id_username" => $user_id_exist,
-                "id_vehicle_make" => $id_vehicle_brand);
+                "id_vehicle_brand" => $id_vehicle_brand);
             $result = $this->Vehicle_model->createVehicleModel($datos);
             $returnValue = $this->Api_model->getException($result);
             if ($returnValue == 1) {
                 $NameMake = $this->Api_model->consultMakeName($id_vehicle_brand);
-                $this->loadSesionModel($NameMake, NULL, $id_vehicle_brand);
+                $this->loadSesionModel($NameMake, $name_model, $id_vehicle_brand);
                 echo 'TRUE';
             } else {
                 echo 'FALSE';
@@ -69,7 +75,7 @@ class VehicleModel_control extends CI_Controller {
 
     /* Actualiza Marca de vehiculo */
 
-    public function updateVehicleModel() {
+    public function updateVehicleType() {
         $user_name = $this->session->userdata('username');
         if ($user_name != FALSE) {
             $id_vehicleModel = $this->input->post('vehicleModel');
@@ -98,7 +104,7 @@ class VehicleModel_control extends CI_Controller {
 
     /* Borra Marca de vehiculo */
 
-    public function deleteVehicleModel() {
+    public function deleteVehicleType() {
         $id_category = $this->input->post('idDeletect');
         if ($id_category !== '') {
             echo $result = $this->vehicleModel_model->deleteCategoryModel($id_category);
@@ -109,10 +115,10 @@ class VehicleModel_control extends CI_Controller {
 
     /* Retorna las modelos por cada marca de vehiculos existentes */
 
-    public function consultVehicleModel() {
+    public function consultVehicleType() {
 
         $data = array(
-            'vehicleModel' => $this->Vehicle_model->consultVehicleModel()
+            'vehicleModel' => $this->Vehicle_model->consultVechicleModel()
         );
         /* Refactorizar mas adelante para colocar la llamada al metodo CONSTANT_LOADVIEW_C y asi esconder
           el controlador llamado para mas seguridad de la app. */
@@ -120,12 +126,13 @@ class VehicleModel_control extends CI_Controller {
     }
 
     /* Retorna las Marcas de vehiculos existentes para llenar la lista en el view */
-
     public function consultMake() {
         $data = array(
-            'make' => $this->Api_model->consultMake()
+            'make' => $this->Api_model->consultMake(),
+            'make_1' => $this->Api_model->consultMake_1(),
+            'make_2' => $this->Api_model->consultMake_2()
         );
-        $this->load->view('vehicle_model', $data);
+        $this->load->view('vehicle_type', $data);
     }
 
     public function loadSesionModel($marca, $modelo, $value) {

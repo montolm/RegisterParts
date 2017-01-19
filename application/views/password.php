@@ -31,7 +31,7 @@ and open the template in the editor.
                             
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary btn-lg btn-block" id="btnsend" >Enviar</button>
+                            <button class="btn btn-primary btn-lg btn-block" id="btnsend" ><span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
                             <span class="pull-right"><a href="<?= site_url('/home_control/urlLogin'); ?>">Cancelar</a></span>
                         </div>
                     </form>

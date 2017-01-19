@@ -35,22 +35,8 @@
             echo"<th>Inhabilitado</th>";
             echo"<th>Usuario</th>";
             echo"<th>Editar</th>";
-            // echo"<th>Eliminar</th>";
             echo"</tr>";
             echo"</thead>";
-            echo"<tfoot>";
-            echo"<tr>";
-            echo"<th>ID</th>";
-            echo"<th>Marca</th>";
-            echo"<th>Fecha de Creacion</th>";
-            echo"<th>Fecha actualizacion</th>";
-            echo"<th>Inhabilitado</th>";
-            echo"<th>Usuario</th>";
-            echo"<th>Editar</th>";
-            //echo"<th>Eliminar</th>";
-
-            echo"</tr>";
-            echo"</tfoot>";
             echo "<tbody>";
             foreach ($make as $row) {
                 echo"<tr>
@@ -63,10 +49,6 @@
                 echo"<td>";
                 echo"<a href=$row->id_vehicle_make class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
                 echo"</td>";
-                //echo"<td>";
-                //echo"<a href=$row->id_category class='btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete' id=''><span class='glyphicon glyphicon-trash'></span></a>";
-                //echo "<button class = 'btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete'><span class = 'glyphicon glyphicon-trash'></span></button>";
-                //echo"</td>";
                 echo"</tr>";
                 echo"</tr>";
             }

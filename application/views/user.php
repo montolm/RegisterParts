@@ -52,7 +52,7 @@
                     <input type="password" class="form-control" name="confirm_password">
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-lg btn-primary" id="btnusuario" >Enviar</button>
+                    <button type="submit" class="btn btn-lg btn-primary" id="btnusuario" ><span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
                 </div>
             </form>    
         </div>

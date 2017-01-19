@@ -34,7 +34,9 @@
                             <li><a href=<?= site_url('/combustible_control/urlCombustible'); ?>>Combustible</a></li> 
                             <li><a href=<?= site_url('/make_control/urlMake'); ?>>Marca</a></li>
                             <li><a href=<?= site_url('/vehicleModel_control/consultMake'); ?>>Modelo</a></li>
-                            <li><a href=<?= site_url('/category/urlCategory'); ?>>Tipo Vehiculo</a></li>
+                            <li><a href=<?= site_url('/combustibleModel_control/consultVehicleModel');?>>Combus. Modelo</a></li>
+                            <li><a href=<?= site_url('/generationModel_control/consultVehicleModel');?>>Generat. Modelo</a></li>
+                            <li><a href=<?= site_url('/vehicle_type_control/consultMake'); ?>>Tipo Vehiculo</a></li>
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Pieza</a></li>  
                         </ul>
                     </li>
@@ -44,10 +46,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href=<?= site_url('/category_control/consultCategory'); ?>>Categoria</a></li>
-                            <li><a href=<?= site_url('/Vehicle_motor_control/consultVehicleMotor'); ?>>Vehiculo de motor</a></li> 
+                            <li><a href=<?= site_url('/vehicle_motor_control/consultVehicleMotor'); ?>>Vehiculo de motor</a></li> 
                             <li><a href=<?= site_url('/combustible_control/consultCombustible'); ?>>Combustible</a></li>
                             <li><a href=<?= site_url('/make_control/consultMake');?>>Marca</a></li>
                             <li><a href=<?= site_url('/vehicleModel_control/consultVehicleModel'); ?>>Modelo</a></li> 
+                            <li><a href=<?= site_url('/combustibleModel_control/consultCombustibleModel');?>>Combus. Modelo</a></li>
+                            <li><a href=<?= site_url('/generationModel_control/consultCombustibleModel');?>>Generat. Modelo</a></li>
                             <li><a href=<?= site_url('/category/urlCategory'); ?>>Tipo Vehiculo</a></li>
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Pieza</a></li>
                         </ul>

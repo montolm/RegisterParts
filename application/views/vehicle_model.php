@@ -18,9 +18,7 @@
                     <?php
                     if (isset($_POST['Submit'])) {
                         $marca = $_SESSION['marca'];
-                         $value = $_SESSION['value'];
-                        /*Me falta capturar el id del campo seleccionado y asgnar a la session y asi poder validar 
-                        cuando sea obligatorio el campo*/
+                        $value = $_SESSION['value'];
                         echo "<div class='container col-lg-10' style='margin-left:-4%'>
                             <select id= 'listVehicleModel'class='form-control' name='selectVehicleModel'>
                             <option value=$value selected>$marca</option>";
@@ -45,7 +43,6 @@
                 <br>
                 <br>
                 <br>
-
                 <div class = "form-group">
                     <input type = "text" class = "form-control" name = "vehicleModel" id = "idvehicleModel" value = "<?php
                     if (isset($_POST['Submit'])) {
@@ -53,16 +50,16 @@
                     }
                     ?>" placeholder = "Modelo">
                 </div>
-
-                <div class="form-group" id="datetimepicker2">
-                    <input type="text" class="form-control date"  name="star_generatioModel" id="idstar_generatioModel" placeholder="Ini.Generacion 1985" />
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="end_generatioModel" id="idend_generatioModel" placeholder="Fin.Generacion 1989" value=""/>
-                </div>
+                <!--
+                                <div class="form-group" id="datetimepicker2">
+                                    <input type="text" class="form-control date"  name="star_generatioModel" id="idstar_generatioModel" placeholder="Ini.Generacion 1985" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="end_generatioModel" id="idend_generatioModel" placeholder="Fin.Generacion 1989" value=""/>
+                                </div>-->
                 <div id="idmensaje"></div>
                 <div>
-                    <button type="submit" class="btn btn-lg btn-primary" id="btnVehicleModel" name="Submit" onclick="insertVehicleModel()" >Enviar</button>
+                    <button type="submit" class="btn btn-lg btn-primary" id="btnVehicleModel" name="Submit" onclick="insertVehicleModel()" ><span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
                 </div>
             </form>
             <div id="confirmation" class="alert alert-success hidden">

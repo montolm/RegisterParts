@@ -53,7 +53,7 @@ class Combustible_control extends CI_Controller {
                 "fec_actu" => $fec_actu,
                 "mca_inh" => $mca_inh,
                 "id_username" => $user_id_exist);
-            $result = $this->Combustible_model->createCombustibleModel($datos);
+            $result = $this->Combustible_model->createCombustible($datos);
             $returnValue = $this->Api_model->getException($result);
 
             if ($returnValue == 1) {

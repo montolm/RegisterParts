@@ -53,18 +53,18 @@ class Vehicle_model extends CI_Model {
         }
     }
 
-    /* Retorna todas las categorias existentes */
+    /* Retorna todos los modelos por marcas existentes */
 
-    public function consultVechicleModel() {
-
-        $query = $this->db->query("select a.id_model,a.model_name,b.name_vehicle_make,a.start_generation,a.end_generation,
-                                           a.creation_date,a.fec_actu,a.mca_inh,c.username
+    public function consultVehicleModel() {
+        $query = $this->db->query("select a.id_model,a.model_name,b.name_vehicle_make,a.creation_date,a.fec_actu,a.mca_inh,d.username
                                     from vehicle_model a
-                                   inner join make b
-                                     on a.id_vehicle_brand = b.id_vehicle_make
-                                   inner join user c 
-                                     on a.id_username = c.id_username
-                                   order by a.id_model;");
+                                    inner join make b
+                                      on a.id_vehicle_make = b.id_vehicle_make
+                                    inner join user c 
+                                      on a.id_username = c.id_username
+				    inner join user d
+                                      on a.id_username = d.id_username
+                                    order by a.id_model;");
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {

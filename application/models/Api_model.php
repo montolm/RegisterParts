@@ -81,6 +81,28 @@ Class Api_model extends CI_Model {
         }
     }
 
+    public function Combustibleconsult() {
+        $query = $this->db->query("select a.id_combustible,a.type_combustible
+                                    from combustible a
+                                  order by a.id_combustible;");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function consultMake_2() {
+        $query = $this->db->query("select a.id_model,a.model_name
+                                    from vehicle_model a
+                                    order by id_model;");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
     /* Retorna las marcas seleccionada */
 
     public function consultMakeName($idMake) {

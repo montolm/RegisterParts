@@ -35,22 +35,8 @@
             echo"<th>Inhabilitado</th>";
             echo"<th>Usuario</th>";
             echo"<th>Editar</th>";
-            // echo"<th>Eliminar</th>";
             echo"</tr>";
             echo"</thead>";
-            echo"<tfoot>";
-            echo"<tr>";
-            echo"<th>ID</th>";
-            echo"<th>Categoria</th>";
-            echo"<th>Fecha de Creacion</th>";
-            echo"<th>Fecha actualizacion</th>";
-            echo"<th>Inhabilitado</th>";
-            echo"<th>Usuario</th>";
-            echo"<th>Editar</th>";
-            //echo"<th>Eliminar</th>";
-
-            echo"</tr>";
-            echo"</tfoot>";
             echo "<tbody>";
             foreach ($categoria as $row) {
                 echo"<tr>

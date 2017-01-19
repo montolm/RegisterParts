@@ -19,7 +19,7 @@
                 </div>
                 <div id="idmensaje"></div>
                 <div>
-                    <button type="submit" class="btn btn-lg btn-primary" id="btnMake" >Enviar</button>
+                    <button type="submit" class="btn btn-lg btn-primary" id="btnMake" ><span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
                 </div>
             </form>   
         </div>

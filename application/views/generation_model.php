@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Tipo Combustible</title>
+        <title>Generacion Modelo</title>
 
         <!-- Bootstrap -->
         <!--    <link href="css/bootstrap.min.css" rel="stylesheet">-->
@@ -19,40 +19,35 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <?php include ('/../header.php'); ?>
+    <?php include ('header.php'); ?>
     <body>
-        <?php include ('/../menu.php'); ?>
-
+        <?php include ('menu.php'); ?>
         <div class="container">
             <?php
-            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataCombustible'>";
+            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataGenerationModel'>";
             echo"<thead>";
             echo"<tr>";
             echo"<th>ID</th>";
-            echo"<th>Tipo Combustible</th>";
+            echo"<th>Modelo</th>";
+            echo"<th>Marca</th>";
             echo"<th>Fecha de Creacion</th>";
-            echo"<th>Fecha actualizacion</th>";
             echo"<th>Inhabilitado</th>";
             echo"<th>Usuario</th>";
             echo"<th>Editar</th>";
             echo"</tr>";
             echo"</thead>";
             echo "<tbody>";
-            foreach ($combustible as $row) {
+            foreach ($vehicleModel as $row) {
                 echo"<tr>
-                <td>$row->id_combustible </td>
-                <td>$row->type_combustible</td>
+                <td>$row->id_model</td>
+                <td>$row->model_name</td>
+                <td>$row->name_vehicle_make </td>
                 <td>$row->creation_date </td>
-                <td>$row->fec_actu </td>
                 <td>$row->mca_inh</td>
                 <td>$row->username</td>";
                 echo"<td>";
-                echo"<a href=$row->id_combustible class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
+                echo"<a href=$row->id_model class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
                 echo"</td>";
-                //echo"<td>";
-                //echo"<a href=$row->id_category class='btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete' id=''><span class='glyphicon glyphicon-trash'></span></a>";
-                //echo "<button class = 'btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete'><span class = 'glyphicon glyphicon-trash'></span></button>";
-                //echo"</td>";
                 echo"</tr>";
                 echo"</tr>";
             }
@@ -64,44 +59,28 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Combustible</h4>
+                            <h4 class="modal-title custom_align" id="Heading">Combustible Modelo</h4>
                         </div>
-                        <form id="editFormCombustible" method="POST">
+                        <form id="editFormGenerationModel" method="POST">
                             <div class="modal-body">
                                 <div class="form-group hidden">
-                                    <input class="form-control " type="text" id="editCombustible" name="combustible">
+                                    <input class="form-control " type="text" id="editVehicleModel" name="vehicleModel">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="editNameCombustible" name="nameCombustible">
+                                    <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel">
+                                </div>
+                                <div class="form-group" id="datetimepicker2">
+                                    <input type="text" class="form-control date"  name="star_generatioModel" id="idstar_generatioModel" placeholder="Ini.Generacion 1985" />
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="inhaCombustible" name="inhaCombustible">
+                                    <input type="text" class="form-control" name="end_generatioModel" id="idend_generatioModel" placeholder="Fin.Generacion 1989" value=""/>
                                 </div>
                             </div>
                             <div class="modal-footer ">
-                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonCombustible"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
+                                <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" id="updateButtonVehicleModel" onclick="insertGenerationModel()">
+                                    <span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
                             </div>
                         </form>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Eliminar este registro</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Está seguro de que desea eliminar este registro ?</div>
-                            <input  class="form-control " type="hidden" id="idDeleteCategory" name="idDeleteCategory">
-                        </div>
-                        <div class="modal-footer ">
-                            <button type="button" class="btn btn-success" id="deleteButton"><span class="glyphicon glyphicon-ok-sign"></span> Si</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -115,7 +94,7 @@
 <!--        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
 <!--        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>-->
         <script>
-            $('#mydataCombustible').dataTable({
+            $('#mydataGenerationModel').dataTable({
                 "paging": true,
                 "ordering": true,
                 "info": false,

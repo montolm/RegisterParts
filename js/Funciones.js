@@ -102,7 +102,6 @@ $(document).ready(function () {
     });
 });
 
-
 /*Actualiza los registros de las categorias */
 $(document).ready(function () {
     $("#updateButton").click(function (e) {
@@ -137,17 +136,35 @@ $(document).ready(function () {
     });
 });
 
+/*Carga Combustible modelo creacion*/
+$(document).ready(function () {
+    getCampEdit("#mydataCombustibleModel", "#editVehicleModel", "#editNameVehicleModel",
+            null, null, null);
+});
+
+/*Carga Generacion modelo creacion*/
+$(document).ready(function () {
+    getCampEdit("#mydataGenerationModel", "#editVehicleModel", "#editNameVehicleModel",
+            null, null, null);
+});
+
+
+/*Carga Generacion modelo consulta*/
+$(document).ready(function () {
+    getCampEditVehicleModel("#mydataGenerationModel", "#editVehicleModel", "#editNameVehicleModel",
+            "#idinhaGenerationModel","#idstar_generatioModel", "#idend_generatioModel");
+});
 /*Actualiza los registros de los modelos de vehiculos*/
-$(document).ready(function () {  
+$(document).ready(function () {
     getCampEditVehicleModel("#mydataVehicleModel", "#editVehicleModel", "#editNameVehicleModel",
-                             "#inhaVehicleModel","#editIniGeneration","#editEndGeneration");
+            "#inhaVehicleModel", null, null);
     $("#updateButtonVehicleModel").click(function (e) {
         $.ajax({
             url: getHostUrl('VehicleModel_control/updateVehicleModel'),
             type: 'POST',
             data: $("#editFormVehicleModel").serialize(),
             success: function (respuesta) {
-               // alert(respuesta);
+                // alert(respuesta);
                 location.reload();
             }
         });
@@ -191,6 +208,7 @@ $(document).ready(function () {
         insertRegyster(idCamp, url, idForm);
     });
 });
+
 /*Inserta los modelos de las marca seleccionada*/
 function insertVehicleModel() {
     //alert('Click');
@@ -199,6 +217,23 @@ function insertVehicleModel() {
     var url = getHostUrl('VehicleModel_control/createVehicleModel');
     var idForm = "#vehicleModelForm";
     //alert($(idCampList).val());
+    insertRegyster(idCamp, url, idForm);
+}
+
+/*Inserta combustible por modelo seleccionado*/
+function insertCombustibleModel() {
+    var idCamp = "#editVehicleModel";
+    var idCampList = "#listCombustibleModel";
+    var url = getHostUrl('CombustibleModel_control/createCombustibleModel');
+    var idForm = "#editFormCombustibleModel";
+    insertRegyster(idCampList, url, idForm);
+}
+
+/*Inserta generacion por modelo seleccionado*/
+function insertGenerationModel() {
+    var idCamp = "#editVehicleModel";
+    var url = getHostUrl('GenerationModel_control/createGenerationModel');
+    var idForm = "#editFormGenerationModel";
     insertRegyster(idCamp, url, idForm);
 }
 /*Actualiza los registros tipos de combustibles*/
@@ -211,7 +246,6 @@ $(document).ready(function () {
             type: 'POST',
             data: $("#editFormCombustible").serialize(),
             success: function (respuesta) {
-                //alert(respuesta);
                 location.reload();
             }
         });
@@ -237,7 +271,6 @@ $(document).ready(function () {
 /*inserta marcas de vehiculos*/
 $(document).ready(function () {
     $("#btnMake").click(function (e) {
-         alert('ENTROOOO');
         var idCamp = "#idMake";
         var url = getHostUrl('Make_control/createMake');
         var idForm = "#makeForm";
@@ -248,7 +281,7 @@ $(document).ready(function () {
 
 /*Inserta registros en la DB de manera dinamica*/
 function insertRegyster(idCamp, url, idForm) {
-    //alert(idCamp + " " + url + " " + idForm);
+    // alert(idCamp + " " + url + " " + idForm);
     if ($(idCamp).val() !== "") {
         $.ajax({
             url: url,
@@ -257,25 +290,24 @@ function insertRegyster(idCamp, url, idForm) {
             success: function (respuesta) {
                 //alert(respuesta);
                 /*if (respuesta === 'TRUE') {
-
-                    $("#idmensaje").overhang({
-                        type: "success",
-                        upper: false,
-                        speed: 500,
-                        message: "Su registro ha sido guardado!"
-                    });
-
-                } else {
-                    $(idCamp).val('');
-                    $("#idmensaje").overhang({
-                        type: "error",
-                        upper: false,
-                        speed: 500,
-                        message: "Error al guardar registro"
-                    });
-                }*/
+                 
+                 $("#idmensaje").overhang({
+                 type: "success",
+                 upper: false,
+                 speed: 500,
+                 message: "Su registro ha sido guardado!"
+                 });
+                 
+                 } else {
+                 $(idCamp).val('');
+                 $("#idmensaje").overhang({
+                 type: "error",
+                 upper: false,
+                 speed: 500,
+                 message: "Error al guardar registro"
+                 });
+                 }*/
             }, error: function (jqXHR, textStatus, errorThrown) {
-                alert('ERROR111');
                 $(idCamp).val('');
                 $("#idmensaje").overhang({
                     type: "error",
@@ -303,14 +335,14 @@ function getCampEdit(idDataTable, idCamp, editNameSelect, mca_inha) {
     });
 }
 
-function getCampEditVehicleModel(idDataTable, idCamp, editNameSelect, mca_inha,editIniGenerationSelect,editEndGenerationSelect) {
+function getCampEditVehicleModel(idDataTable, idCamp, editNameSelect, mca_inha, editIniGenerationSelect, editEndGenerationSelect) {
     $("body").on("click", idDataTable + " a", function (e) {
         e.preventDefault();
         idsele = $(this).attr("href");
         nameSelect = $(this).parent().parent().children("td:eq(1)").text();
-        iniGenerationSelect = $(this).parent().parent().children("td:eq(3)").text();
-        endGenerationSelect = $(this).parent().parent().children("td:eq(4)").text();
-        inhaSelect = $(this).parent().parent().children("td:eq(7)").text();
+        iniGenerationSelect = $(this).parent().parent().children("td:eq(2)").text();
+        endGenerationSelect = $(this).parent().parent().children("td:eq(3)").text();
+        inhaSelect = $(this).parent().parent().children("td:eq(5)").text();
         if (idsele > 0) {
             $(idCamp).val(idsele);
             $(editNameSelect).val(nameSelect);
@@ -352,19 +384,3 @@ $(document).ready(function () {
     });
 
 });
-
-
-/*Aqui se recibe los datos de la fila seleccionada en la lista de tipos de vehiculos*/
-/*$(document).ready(function () {
- $("body").on("click", "#mydataVehicleMotor a", function (e) {
- e.preventDefault();
- idsele = $(this).attr("href");
- typeVehicleSelect = $(this).parent().parent().children("td:eq(1)").text();
- inhaVehicleMotor = $(this).parent().parent().children("td:eq(4)").text();
- //alert(categorySelect);
- $("#editVehicleMotor").val(idsele);
- $("#editNameVehicleMotor").val(typeVehicleSelect);
- $("#inhaVehicleMotor").val(inhaVehicleMotor);
- 
- });
- });*/

@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Modelos</title>
+        <title>Consult. Generacion Modelo</title>
 
         <!-- Bootstrap -->
         <!--    <link href="css/bootstrap.min.css" rel="stylesheet">-->
@@ -22,34 +22,33 @@
     <?php include ('/../header.php'); ?>
     <body>
         <?php include ('/../menu.php'); ?>
-
-         <div class="container">
+        <div class="container">
             <?php
-            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataVehicleModel'>";
+            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataGenerationModel'>";
             echo"<thead>";
             echo"<tr>";
             echo"<th>ID</th>";
             echo"<th>Modelo</th>";
-            echo"<th>Marca</th>";
-            echo"<th>Fecha de Creacion</th>";
-            echo"<th>Fecha actualizacion</th>";
+            echo"<th>Ini. Generacion</th>";
+            echo"<th>Fin. Generacion</th>";
+            echo"<th>Fecha Actualizacion</th>";
             echo"<th>Inhabilitado</th>";
             echo"<th>Usuario</th>";
             echo"<th>Editar</th>";
             echo"</tr>";
             echo"</thead>";
             echo "<tbody>";
-            foreach ($vehicleModel as $row) {
+            foreach ($generationModel as $row) {
                 echo"<tr>
                 <td>$row->id_model</td>
                 <td>$row->model_name</td>
-                <td>$row->name_vehicle_make </td>
-                <td>$row->creation_date </td>
-                <td>$row->fec_actu </td>
+                <td>$row->start_generation </td>
+                <td>$row->end_generation </td>
+                <td>$row->fec_actu</td>
                 <td>$row->mca_inh</td>
                 <td>$row->username</td>";
                 echo"<td>";
-                echo"<a href=$row->id_model class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
+                echo"<a href=$row->id_model class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton' onclick = 'getGenerationVehicleModel()'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
                 echo"</td>";
                 echo"</tr>";
                 echo"</tr>";
@@ -62,9 +61,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Modelo</h4>
+                            <h4 class="modal-title custom_align" id="Heading">Combustible Modelo</h4>
                         </div>
-                        <form id="editFormVehicleModel" method="POST">
+                        <form id="editFormCombustibleModel" method="POST">
                             <div class="modal-body">
                                 <div class="form-group hidden">
                                     <input class="form-control " type="text" id="editVehicleModel" name="vehicleModel">
@@ -72,27 +71,25 @@
                                 <div class="form-group">
                                     <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel">
                                 </div>
-<!--                                <div class="form-group">
-                                    <input class="form-control " type="text" id="editIniGeneration" name="iniGeneration">
+                                <div class="form-group" id="datetimepicker2">
+                                    <input type="text" class="form-control date"  name="star_generatioModel" id="idstar_generatioModel" placeholder="Ini.Generacion 1985" />
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="editEndGeneration" name="endGeneration">
-                                </div>-->
+                                    <input type="text" class="form-control" name="end_generatioModel" id="idend_generatioModel" placeholder="Fin.Generacion 1989" value=""/>
+                                </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="inhaVehicleModel" name="inhaVehicleModel">
+                                    <input class="form-control " type="text" id="idinhaGenerationModel" name="inhaGenerationModel">
                                 </div>
                             </div>
                             <div class="modal-footer ">
-                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleModel"><span class="glyphicon glyphicon-ok-sign"></span> Actualiza</button>
+                                <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" id="updateButtonVehicleModel" onclick="">
+                                    <span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
                             </div>
                         </form>
                     </div>
-                    <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-dialog -->
             </div>
         </div>
-
         <script src="<?php echo base_url(); ?>js/Jquery-2.1.1.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -101,26 +98,25 @@
 <!--        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
 <!--        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>-->
         <script>
-            $('#mydataVehicleModel').dataTable({
-                "paging": true,
-                "ordering": true,
-                "info": false,
-                "language": {
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "zeroRecords": "Nothing found - sorry",
-                    "info": "Showing page _PAGE_ of _PAGES_",
-                    "infoEmpty": "No records available",
-                    "infoFiltered": "(filtered from _MAX_ total records)",
-                    "sSearch": "Buscar:",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    }
-
-                }
-            });
+                                    $('#mydataGenerationModel').dataTable({
+                                        "paging": true,
+                                        "ordering": true,
+                                        "info": false,
+                                        "language": {
+                                            "sLengthMenu": "Mostrar _MENU_ registros",
+                                            "zeroRecords": "Nothing found - sorry",
+                                            "info": "Showing page _PAGE_ of _PAGES_",
+                                            "infoEmpty": "No records available",
+                                            "infoFiltered": "(filtered from _MAX_ total records)",
+                                            "sSearch": "Buscar:",
+                                            "oPaginate": {
+                                                "sFirst": "Primero",
+                                                "sLast": "Último",
+                                                "sNext": "Siguiente",
+                                                "sPrevious": "Anterior"
+                                            }
+                                        }
+                                    });
         </script>
     </body>
 </html>
