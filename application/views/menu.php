@@ -51,7 +51,7 @@
                             <li><a href=<?= site_url('/make_control/consultMake');?>>Marca</a></li>
                             <li><a href=<?= site_url('/vehicleModel_control/consultVehicleModel'); ?>>Modelo</a></li> 
                             <li><a href=<?= site_url('/combustibleModel_control/consultCombustibleModel');?>>Combus. Modelo</a></li>
-                            <li><a href=<?= site_url('/generationModel_control/consultCombustibleModel');?>>Generat. Modelo</a></li>
+                            <li><a href=<?= site_url('/generationModel_control/consultGenerationModel');?>>Generat. Modelo</a></li>
                             <li><a href=<?= site_url('/category/urlCategory'); ?>>Tipo Vehiculo</a></li>
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Pieza</a></li>
                         </ul>

@@ -28,8 +28,8 @@
             echo"<thead>";
             echo"<tr>";
             echo"<th>ID</th>";
-            echo"<th>Combustible</th>";
             echo"<th>Modelo</th>";
+            echo"<th>Combustible</th>";
             echo"<th>Fecha. Actualizacion</th>";
             echo"<th>Inhabilitado</th>";
             echo"<th>Usuario</th>";
@@ -40,8 +40,8 @@
             foreach ($combustibleModel as $row) {
                 echo"<tr>
                 <td>$row->id_combustible</td>
-                <td>$row->type_combustible</td>
                 <td>$row->model_name </td>
+                <td>$row->type_combustible</td>
                 <td>$row->fec_actu </td>
                 <td>$row->mca_inh</td>
                 <td>$row->username</td>";
@@ -98,8 +98,8 @@
                                 <br>
                             </div>
                             <div class="modal-footer ">
-                                <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" id="updateButtonVehicleModel" onclick="insertCombustibleModel()">
-                                    <span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
+                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleModel" onclick="insertCombustibleModel()">
+                                    <span class="glyphicon glyphicon-ok-sign"></span> Actualiza</button>
                             </div>
                         </form>
                     </div>
@@ -115,25 +115,25 @@
 <!--        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
 <!--        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>-->
         <script>
-            $('#mydataCombustibleModel').dataTable({
-                "paging": true,
-                "ordering": true,
-                "info": false,
-                "language": {
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "zeroRecords": "Nothing found - sorry",
-                    "info": "Showing page _PAGE_ of _PAGES_",
-                    "infoEmpty": "No records available",
-                    "infoFiltered": "(filtered from _MAX_ total records)",
-                    "sSearch": "Buscar:",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    }
-                }
-            });
+                                    $('#mydataCombustibleModel').dataTable({
+                                        "paging": true,
+                                        "ordering": true,
+                                        "info": false,
+                                        "language": {
+                                            "sLengthMenu": "Mostrar _MENU_ registros",
+                                            "zeroRecords": "Nothing found - sorry",
+                                            "info": "Showing page _PAGE_ of _PAGES_",
+                                            "infoEmpty": "No records available",
+                                            "infoFiltered": "(filtered from _MAX_ total records)",
+                                            "sSearch": "Buscar:",
+                                            "oPaginate": {
+                                                "sFirst": "Primero",
+                                                "sLast": "Último",
+                                                "sNext": "Siguiente",
+                                                "sPrevious": "Anterior"
+                                            }
+                                        }
+                                    });
         </script>
     </body>
 </html>

@@ -67,7 +67,7 @@
                                     <input class="form-control " type="text" id="editVehicleModel" name="vehicleModel">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel">
+                                    <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel" readonly="readonly">
                                 </div>
                                 <div class="form-group">
                                     <?php

@@ -24,7 +24,7 @@
         <?php include ('menu.php'); ?>
         <div class="container">
             <?php
-            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataGenerationModel'>";
+            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataGenerationModelCreate'>";
             echo"<thead>";
             echo"<tr>";
             echo"<th>ID</th>";
@@ -67,7 +67,7 @@
                                     <input class="form-control " type="text" id="editVehicleModel" name="vehicleModel">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel">
+                                    <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel" readonly="readonly">
                                 </div>
                                 <div class="form-group" id="datetimepicker2">
                                     <input type="text" class="form-control date"  name="star_generatioModel" id="idstar_generatioModel" placeholder="Ini.Generacion 1985" />
@@ -94,7 +94,7 @@
 <!--        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
 <!--        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>-->
         <script>
-            $('#mydataGenerationModel').dataTable({
+            $('#mydataGenerationModelCreate').dataTable({
                 "paging": true,
                 "ordering": true,
                 "info": false,

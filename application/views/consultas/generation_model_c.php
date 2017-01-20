@@ -69,21 +69,21 @@
                                     <input class="form-control " type="text" id="editVehicleModel" name="vehicleModel">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel">
+                                    <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel" readonly="readonly">
                                 </div>
                                 <div class="form-group" id="datetimepicker2">
-                                    <input type="text" class="form-control date"  name="star_generatioModel" id="idstar_generatioModel" placeholder="Ini.Generacion 1985" />
+                                    <input type="text" class="form-control date"  name="star_generatioModel" id="idstar_generatioModel"/>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="end_generatioModel" id="idend_generatioModel" placeholder="Fin.Generacion 1989" value=""/>
+                                    <input type="text" class="form-control" name="end_generatioModel" id="idend_generatioModel"/>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control " type="text" id="idinhaGenerationModel" name="inhaGenerationModel">
                                 </div>
                             </div>
                             <div class="modal-footer ">
-                                <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" id="updateButtonVehicleModel" onclick="">
-                                    <span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
+                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleModel" onclick="">
+                                    <span class="glyphicon glyphicon-ok-sign"></span> Actualiza</button>
                             </div>
                         </form>
                     </div>

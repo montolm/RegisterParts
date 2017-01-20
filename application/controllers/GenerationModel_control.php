@@ -67,7 +67,7 @@ class GenerationModel_control extends CI_Controller {
 
         $data = array(
             'vehicleModel' => $this->Vehicle_model->consultVehicleModel(),
-            'combustible' => $this->Api_model->Combustibleconsult()
+           // 'combustible' => $this->Api_model->Combustibleconsult()
         );
 
         $this->load->view('generation_model', $data);
@@ -75,7 +75,7 @@ class GenerationModel_control extends CI_Controller {
 
     /* Retorna los combustible definidos para cada modelo */
 
-    public function consultCombustibleModel() {
+    public function consultGenerationModel() {
         $data = array(
             'generationModel' => $this->Generation_model->consultGenerationModel()
         );

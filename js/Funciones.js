@@ -139,13 +139,13 @@ $(document).ready(function () {
 /*Carga Combustible modelo creacion*/
 $(document).ready(function () {
     getCampEdit("#mydataCombustibleModel", "#editVehicleModel", "#editNameVehicleModel",
-            null, null, null);
+            null);
 });
 
 /*Carga Generacion modelo creacion*/
 $(document).ready(function () {
-    getCampEdit("#mydataGenerationModel", "#editVehicleModel", "#editNameVehicleModel",
-            null, null, null);
+    getCampEdit("#mydataGenerationModelCreate", "#editVehicleModel", "#editNameVehicleModel",
+            null);
 });
 
 

@@ -81,7 +81,7 @@ class Combustible_model extends CI_Model {
     /* Retorna los combustible definidos para cada modelo */
 
     public function consultCombustibleModel() {
-        $query = $this->db->query("select a.id_combustible,c.type_combustible,b.model_name,a.fec_actu,a.mca_inh,d.username
+        $query = $this->db->query("select a.id_combustible,b.model_name,c.type_combustible,a.fec_actu,a.mca_inh,d.username
                                     from model_combustible a
                                    inner join vehicle_model b
                                      on a.id_model = b.id_model
