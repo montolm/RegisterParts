@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer ">
-                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleModel"><span class="glyphicon glyphicon-ok-sign"></span> Actualiza</button>
+                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleModel"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
                             </div>
                         </form>
                     </div>

@@ -83,7 +83,7 @@
                 </div>
                 <!-- /.modal-dialog -->
             </div>
-            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<!--            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
 
         <script src="<?php echo base_url(); ?>js/Jquery-2.1.1.min.js" type="text/javascript"></script>

@@ -49,10 +49,6 @@
                 echo"<td>";
                 echo"<a href=$row->id_combustible class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
                 echo"</td>";
-                //echo"<td>";
-                //echo"<a href=$row->id_category class='btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete' id=''><span class='glyphicon glyphicon-trash'></span></a>";
-                //echo "<button class = 'btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete'><span class = 'glyphicon glyphicon-trash'></span></button>";
-                //echo"</td>";
                 echo"</tr>";
                 echo"</tr>";
             }

@@ -67,7 +67,7 @@
                                     <input class="form-control " type="text" id="editVehicleModel" name="vehicleModel">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel">
+                                    <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel" readonly="readonly">
                                 </div>
                                 <div class="form-group">
                                     <?php
@@ -99,7 +99,7 @@
                             </div>
                             <div class="modal-footer ">
                                 <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleModel" onclick="insertCombustibleModel()">
-                                    <span class="glyphicon glyphicon-ok-sign"></span> Actualiza</button>
+                                    <span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
                             </div>
                         </form>
                     </div>

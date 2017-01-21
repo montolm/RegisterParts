@@ -49,10 +49,6 @@
                 echo"<td>";
                 echo"<a href=$row->id_type_vehicle_motor class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
                 echo"</td>";
-                //echo"<td>";
-                //echo"<a href=$row->id_category class='btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete' id=''><span class='glyphicon glyphicon-trash'></span></a>";
-                //echo "<button class = 'btn btn-danger btn-xs' data-title = 'Delete' data-toggle = 'modal' data-target = '#delete'><span class = 'glyphicon glyphicon-trash'></span></button>";
-                //echo"</td>";
                 echo"</tr>";
                 echo"</tr>";
             }
@@ -79,16 +75,13 @@
                                 </div>
                             </div>
                             <div class="modal-footer ">
-                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleMotor"><span class="glyphicon glyphicon-ok-sign"></span> Actualiza</button>
+                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleMotor"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
                             </div>
                         </form>
-
                     </div>
-                    <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-dialog -->
             </div>
-            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<!--            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -105,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
 
         <script src="<?php echo base_url(); ?>js/Jquery-2.1.1.min.js" type="text/javascript"></script>

@@ -38,12 +38,14 @@ class CombustibleModel_control extends CI_Controller {
     public function createCombustibleModel() {
         $user_name = $this->session->userdata('username');
         $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
+        $id_combustibleModel_Sum = $this->Api_model->getMaxNUMId('model_combustible', 'id_combustible_model') + 1;
         $id_model = $this->input->post('vehicleModel');
         $id_combustible = $this->input->post('selectIdCombustible');
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
         if ($user_id_exist > 0) {
-            $datos = array("id_combustible" => $id_combustible,
+            $datos = array("id_combustible_model" => $id_combustibleModel_Sum,
+                "id_combustible" => $id_combustible,
                 "id_model" => $id_model,
                 "fec_actu" => $fec_actu,
                 "mca_inh" => $mca_inh,
