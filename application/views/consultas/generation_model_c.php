@@ -40,7 +40,7 @@
             echo "<tbody>";
             foreach ($generationModel as $row) {
                 echo"<tr>
-                <td>$row->id_model</td>
+                <td>$row->id_generation</td>
                 <td>$row->model_name</td>
                 <td>$row->start_generation </td>
                 <td>$row->end_generation </td>
@@ -48,7 +48,7 @@
                 <td>$row->mca_inh</td>
                 <td>$row->username</td>";
                 echo"<td>";
-                echo"<a href=$row->id_model class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton' onclick = 'getGenerationVehicleModel()'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
+                echo"<a href=$row->id_generation class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton' onclick = 'getGenerationVehicleModel()'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
                 echo"</td>";
                 echo"</tr>";
                 echo"</tr>";
@@ -63,7 +63,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                             <h4 class="modal-title custom_align" id="Heading">Combustible Modelo</h4>
                         </div>
-                        <form id="editFormCombustibleModel" method="POST">
+                        <form id="editFormGenerationModel" method="POST">
                             <div class="modal-body">
                                 <div class="form-group hidden">
                                     <input class="form-control " type="text" id="editVehicleModel" name="vehicleModel">
@@ -72,7 +72,7 @@
                                     <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel" readonly="readonly">
                                 </div>
                                 <div class="form-group" id="datetimepicker2">
-                                    <input type="text" class="form-control date"  name="star_generatioModel" id="idstar_generatioModel"/>
+                                    <input type="text" class="form-control date"  name="start_generatioModel" id="idstart_generatioModel"/>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="end_generatioModel" id="idend_generatioModel"/>
@@ -82,7 +82,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer ">
-                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleModel" onclick="">
+                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonGenerationModel">
                                     <span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
                             </div>
                         </form>
@@ -98,25 +98,25 @@
 <!--        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
 <!--        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>-->
         <script>
-                                    $('#mydataGenerationModel').dataTable({
-                                        "paging": true,
-                                        "ordering": true,
-                                        "info": false,
-                                        "language": {
-                                            "sLengthMenu": "Mostrar _MENU_ registros",
-                                            "zeroRecords": "Nothing found - sorry",
-                                            "info": "Showing page _PAGE_ of _PAGES_",
-                                            "infoEmpty": "No records available",
-                                            "infoFiltered": "(filtered from _MAX_ total records)",
-                                            "sSearch": "Buscar:",
-                                            "oPaginate": {
-                                                "sFirst": "Primero",
-                                                "sLast": "Último",
-                                                "sNext": "Siguiente",
-                                                "sPrevious": "Anterior"
-                                            }
-                                        }
-                                    });
+            $('#mydataGenerationModel').dataTable({
+                "paging": true,
+                "ordering": true,
+                "info": false,
+                "language": {
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "Nothing found - sorry",
+                    "info": "Showing page _PAGE_ of _PAGES_",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "sSearch": "Buscar:",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    }
+                }
+            });
         </script>
     </body>
 </html>

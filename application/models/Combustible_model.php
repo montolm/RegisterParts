@@ -38,9 +38,20 @@ class Combustible_model extends CI_Model {
 
     /* Actualiza tipos de combustible */
 
-    public function updateCombustibleModel($id_vehicleMotor, $datos) {
+    public function updateCombustible($id_vehicleMotor, $datos) {
         $this->db->where('id_combustible', $id_vehicleMotor);
         $this->db->update('combustible', $datos);
+        $affect = $this->db->affected_rows();
+        if ($affect > 0) {
+            return 'TRUE';
+        } else {
+            return 'FALSE';
+        }
+    }
+      /* Actualiza combustible por modelo de vehiculo */
+    public function updateCombustibleModel($id_combustibleModel, $datos) {
+        $this->db->where('id_combustible_model', $id_combustibleModel);
+        $this->db->update('model_combustible', $datos);
         $affect = $this->db->affected_rows();
         if ($affect > 0) {
             return 'TRUE';
@@ -81,7 +92,7 @@ class Combustible_model extends CI_Model {
     /* Retorna los combustible definidos para cada modelo */
 
     public function consultCombustibleModel() {
-        $query = $this->db->query("select a.id_combustible,b.model_name,c.type_combustible,a.fec_actu,a.mca_inh,d.username
+        $query = $this->db->query("select a.id_combustible_model,c.type_combustible,b.model_name,a.fec_actu,a.mca_inh,d.username
                                     from model_combustible a
                                    inner join vehicle_model b
                                      on a.id_model = b.id_model
@@ -89,7 +100,7 @@ class Combustible_model extends CI_Model {
                                      on a.id_combustible  = c.id_combustible
                                    inner join user d
                                      on a.id_username = d.id_username
-                                   order by b.model_name;");
+                                   order by a.id_combustible_model;");
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {

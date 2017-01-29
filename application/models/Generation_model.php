@@ -19,7 +19,7 @@ class Generation_model extends CI_Model {
         $this->load->database();
     }
 
-    /* Inserta Generacion por modelos de vehiculos*/
+    /* Inserta Generacion por modelos de vehiculos */
 
     public function createGeneration($datos) {
         $insert = $this->db->insert('generation_model', $datos);
@@ -41,10 +41,23 @@ class Generation_model extends CI_Model {
         }
     }
 
+    /* Actualiza la generacion por modelo de vehiculo */
+
+    public function updateGenerationModel($id_generationModel, $datos) {
+        $this->db->where('id_generation', $id_generationModel);
+        $this->db->update('generation_model', $datos);
+        $affect = $this->db->affected_rows();
+        if ($affect > 0) {
+            return 'TRUE';
+        } else {
+            return 'FALSE';
+        }
+    }
+
     /* Retorna generacion definida para cada modelo de vehiculo */
 
     public function consultGenerationModel() {
-        $query = $this->db->query("select a.id_model,b.model_name,a.start_generation,a.end_generation,a.fec_actu,a.mca_inh,c.username
+        $query = $this->db->query("select a.id_generation,b.model_name,a.start_generation,a.end_generation,a.fec_actu,a.mca_inh,c.username
                                     from generation_model a
                                    inner join vehicle_model b
                                      on a.id_model =  b.id_model

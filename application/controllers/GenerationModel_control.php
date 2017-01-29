@@ -62,28 +62,29 @@ class GenerationModel_control extends CI_Controller {
             echo 'FALSE';
         }
     }
-  /* Actualiza la generacion por cada modelo */
+  /* Actualiza la generacion por cada modelo de vehiculo */
     public function updateGenerationModel() {
         $user_name = $this->session->userdata('username');
-       
-        if ($user_name != FALSE) {            
-            $id_combustible = $this->input->post('combustible');
-            $type_combustible = $this->input->post('nameCombustible');
-            $inha_combustible = $this->input->post('inhaCombustible');
-            $user_id_exist = $this->api_model->getId('user', 'username', 'id_username', $user_name);
+       if ($user_name != FALSE) {    
+            $id_generation = $this->input->post('vehicleModel');
+            $start_generatioModel = $this->input->post('start_generatioModel');   
+            $end_generatioModel = $this->input->post('end_generatioModel');            
+            $inhaGenerationModel = $this->input->post('inhaGenerationModel');
+            $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
             $fec_actu = date("y-m-d", time());
-            // echo $id_combustible . ' ' . $type_combustible . ' ' . $inha_combustible . ' ' . $user_name . ' ' . $fec_actu . ' ' . $user_id_exist;
-            /*if ($id_combustible != '' & $type_combustible != '' & $inha_combustible != '' && $user_id_exist != '' && $fec_actu != '') {
-                $datos = array("type_combustible" => $type_combustible,
-                    "mca_inh" => $inha_combustible,
+            if ($id_generation != '' & $start_generatioModel != '' & $end_generatioModel != '' & $inhaGenerationModel != '' & $user_id_exist != '' & $fec_actu != '') {
+                $datos = array("id_generation" => $id_generation,
+                    "start_generation" => $start_generatioModel,
+                    "end_generation" => $end_generatioModel,
+                    "mca_inh" => $inhaGenerationModel,
                     "fec_actu" => $fec_actu,
                     "id_username" => $user_id_exist);
-                echo $result = $this->Combustible_model->updateCombustibleModel($id_combustible, $datos);
+                echo $result = $this->Generation_model->updateGenerationModel($id_generation, $datos);
             } else {
                 echo 'FALSE';
             }
         } else {
-            redirect($this->config->item('CONSTANT_LOADVIEW') . 'login');*/
+            redirect($this->config->item('CONSTANT_LOADVIEW') . 'login');
         }
     }
 
@@ -99,7 +100,7 @@ class GenerationModel_control extends CI_Controller {
         $this->load->view('generation_model', $data);
     }
 
-    /* Retorna los combustible definidos para cada modelo */
+    /* Retorna los las generaciones para cada modelo de vehiculo*/
 
     public function consultGenerationModel() {
         $data = array(

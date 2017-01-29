@@ -75,16 +75,11 @@ class VehicleModel_control extends CI_Controller {
             $id_vehicleModel = $this->input->post('vehicleModel');
             $nam_vehicleModel = $this->input->post('nameVehicleModel');
             $inha_vehicleModel = $this->input->post('inhaVehicleModel');
-            $iniGeneration = $this->input->post('iniGeneration');
-            $endGeneration = $this->input->post('endGeneration');
             $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
             $fec_actu = date("y-m-d", time());
-
             if ($id_vehicleModel != '' && $nam_vehicleModel != '' && $inha_vehicleModel != '' && $user_id_exist != '' && $fec_actu != '') {
                 $datos = array("model_name" => $nam_vehicleModel,
                     "mca_inh" => $inha_vehicleModel,
-                    "start_generation" => $iniGeneration,
-                    "end_generation" => $endGeneration,
                     "fec_actu" => $fec_actu,
                     "id_username" => $user_id_exist);
                 echo $result = $this->Vehicle_model->updateVehicleModel($id_vehicleModel, $datos);

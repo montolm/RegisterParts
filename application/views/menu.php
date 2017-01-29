@@ -45,15 +45,15 @@
                             Consultas<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href=<?= site_url('/category_control/consultCategory'); ?>>Categoria</a></li>
-                            <li><a href=<?= site_url('/vehicle_motor_control/consultVehicleMotor'); ?>>Vehiculo de motor</a></li> 
-                            <li><a href=<?= site_url('/combustible_control/consultCombustible'); ?>>Combustible</a></li>
-                            <li><a href=<?= site_url('/make_control/consultMake');?>>Marca</a></li>
-                            <li><a href=<?= site_url('/vehicleModel_control/consultVehicleModel'); ?>>Modelo</a></li> 
-                            <li><a href=<?= site_url('/combustibleModel_control/consultCombustibleModel');?>>Combus. Modelo</a></li>
-                            <li><a href=<?= site_url('/generationModel_control/consultGenerationModel');?>>Generat. Modelo</a></li>
-                            <li><a href=<?= site_url('/category/urlCategory'); ?>>Tipo Vehiculo</a></li>
-                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Pieza</a></li>
+                            <li><a href=<?= site_url('/category_control/consultCategory'); ?>>Categorias</a></li>
+                            <li><a href=<?= site_url('/vehicle_motor_control/consultVehicleMotor'); ?>>Vehiculos de motor</a></li> 
+                            <li><a href=<?= site_url('/combustible_control/consultCombustible'); ?>>Combustibles</a></li>
+                            <li><a href=<?= site_url('/make_control/consultMake');?>>Marcas</a></li>
+                            <li><a href=<?= site_url('/vehicleModel_control/consultVehicleModel'); ?>>Modelos</a></li> 
+                            <li><a href=<?= site_url('/combustibleModel_control/consultCombustibleModel');?>>Combus. Modelos</a></li>
+                            <li><a href=<?= site_url('/generationModel_control/consultGenerationModel');?>>Generat. Modelos</a></li>
+                            <li><a href=<?= site_url('/category/urlCategory'); ?>>Tipos Vehiculos</a></li>
+                            <li><a href=<?= site_url('/manager/urlManager'); ?>>Piezas</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

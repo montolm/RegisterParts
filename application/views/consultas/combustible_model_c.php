@@ -39,14 +39,14 @@
             echo "<tbody>";
             foreach ($combustibleModel as $row) {
                 echo"<tr>
-                <td>$row->id_combustible</td>
+                <td>$row->id_combustible_model</td>
                 <td>$row->model_name </td>
                 <td>$row->type_combustible</td>
                 <td>$row->fec_actu </td>
                 <td>$row->mca_inh</td>
                 <td>$row->username</td>";
                 echo"<td>";
-                echo"<a href=$row->id_combustible class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
+                echo"<a href=$row->id_combustible_model class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
                 echo"</td>";
                 echo"</tr>";
                 echo"</tr>";
@@ -68,6 +68,9 @@
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel" readonly="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control " type="text" id="inhaCombustible" name="inhaCombustible">
                                 </div>
                                 <div class="form-group">
                                     <?php
@@ -98,7 +101,7 @@
                                 <br>
                             </div>
                             <div class="modal-footer ">
-                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleModel" onclick="insertCombustibleModel()">
+                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonCombustibleModel" onclick="insertCombustibleModel()">
                                     <span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
                             </div>
                         </form>

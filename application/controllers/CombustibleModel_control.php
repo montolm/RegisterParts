@@ -61,11 +61,34 @@ class CombustibleModel_control extends CI_Controller {
             echo 'FALSE';
         }
     }
+    
+     /* Actualiza combustible por cada modelo de vehiculo */
+    public function updateCombustibleModel() {
+        $user_name = $this->session->userdata('username');
+       if ($user_name != FALSE) {    
+            $id_combustibleModel = $this->input->post('vehicleModel');           
+            $inhaCombustibleModel = $this->input->post('inhaCombustible');
+            $idcombustible = $this->input->post('selectIdCombustible');
+            $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
+            $fec_actu = date("y-m-d", time());
+            echo $id_combustibleModel.' '.$inhaCombustibleModel.' '.$idcombustible.' '.$user_id_exist.' '.$fec_actu;
+            if ($id_combustibleModel != '' & $inhaCombustibleModel != '' & $idcombustible != '' & $user_id_exist != '' & $fec_actu != '') {
+                $datos = array("id_combustible" => $idcombustible,
+                    "mca_inh" => $inhaCombustibleModel,
+                    "fec_actu" => $fec_actu,
+                    "id_username" => $user_id_exist);
+                echo $result = $this->Combustible_model->updateCombustibleModel($id_combustibleModel, $datos);
+            } else {
+                echo 'FALSE';
+            }
+        } else {
+            redirect($this->config->item('CONSTANT_LOADVIEW') . 'login');
+        }
+    }
 
     /* Retorna las modelos por cada marca de vehiculos existentes */
 
     public function consultVehicleModel() {
-
         $data = array(
             'vehicleModel' => $this->Vehicle_model->consultVehicleModel(),
             'combustible' => $this->Api_model->Combustibleconsult()
@@ -78,7 +101,8 @@ class CombustibleModel_control extends CI_Controller {
 
     public function consultCombustibleModel() {
         $data = array(
-            'combustibleModel' => $this->Combustible_model->consultCombustibleModel()
+            'combustibleModel' => $this->Combustible_model->consultCombustibleModel(),
+            'combustible' => $this->Api_model->Combustibleconsult()
         );
         $this->load->view('consultas/combustible_model_c', $data);
     }
