@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer ">
-                                <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" id="updateButtonVehicleModel" onclick="insertGenerationModel()">
+                                <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" id="buttonGenerationModel" onclick="insertGenerationModel()">
                                     <span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
                             </div>
                         </form>

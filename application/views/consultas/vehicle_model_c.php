@@ -23,7 +23,7 @@
     <body>
         <?php include ('/../menu.php'); ?>
 
-         <div class="container">
+        <div class="container">
             <?php
             echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataVehicleModel'>";
             echo"<thead>";
@@ -72,12 +72,12 @@
                                 <div class="form-group">
                                     <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel">
                                 </div>
-<!--                                <div class="form-group">
-                                    <input class="form-control " type="text" id="editIniGeneration" name="iniGeneration">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control " type="text" id="editEndGeneration" name="endGeneration">
-                                </div>-->
+                                <!--                                <div class="form-group">
+                                                                    <input class="form-control " type="text" id="editIniGeneration" name="iniGeneration">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input class="form-control " type="text" id="editEndGeneration" name="endGeneration">
+                                                                </div>-->
                                 <div class="form-group">
                                     <input class="form-control " type="text" id="inhaVehicleModel" name="inhaVehicleModel">
                                 </div>
@@ -87,9 +87,7 @@
                             </div>
                         </form>
                     </div>
-                    <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-dialog -->
             </div>
         </div>
 
@@ -97,9 +95,12 @@
         <script src="<?php echo base_url(); ?>js/Bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+        <script src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
-<!--        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
-<!--        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>-->
+        <script src="<?php echo base_url(); ?>js/overhang.min.js" type="text/javascript"></script>
         <script>
             $('#mydataVehicleModel').dataTable({
                 "paging": true,

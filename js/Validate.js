@@ -243,7 +243,7 @@ $(document).ready(function () {
             selectVehicleModel: {
                 validators: {
                     greaterThan: {
-                        value:1,
+                        value: 1,
                         message: 'Campo obligatorio'
                     }
                 }
@@ -293,4 +293,24 @@ $(document).ready(function () {
     });
 
 });
+//
+//$(document).ready(function () {
+//    $('#editFormCombustibleModel').bootstrapValidator({
+//        feedbackIcons: {
+//            valid: 'glyphicon glyphicon-ok',
+//            invalid: 'glyphicon glyphicon-remove',
+//            validating: 'glyphicon glyphicon-refresh'
+//        },
+//        fields: {
+//            selectIdCombustible: {
+//                validators: {
+//                    greaterThan: {
+//                        value: 1,
+//                        message: 'Campo obligatorio'
+//                    }
+//                }
+//            }
+//        }
+//    });
+//});
 

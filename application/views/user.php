@@ -10,7 +10,7 @@
     <?php include ('header.php'); ?>
     <body>
         <div class="btn-link" style="margin-left: 90%">
-            <a href="<?= site_url('/Home_control/urlLogin'); ?>">Iniciar Sesión</a>
+            <a href="<?= site_url('/menu_control/urlLogin'); ?>">Iniciar Sesión</a>
         </div>
         <br>     
         <div class="container col-lg-5" style="margin-left: 20%">

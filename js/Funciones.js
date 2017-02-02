@@ -153,16 +153,21 @@ $(document).ready(function () {
     getCampEdit("#mydataCombustibleModel", "#editVehicleModel", "#editNameVehicleModel",
             "#inhaCombustible");
     $("#updateButtonCombustibleModel").click(function () {
-        $.ajax({
-            url: getHostUrl('CombustibleModel_control/updateCombustibleModel'),
-            type: 'POST',
-            data: $("#editFormCombustibleModel").serialize(),
-            success: function (respuesta) {
-                 alert(respuesta);
-                location.reload();
-            }
-        });
+        if ($('#inhaCombustible').val() !== '') {
+            $.ajax({
+                url: getHostUrl('CombustibleModel_control/updateCombustibleModel'),
+                type: 'POST',
+                data: $("#editFormCombustibleModel").serialize(),
+                success: function (respuesta) {
+                    //alert(respuesta);
+                    location.reload();
+                }
+            });
+        }else{
+            alert('Campo Obligatorio');
+        }
     });
+
 });
 
 /*Actualiza Generacion modelo (consulta)*/
@@ -170,15 +175,19 @@ $(document).ready(function () {
     getCampEditVehicleModel("#mydataGenerationModel", "#editVehicleModel", "#editNameVehicleModel",
             "#idinhaGenerationModel", "#idstart_generatioModel", "#idend_generatioModel");
     $("#updateButtonGenerationModel").click(function () {
-        $.ajax({
-            url: getHostUrl('GenerationModel_control/updateGenerationModel'),
-            type: 'POST',
-            data: $("#editFormGenerationModel").serialize(),
-            success: function (respuesta) {
-                // alert(respuesta);
-                location.reload();
-            }
-        });
+        if ($('#idstart_generatioModel').val() !== '' & $('#idend_generatioModel').val() !== '' & $('#idinhaGenerationModel').val() !== '') {
+            $.ajax({
+                url: getHostUrl('GenerationModel_control/updateGenerationModel'),
+                type: 'POST',
+                data: $("#editFormGenerationModel").serialize(),
+                success: function (respuesta) {
+                    // alert(respuesta);
+                    location.reload();
+                }
+            });
+        } else {
+            alert('Campos Obligatorios');
+        }
     });
 });
 
@@ -192,8 +201,8 @@ $(document).ready(function () {
             type: 'POST',
             data: $("#editFormVehicleModel").serialize(),
             success: function (respuesta) {
-                // alert(respuesta);
-                location.reload();
+                alert('4545');
+                //location.reload();
             }
         });
     });
@@ -205,7 +214,6 @@ $(document).ready(function () {
         var idCamp = "#idVehicleMotor";
         var url = getHostUrl('Vehicle_motor_control/createVehicleMotor');
         var idForm = "#vehicleMotorForm";
-        // alert(url);
         insertRegyster(idCamp, url, idForm);
     });
 });
@@ -214,8 +222,6 @@ $(document).ready(function () {
 $(document).ready(function () {
     getCampEdit("#mydataCombustible", "#editCombustible", "#editNameCombustible", "#inhaCombustible");
     $("#updateButtonCombustible").click(function (e) {
-        // location.reload();
-        //alert('ENTROOO_COMBUS');
         $.ajax({
             url: getHostUrl('Combustible_control/updateCombustible'),
             type: 'POST',
@@ -240,12 +246,10 @@ $(document).ready(function () {
 
 /*Inserta los modelos de las marca seleccionada*/
 function insertVehicleModel() {
-    //alert('Click');
     var idCamp = "#idvehicleModel";
     var idCampList = "#listVehicleModel";
     var url = getHostUrl('VehicleModel_control/createVehicleModel');
     var idForm = "#vehicleModelForm";
-    //alert($(idCampList).val());
     insertRegyster(idCamp, url, idForm);
 }
 
@@ -255,7 +259,12 @@ function insertCombustibleModel() {
     var idCampList = "#listCombustibleModel";
     var url = getHostUrl('CombustibleModel_control/createCombustibleModel');
     var idForm = "#editFormCombustibleModel";
-    insertRegyster(idCampList, url, idForm);
+    if ($(idCampList).val() !== '0') {
+        insertRegyster(idCampList, url, idForm);
+        hideModal('#edit');
+    } else {
+        alert('Campo Combustible es Obligatorio');
+    }
 }
 
 /*Inserta generacion por modelo seleccionado*/
@@ -263,7 +272,13 @@ function insertGenerationModel() {
     var idCamp = "#editVehicleModel";
     var url = getHostUrl('GenerationModel_control/createGenerationModel');
     var idForm = "#editFormGenerationModel";
-    insertRegyster(idCamp, url, idForm);
+    if ($('#idstar_generatioModel').val() !== '' & $('#idend_generatioModel').val() !== '') {
+        insertRegyster(idCamp, url, idForm);
+        hideModal('#edit');
+    } else {
+        alert('Campos generacion son obligatorios');
+    }
+
 }
 
 /*Actualiza marcas de vehiculos*/
@@ -296,6 +311,7 @@ $(document).ready(function () {
 /*Inserta registros en la DB de manera dinamica*/
 function insertRegyster(idCamp, url, idForm) {
     // alert(idCamp + " " + url + " " + idForm);
+    // alert( $(idCamp).val());
     if ($(idCamp).val() !== "") {
         $.ajax({
             url: url,
@@ -367,7 +383,7 @@ function getCampEditVehicleModel(idDataTable, idCamp, editNameSelect, mca_inha, 
     });
 }
 function getHostUrl(urlControl) {
-    var hostUrl = 'http://localhost/RegisterParts/index.php/';
+    var hostUrl = 'http://localhost/RegisterParts/index.php/'; //'http://www.devetechnologies.com/RegisterParts/index.php/';
     return hostUrl + urlControl;
 }
 
@@ -398,3 +414,14 @@ $(document).ready(function () {
     });
 
 });
+
+/*Esconde el modal seleccionado*/
+function hideModal(idModal) {
+    $(idModal).modal('hide');
+}
+
+
+/*Esconde el modal seleccionado*/
+function ShowModal(idModal) {
+    $('#edit').modal('show');
+}

@@ -53,33 +53,41 @@ class CombustibleModel_control extends CI_Controller {
             $result = $this->Combustible_model->createCombustibleModel($datos);
             $returnValue = $this->Api_model->getException($result);
             if ($returnValue == 1) {
-                echo 'TRUE';
+                echo TRUE;
             } else {
-                echo 'FALSE';
+                echo FALSE;
             }
         } else {
-            echo 'FALSE';
+            echo FALSE;
         }
     }
-    
-     /* Actualiza combustible por cada modelo de vehiculo */
+
+    /* Actualiza combustible por cada modelo de vehiculo */
+
     public function updateCombustibleModel() {
         $user_name = $this->session->userdata('username');
-       if ($user_name != FALSE) {    
-            $id_combustibleModel = $this->input->post('vehicleModel');           
+        if ($user_name != FALSE) {
+            $id_combustibleModel = $this->input->post('vehicleModel');
             $inhaCombustibleModel = $this->input->post('inhaCombustible');
             $idcombustible = $this->input->post('selectIdCombustible');
             $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
             $fec_actu = date("y-m-d", time());
-            echo $id_combustibleModel.' '.$inhaCombustibleModel.' '.$idcombustible.' '.$user_id_exist.' '.$fec_actu;
+            //echo $id_combustibleModel.' '.$inhaCombustibleModel.' '.$idcombustible.' '.$user_id_exist.' '.$fec_actu;
             if ($id_combustibleModel != '' & $inhaCombustibleModel != '' & $idcombustible != '' & $user_id_exist != '' & $fec_actu != '') {
-                $datos = array("id_combustible" => $idcombustible,
-                    "mca_inh" => $inhaCombustibleModel,
-                    "fec_actu" => $fec_actu,
-                    "id_username" => $user_id_exist);
-                echo $result = $this->Combustible_model->updateCombustibleModel($id_combustibleModel, $datos);
+                if ($idcombustible != 0) {
+                    $datos = array("id_combustible" => $idcombustible,
+                        "mca_inh" => $inhaCombustibleModel,
+                        "fec_actu" => $fec_actu,
+                        "id_username" => $user_id_exist);
+                    echo $result = $this->Combustible_model->updateCombustibleModel($id_combustibleModel, $datos);
+                } else {
+                    $datos = array("mca_inh" => $inhaCombustibleModel,
+                        "fec_actu" => $fec_actu,
+                        "id_username" => $user_id_exist);
+                    echo $result = $this->Combustible_model->updateCombustibleModel($id_combustibleModel, $datos);
+                }
             } else {
-                echo 'FALSE';
+                echo FALSE;
             }
         } else {
             redirect($this->config->item('CONSTANT_LOADVIEW') . 'login');

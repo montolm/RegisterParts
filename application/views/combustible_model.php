@@ -54,7 +54,7 @@
             echo"</tbody>";
             echo"</table>";
             ?>
-            <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+            <div class="modal" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -98,14 +98,12 @@
                                 <br>
                             </div>
                             <div class="modal-footer ">
-                                <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" id="updateButtonVehicleModel" onclick="insertCombustibleModel()">
+                                <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" id="buttonCombustibleModel" onclick="insertCombustibleModel()">
                                     <span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
                             </div>
                         </form>
                     </div>
-                    <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-dialog -->
             </div>
         </div>
 
@@ -113,30 +111,33 @@
         <script src="<?php echo base_url(); ?>js/Bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+        <script src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
-<!--        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
-<!--        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>-->
+        <script src="<?php echo base_url(); ?>js/overhang.min.js" type="text/javascript"></script>
         <script>
-            $('#mydataCombustibleModelCreate').dataTable({
-                "paging": true,
-                "ordering": true,
-                "info": false,
-                "language": {
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "zeroRecords": "Nothing found - sorry",
-                    "info": "Showing page _PAGE_ of _PAGES_",
-                    "infoEmpty": "No records available",
-                    "infoFiltered": "(filtered from _MAX_ total records)",
-                    "sSearch": "Buscar:",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    }
-
+        $('#mydataCombustibleModelCreate').dataTable({
+            "paging": true,
+            "ordering": true,
+            "info": false,
+            "language": {
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "Nothing found - sorry",
+                "info": "Showing page _PAGE_ of _PAGES_",
+                "infoEmpty": "No records available",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
                 }
-            });
+
+            }
+        });
         </script>
     </body>
 </html>

@@ -13,4 +13,5 @@ class Home_control extends CI_Controller {
     }
 
     /* Llama la vista user */
+    
 }

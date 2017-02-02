@@ -50,13 +50,6 @@
                     }
                     ?>" placeholder = "Modelo">
                 </div>
-                <!--
-                                <div class="form-group" id="datetimepicker2">
-                                    <input type="text" class="form-control date"  name="star_generatioModel" id="idstar_generatioModel" placeholder="Ini.Generacion 1985" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="end_generatioModel" id="idend_generatioModel" placeholder="Fin.Generacion 1989" value=""/>
-                                </div>-->
                 <div id="idmensaje"></div>
                 <div>
                     <button type="submit" class="btn btn-lg btn-primary" id="btnVehicleModel" name="Submit" onclick="insertVehicleModel()" ><span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
@@ -74,13 +67,5 @@
         <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/overhang.min.js" type="text/javascript"></script> 
-        <!--<script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker({format: 'YYYY', locale: 'ES'});
-                $('#datetimepicker2').datetimepicker({format: 'YYYY', locale: 'ES'});
-                $('#prueba').datetimepicker({format: 'YYYY', locale: 'ES'});
-            });
-        </script>-->
-
     </body>
 </html>

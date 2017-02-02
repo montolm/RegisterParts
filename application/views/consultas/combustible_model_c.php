@@ -88,7 +88,7 @@
                                     } else {
                                         echo "<div class='container col-lg-4' style='margin-left:-2.5%'>
                                              <select id= 'listCombustibleModel'class='form-control' name='selectIdCombustible'>
-                                            <option value='0' selected>Combustible</option>";
+                                            <option value='1' selected>Combustible</option>";
                                         foreach ($combustible as $row) {
                                             echo "<option value=$row->id_combustible>$row->type_combustible</option>";
                                         }
@@ -101,7 +101,7 @@
                                 <br>
                             </div>
                             <div class="modal-footer ">
-                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonCombustibleModel" onclick="insertCombustibleModel()">
+                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonCombustibleModel">
                                     <span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
                             </div>
                         </form>
@@ -118,25 +118,25 @@
 <!--        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
 <!--        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>-->
         <script>
-                                    $('#mydataCombustibleModel').dataTable({
-                                        "paging": true,
-                                        "ordering": true,
-                                        "info": false,
-                                        "language": {
-                                            "sLengthMenu": "Mostrar _MENU_ registros",
-                                            "zeroRecords": "Nothing found - sorry",
-                                            "info": "Showing page _PAGE_ of _PAGES_",
-                                            "infoEmpty": "No records available",
-                                            "infoFiltered": "(filtered from _MAX_ total records)",
-                                            "sSearch": "Buscar:",
-                                            "oPaginate": {
-                                                "sFirst": "Primero",
-                                                "sLast": "Último",
-                                                "sNext": "Siguiente",
-                                                "sPrevious": "Anterior"
-                                            }
-                                        }
-                                    });
+            $('#mydataCombustibleModel').dataTable({
+                "paging": true,
+                "ordering": true,
+                "info": false,
+                "language": {
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "Nothing found - sorry",
+                    "info": "Showing page _PAGE_ of _PAGES_",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "sSearch": "Buscar:",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    }
+                }
+            });
         </script>
     </body>
 </html>
