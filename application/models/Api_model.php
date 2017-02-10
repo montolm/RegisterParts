@@ -92,17 +92,6 @@ Class Api_model extends CI_Model {
         }
     }
 
-    public function consultMake_2() {
-        $query = $this->db->query("select a.id_model,a.model_name
-                                    from vehicle_model a
-                                    order by id_model;");
-        if ($query->num_rows() > 0) {
-            return $query->result();
-        } else {
-            return false;
-        }
-    }
-
     /* Retorna las marcas seleccionada */
 
     public function consultMakeName($idMake) {
@@ -114,6 +103,57 @@ Class Api_model extends CI_Model {
         if ($query->num_rows() > 0) {
             $row = $query->row();
             return $value = $row->name_vehicle_make;
+        } else {
+            return false;
+        }
+    }
+     /* Retorna las marcas seleccionada */
+
+    public function consultTypeVehicleMotorForId($idTypeVehicleMotor) {
+
+        $query = $this->db->query("select type_name_vehicle
+                                    from type_vehicle_motor
+                                    where id_type_vehicle_motor = $idTypeVehicleMotor;");
+        if ($query->num_rows() > 0) {
+            $row = $query->row();
+            return $value = $row->type_name_vehicle;
+        } else {
+            return false;
+        }
+    }
+    /*Retorna los modelos de vehiculos por marca seleccionada*/
+    public function consultVehicleModelFormMake($idMake) {
+        $query = $this->db->query("select id_model,model_name
+                                    from vehicle_model
+                                     where id_vehicle_make = $idMake
+                                    order  by id_model;");
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return FALSE;
+        }
+    }
+    /*Retorna los tipos de vehiculos de motor*/
+    public function consultTypeVehicleMotor() {
+        $query = $this->db->query("select id_type_vehicle_motor,type_name_vehicle
+                                    from type_vehicle_motor
+                                   order by id_type_vehicle_motor;");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+    
+     /*Retorna la generacion por modelo de vehiculo*/
+    public function consultGenerationModelForModel($idModel) {
+        $query = $this->db->query("select id_generation,concat (a.start_generation,'/',a.end_generation) as generation 
+                                    from generation_model a
+                                   where id_model  = $idModel
+                                   order by id_generation;");
+        if ($query->num_rows() > 0) {
+            return $query->result();
         } else {
             return false;
         }

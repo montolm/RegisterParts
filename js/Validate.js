@@ -293,24 +293,58 @@ $(document).ready(function () {
     });
 
 });
-//
-//$(document).ready(function () {
-//    $('#editFormCombustibleModel').bootstrapValidator({
-//        feedbackIcons: {
-//            valid: 'glyphicon glyphicon-ok',
-//            invalid: 'glyphicon glyphicon-remove',
-//            validating: 'glyphicon glyphicon-refresh'
-//        },
-//        fields: {
-//            selectIdCombustible: {
-//                validators: {
-//                    greaterThan: {
-//                        value: 1,
-//                        message: 'Campo obligatorio'
-//                    }
-//                }
-//            }
-//        }
-//    });
-//});
 
+
+/*Valida formulario tipo de vehiculo*/
+$(document).ready(function () {
+    $('#typeVehicleModelForm').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            selectTypeVehicleMotor: {
+                validators: {
+                    greaterThan: {
+                        value: 1,
+                        message: 'Campo obligatorio'
+                    }
+                }
+            },
+            selectMakeVM: {
+                validators: {
+                    greaterThan: {
+                        value: 1,
+                        message: 'Campo obligatorio'
+                    }
+                }
+            },
+            selectVehicleModelMV: {
+                validators: {
+                    greaterThan: {
+                        value: 1,
+                        message: 'Campo obligatorio'
+                    }
+                }
+            },
+            selectVehicleGeneration: {
+                validators: {
+                    greaterThan: {
+                        value: 1,
+                        message: 'Campo obligatorio'
+                    }
+                }
+            },
+            vehicleTypeModel: {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo obligatorio'
+                    }
+                }
+            }
+
+        }
+    });
+});

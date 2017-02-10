@@ -1,3 +1,5 @@
+var statusAjax = "succes";
+
 /*Valida el campo email de la pantalla password para verificar si existe*/
 $(document).ready(function () {
     $("#btnsend").click(function (e) {
@@ -163,7 +165,7 @@ $(document).ready(function () {
                     location.reload();
                 }
             });
-        }else{
+        } else {
             alert('Campo Obligatorio');
         }
     });
@@ -247,9 +249,16 @@ $(document).ready(function () {
 /*Inserta los modelos de las marca seleccionada*/
 function insertVehicleModel() {
     var idCamp = "#idvehicleModel";
-    var idCampList = "#listVehicleModel";
     var url = getHostUrl('VehicleModel_control/createVehicleModel');
     var idForm = "#vehicleModelForm";
+    insertRegyster(idCamp, url, idForm);
+}
+
+/*Inserta los tipos de vehiculos*/
+function insertTypeVehicleModel() {
+    var idCamp = "#idVehicleTypeModel";
+    var url = getHostUrl('VehicleType_control/createVehicleType');
+    var idForm = "#typeVehicleModelForm";
     insertRegyster(idCamp, url, idForm);
 }
 
@@ -310,34 +319,19 @@ $(document).ready(function () {
 
 /*Inserta registros en la DB de manera dinamica*/
 function insertRegyster(idCamp, url, idForm) {
-    // alert(idCamp + " " + url + " " + idForm);
-    // alert( $(idCamp).val());
+    //var status = "Hola";
     if ($(idCamp).val() !== "") {
         $.ajax({
             url: url,
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                //alert(respuesta);
-                /*if (respuesta === 'TRUE') {
-                 
-                 $("#idmensaje").overhang({
-                 type: "success",
-                 upper: false,
-                 speed: 500,
-                 message: "Su registro ha sido guardado!"
-                 });
-                 
-                 } else {
-                 $(idCamp).val('');
-                 $("#idmensaje").overhang({
-                 type: "error",
-                 upper: false,
-                 speed: 500,
-                 message: "Error al guardar registro"
-                 });
-                 }*/
-            }, error: function (jqXHR, textStatus, errorThrown) {
+                alert(respuesta);
+            },
+            complete: function (jqXHR, textStatus) {
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
                 $(idCamp).val('');
                 $("#idmensaje").overhang({
                     type: "error",
@@ -349,6 +343,7 @@ function insertRegyster(idCamp, url, idForm) {
             }
         });
     }
+
 }
 
 function getCampEdit(idDataTable, idCamp, editNameSelect, mca_inha) {
@@ -405,15 +400,107 @@ $(document).ready(function () {
             type: 'POST',
             data: {idDeSletect: 1},
             success: function (respuesta) {
-                alert(respuesta);
-                /*if (respuesta !== 'TRUE') {
-                 alert('El registro no pudo ser eliminado');
-                 }*/
             }
         });
     });
 
 });
+
+/*Busca los modelos por marca seleccionada*/
+$(document).ready(function () {
+    $("#listMakeVM").change(function () {
+        getModelsForMake();
+    });
+
+});
+
+/*Busca la generacion dependiendo de los modelos seleccionados*/
+$(document).ready(function () {
+    $("#listVehicleModelMV").change(function () {
+        getGenerationsForModel();
+    });
+
+});
+
+function getModelsForMake() {
+    var vehicleModel = $('#listVehicleModelMV');
+    var make = $("#listMakeVM");
+
+    if (make.val() !== '') {
+        $.ajax({
+            data: {id: make.val()},
+            url: getHostUrl('VehicleType_control/listVehicleModel'),
+            type: 'POST',
+            dataType: 'json',
+            beforeSend: function () {
+                make.prop('disabled', true);
+            },
+            success: function (resultado) {
+                console.log(resultado);
+                make.prop('disabled', false);
+                vehicleModel.find('option').remove();
+                vehicleModel.append('<option value="0" selected>Modelos</option>');
+                $(resultado).each(function (i, v) {
+                    vehicleModel.append('<option value="' + v.id_model + '">' + v.model_name + '</option>');
+                });
+                vehicleModel.prop('disabled', false);
+            },
+            error: function () {
+                alert('Ocurrio un error en el servidor ..');
+                make.prop('disabled', false);
+            },
+            complete: function (jqXHR, textStatus) {
+                //alert(textStatus);
+
+            },
+            timeout: 1000
+        });
+
+    } else {
+        vehicleModel.find('option').remove();
+        vehicleModel.prop('disabled', true);
+    }
+}
+
+function getGenerationsForModel() {
+    var vehicleGeneration = $('#listVehicleGeneration');
+    var vehicleModel = $('#listVehicleModelMV');
+
+    if (vehicleModel.val() !== '') {
+        $.ajax({
+            data: {id: vehicleModel.val()},
+            url: getHostUrl('VehicleType_control/listGenerationModel'),
+            type: 'POST',
+            dataType: 'json',
+            beforeSend: function () {
+                vehicleModel.prop('disabled', true);
+            },
+            success: function (resultado) {
+                console.log(resultado);
+                vehicleModel.prop('disabled', false);
+                vehicleGeneration.find('option').remove();
+                vehicleGeneration.append('<option value="0" selected>Generacion</option>');
+                $(resultado).each(function (i, v) {
+                    vehicleGeneration.append('<option value="' + v.id_generation + '">' + v.generation + '</option>');
+                });
+                vehicleGeneration.prop('disabled', false);
+            },
+            error: function () {
+                alert('Ocurrio un error en el servidor ..');
+                vehicleModel.prop('disabled', false);
+            },
+            complete: function (jqXHR, textStatus) {
+                // alert(textStatus);
+
+            },
+            timeout: 1000
+        });
+
+    } else {
+        vehicleGeneration.find('option').remove();
+        vehicleGeneration.prop('disabled', false);
+    }
+}
 
 /*Esconde el modal seleccionado*/
 function hideModal(idModal) {
@@ -423,5 +510,5 @@ function hideModal(idModal) {
 
 /*Esconde el modal seleccionado*/
 function ShowModal(idModal) {
-    $('#edit').modal('show');
+    $(idModal).modal('show');
 }

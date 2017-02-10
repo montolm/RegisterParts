@@ -58,12 +58,12 @@ class VehicleModel_control extends CI_Controller {
             if ($returnValue == 1) {
                 $NameMake = $this->Api_model->consultMakeName($id_vehicle_brand);
                 $this->loadSesionModel($NameMake, NULL, $id_vehicle_brand);
-                echo 'TRUE';
+                echo TRUE;
             } else {
-                echo 'FALSE';
+                echo FALSE;
             }
         } else {
-            echo 'FALSE';
+            echo FALSE;
         }
     }
 

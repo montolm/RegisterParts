@@ -19,7 +19,7 @@ class Vehicle_model extends CI_Model {
         $this->load->database();
     }
 
-    /* Inserta categoria */
+    /* Inserta modelo del vehiculo */
 
     public function createVehicleModel($datos) {
         $insert = $this->db->insert('vehicle_model', $datos);

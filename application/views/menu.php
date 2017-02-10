@@ -36,7 +36,7 @@
                             <li><a href=<?= site_url('/vehicleModel_control/consultMake'); ?>>Modelo</a></li>
                             <li><a href=<?= site_url('/combustibleModel_control/consultVehicleModel');?>>Combus. Modelo</a></li>
                             <li><a href=<?= site_url('/generationModel_control/consultVehicleModel');?>>Generat. Modelo</a></li>
-                            <li><a href=<?= site_url('/vehicle_type_control/consultMake'); ?>>Tipo Vehiculo</a></li>
+                            <li><a href=<?= site_url('/vehicleType_control/consultListOption'); ?>>Tipo Vehiculo</a></li>
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Pieza</a></li>  
                         </ul>
                     </li>
