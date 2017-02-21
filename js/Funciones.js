@@ -172,6 +172,30 @@ $(document).ready(function () {
 
 });
 
+/*Actualiza tipo de vehiculo*/
+$(document).ready(function () {
+    getCampEditVehicleType("#mydataTypeVehicle", "#editVehicleModel", "#editNameVehicleModel",
+            "#inhaTypeVehicleModel");
+
+    $("#updateButtonTipoVehiculo").click(function () {
+        if ($('#inhaTypeVehicleModel').val() !== '' & $('#editNameVehicleModel').val() !== '') {
+            $.ajax({
+                url: getHostUrl('VehicleType_control/updateVehicleType'),
+                type: 'POST',
+                data: $("#editFormTypeVehicleModel").serialize(),
+                success: function (respuesta) {
+                    location.reload();
+                }, error: function (jqXHR, textStatus, errorThrown) {
+                    
+                }
+            });
+        } else {
+            alert('Campo Obligatorio');
+        }
+    });
+
+});
+
 /*Actualiza Generacion modelo (consulta)*/
 $(document).ready(function () {
     getCampEditVehicleModel("#mydataGenerationModel", "#editVehicleModel", "#editNameVehicleModel",
@@ -203,7 +227,6 @@ $(document).ready(function () {
             type: 'POST',
             data: $("#editFormVehicleModel").serialize(),
             success: function (respuesta) {
-                alert('4545');
                 //location.reload();
             }
         });
@@ -326,7 +349,7 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                alert(respuesta);
+               // alert(respuesta);
             },
             complete: function (jqXHR, textStatus) {
 
@@ -345,13 +368,28 @@ function insertRegyster(idCamp, url, idForm) {
     }
 
 }
-
+/*Carga los campos deseados en el modal*/
 function getCampEdit(idDataTable, idCamp, editNameSelect, mca_inha) {
     $("body").on("click", idDataTable + " a", function (e) {
         e.preventDefault();
         idsele = $(this).attr("href");
         nameSelect = $(this).parent().parent().children("td:eq(1)").text();
         inhaSelect = $(this).parent().parent().children("td:eq(4)").text();
+        if (idsele > 0) {
+            $(idCamp).val(idsele);
+            $(editNameSelect).val(nameSelect);
+            $(mca_inha).val(inhaSelect);
+        }
+    });
+}
+
+/*Carga los campos deseados en el modal de tipos de vehiculos*/
+function getCampEditVehicleType(idDataTable, idCamp, editNameSelect, mca_inha) {
+    $("body").on("click", idDataTable + " a", function (e) {
+        e.preventDefault();
+        idsele = $(this).attr("href");
+        nameSelect = $(this).parent().parent().children("td:eq(1)").text();
+        inhaSelect = $(this).parent().parent().children("td:eq(7)").text();
         if (idsele > 0) {
             $(idCamp).val(idsele);
             $(editNameSelect).val(nameSelect);
@@ -391,8 +429,6 @@ function loadView(control, method) {
 /*Elimina los registros de la pantalla Category pero no se esta usando ya que fue comentado el boton*/
 $(document).ready(function () {
     $("#deleteButton").click(function (e) {
-        var idselectDelete = $("#idDeleteCategory").val();
-        alert(idselectDelete);
         e.preventDefault();
         location.reload();
         $.ajax({
@@ -446,7 +482,7 @@ function getModelsForMake() {
                 vehicleModel.prop('disabled', false);
             },
             error: function () {
-                alert('Ocurrio un error en el servidor ..');
+                //alert('Ocurrio un error en el servidor ..');
                 make.prop('disabled', false);
             },
             complete: function (jqXHR, textStatus) {
@@ -486,7 +522,7 @@ function getGenerationsForModel() {
                 vehicleGeneration.prop('disabled', false);
             },
             error: function () {
-                alert('Ocurrio un error en el servidor ..');
+                // alert('Ocurrio un error en el servidor ..');
                 vehicleModel.prop('disabled', false);
             },
             complete: function (jqXHR, textStatus) {

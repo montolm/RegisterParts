@@ -52,7 +52,7 @@
                             <li><a href=<?= site_url('/vehicleModel_control/consultVehicleModel'); ?>>Modelos</a></li> 
                             <li><a href=<?= site_url('/combustibleModel_control/consultCombustibleModel');?>>Combus. Modelos</a></li>
                             <li><a href=<?= site_url('/generationModel_control/consultGenerationModel');?>>Generat. Modelos</a></li>
-                            <li><a href=<?= site_url('/category/urlCategory'); ?>>Tipos Vehiculos</a></li>
+                            <li><a href=<?= site_url('/vehicleType_control/consultVehicleType'); ?>>Tipos Vehiculos</a></li>
                             <li><a href=<?= site_url('/manager/urlManager'); ?>>Piezas</a></li>
                         </ul>
                     </li>

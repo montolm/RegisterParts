@@ -107,7 +107,8 @@ Class Api_model extends CI_Model {
             return false;
         }
     }
-     /* Retorna las marcas seleccionada */
+
+    /* Retorna las marcas seleccionada */
 
     public function consultTypeVehicleMotorForId($idTypeVehicleMotor) {
 
@@ -121,7 +122,9 @@ Class Api_model extends CI_Model {
             return false;
         }
     }
-    /*Retorna los modelos de vehiculos por marca seleccionada*/
+
+    /* Retorna los modelos de vehiculos por marca seleccionada */
+
     public function consultVehicleModelFormMake($idMake) {
         $query = $this->db->query("select id_model,model_name
                                     from vehicle_model
@@ -134,7 +137,9 @@ Class Api_model extends CI_Model {
             return FALSE;
         }
     }
-    /*Retorna los tipos de vehiculos de motor*/
+
+    /* Retorna los tipos de vehiculos de motor */
+
     public function consultTypeVehicleMotor() {
         $query = $this->db->query("select id_type_vehicle_motor,type_name_vehicle
                                     from type_vehicle_motor
@@ -145,8 +150,9 @@ Class Api_model extends CI_Model {
             return false;
         }
     }
-    
-     /*Retorna la generacion por modelo de vehiculo*/
+
+    /* Retorna la generacion por modelo de vehiculo */
+
     public function consultGenerationModelForModel($idModel) {
         $query = $this->db->query("select id_generation,concat (a.start_generation,'/',a.end_generation) as generation 
                                     from generation_model a
@@ -157,6 +163,21 @@ Class Api_model extends CI_Model {
         } else {
             return false;
         }
+    }
+
+    public function getIdVehicleTypeRelationship($selectField,$id_vehicle_type) {
+        $query = $this->db->query("select $selectField
+                                    from vehicle_type
+                                   where id_vehicle_type = $id_vehicle_type; ");
+
+        if ($query->num_rows() > 0) {
+            $row = $query->row();
+            $value = $row->$selectField;
+        } else {
+            $value = 0;
+        }
+
+        return $value;
     }
 
 }

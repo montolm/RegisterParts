@@ -47,7 +47,7 @@ class VehicleType_control extends CI_Controller {
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
-        if ($user_name >= 0 & $idTypeMotor != '' & $idMake != '' & $idModel != '' & $vehicleTypeModel != '' & $idVehicleGeneration != '') {
+        if ($user_id_exist > 0 & $idTypeMotor != '' & $idMake != '' & $idModel != '' & $vehicleTypeModel != '' & $idVehicleGeneration != '') {
             $datos = array('id_vehicle_type' => $id_vehicleType_Sum,
                 'name_vehicle_type' => $vehicleTypeModel,
                 'creation_date' => $creation_date,
@@ -85,24 +85,51 @@ class VehicleType_control extends CI_Controller {
     /* Actualiza typo de vehiculo */
 
     public function updateVehicleType() {
+
         $user_name = $this->session->userdata('username');
         if ($user_name != FALSE) {
-            $id_vehicleModel = $this->input->post('vehicleModel');
-            $nam_vehicleModel = $this->input->post('nameVehicleModel');
-            $inha_vehicleModel = $this->input->post('inhaVehicleModel');
-            $iniGeneration = $this->input->post('iniGeneration');
-            $endGeneration = $this->input->post('endGeneration');
+            $id_vehicleTypeModel = $this->input->post('vehicleModel');
+            $nam_vehicleTypeModel = $this->input->post('nameVehicleModel');
+            $inha_vehicleTypeModel = $this->input->post('inhaTypeVehicleModel');
+            $id_selectTypeVehicleMotor = $this->input->post('selectTypeVehicleMotor');
+            $id_selectMakeVM = $this->input->post('selectMakeVM');
+            $id_selectVehicleModelMV = $this->input->post('selectVehicleModelMV');
+            $id_selectVehicleGeneration = $this->input->post('selectVehicleGeneration');
             $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
             $fec_actu = date("y-m-d", time());
+            echo $id_vehicleTypeModel . ' ' . $nam_vehicleTypeModel . ' ' . $inha_vehicleTypeModel . ' ' . $id_selectTypeVehicleMotor . ' ' .
+            $id_selectMakeVM . ' ' . $id_selectVehicleModelMV . ' ' . $id_selectVehicleGeneration;
 
-            if ($id_vehicleModel != '' && $nam_vehicleModel != '' && $inha_vehicleModel != '' && $user_id_exist != '' && $fec_actu != '') {
-                $datos = array("model_name" => $nam_vehicleModel,
-                    "mca_inh" => $inha_vehicleModel,
-                    "start_generation" => $iniGeneration,
-                    "end_generation" => $endGeneration,
-                    "fec_actu" => $fec_actu,
-                    "id_username" => $user_id_exist);
-                echo $result = $this->Vehicle_model->updateVehicleModel($id_vehicleModel, $datos);
+            if ($id_vehicleTypeModel != '' & $nam_vehicleTypeModel != '' & $inha_vehicleTypeModel != '' & $user_id_exist != '') {
+                /* Se validan los campos a cero ya que para la actualizacion no necesariamente sea obligatorio cambiar
+                  valores en los list-option */
+                if ($id_selectTypeVehicleMotor == 0) {
+                    $id_selectTypeVehicleMotor = $this->getIdVehicleTypeRelationship('id_type_vehicle_motor', $id_vehicleTypeModel);
+                }
+
+                if ($id_selectMakeVM == 0) {
+                    $id_selectMakeVM = $this->getIdVehicleTypeRelationship('id_vehicle_make', $id_vehicleTypeModel);
+                }
+
+                if ($id_selectVehicleModelMV == 0) {
+                    $id_selectVehicleModelMV = $this->getIdVehicleTypeRelationship('id_model', $id_vehicleTypeModel);
+                }
+
+                if ($id_selectVehicleGeneration == 0) {
+                    $id_selectVehicleGeneration = $this->getIdVehicleTypeRelationship('id_generation', $id_vehicleTypeModel);
+                }
+                
+                $datos = array('name_vehicle_type' => $nam_vehicleTypeModel,
+                    'fec_actu' => $fec_actu,
+                    'mca_inh' => $inha_vehicleTypeModel,
+                    'id_username' => $user_id_exist,
+                    'id_type_vehicle_motor' => $id_selectTypeVehicleMotor,
+                    'id_vehicle_make' => $id_selectMakeVM,
+                    'id_model' => $id_selectVehicleModelMV,
+                    'id_generation' => $id_selectVehicleGeneration);
+                
+                echo $result = $this->Vehicle_type_model->updateVehicleTypeModel($id_vehicleTypeModel, $datos);
+                
             } else {
                 echo FALSE;
             }
@@ -122,15 +149,17 @@ class VehicleType_control extends CI_Controller {
         }
     }
 
-    /* Retorna las modelos por cada marca de vehiculos existentes */
+    /* Retorna las tipos de vehiculos existentes */
 
     public function consultVehicleType() {
         $data = array(
-            'vehicleModel' => $this->Vehicle_model->consultVechicleModel()
+            'vehicleType' => $this->Vehicle_type_model->consultVehicleType(),
+            'make' => $this->Api_model->consultMake(),
+            'vehicle_motor' => $this->Api_model->consultTypeVehicleMotor()
         );
         /* Refactorizar mas adelante para colocar la llamada al metodo CONSTANT_LOADVIEW_C y asi esconder
           el controlador llamado para mas seguridad de la app. */
-        $this->load->view('consultas/vehicle_model_c', $data);
+        $this->load->view('consultas/vehicle_type_c', $data);
     }
 
     /* Retorna las arreglos para los listOption mostrados
@@ -164,12 +193,23 @@ class VehicleType_control extends CI_Controller {
         echo json_encode($value);
     }
 
+    /* Llama el metodo que carga en sesion los campos solicitados */
+
     public function loadSesionModel($marca, $modelo, $value) {
         parent::loadSesionModel($marca, $modelo, $value);
     }
 
+    /* Carga en sesion los campos solicitados */
+
     public function loadSesionAll($typeMotor, $value) {
         parent::loadSesionAll($typeMotor, $value);
+    }
+
+    /* Retorna mediante la consulta el id solicitado */
+
+    private function getIdVehicleTypeRelationship($selectField, $id_vehicle_type) {
+        $value = $this->Api_model->getIdVehicleTypeRelationship($selectField, $id_vehicle_type);
+        return $value;
     }
 
 }
