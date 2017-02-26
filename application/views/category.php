@@ -11,7 +11,7 @@
     <body>
         <?php include ('menu.php'); ?>
         <br>     
-        <div class="container col-lg-5" style="margin-left: 20%">
+        <div class="container col-lg-2" style="margin-left: 20%">
             <form action="<?= site_url('/category_control/createCategory'); ?>" id="categoryForm" method="post">
                 <div class="form-group">
                     <label for="categoria" class="col-lg-2 control-label">Categoria</label>
