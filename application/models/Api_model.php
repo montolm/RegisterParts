@@ -165,7 +165,9 @@ Class Api_model extends CI_Model {
         }
     }
 
-    public function getIdVehicleTypeRelationship($selectField,$id_vehicle_type) {
+    /* Retorna el campo deseado de la tabla vehicle_type */
+
+    public function getIdVehicleTypeRelationship($selectField, $id_vehicle_type) {
         $query = $this->db->query("select $selectField
                                     from vehicle_type
                                    where id_vehicle_type = $id_vehicle_type; ");
@@ -178,6 +180,33 @@ Class Api_model extends CI_Model {
         }
 
         return $value;
+    }
+
+    /* Retorna las categorias */
+
+    public function getListOptionCategory() {
+        $query = $this->db->query("select id_category,name_category
+                                     from category
+                                    order by id_category;");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    /* Retorna las marcas seleccionada */
+
+    public function consultCategoryName($idCategory) {
+        $query = $this->db->query("select name_category
+                                    from category
+                                   where id_category = $idCategory;");
+        if ($query->num_rows() > 0) {
+            $row = $query->row();
+            return $value = $row->name_category;
+        } else {
+            return FALSE;
+        }
     }
 
 }

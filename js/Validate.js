@@ -348,3 +348,32 @@ $(document).ready(function () {
         }
     });
 });
+
+/*Valida formulario piezas por categorias*/
+$(document).ready(function () {
+    $('#partForm').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            selectCategory: {
+                validators: {
+                    greaterThan: {
+                        value: 1,
+                        message: 'Campo obligatorio'
+                    }
+                }
+            },
+            part: {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo obligatorio'
+                    }
+                }
+            }
+        }
+    });
+});

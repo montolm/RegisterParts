@@ -105,9 +105,9 @@ class CI_Controller {
 
     /* Coloca los datos en sesion */
 
-    public function loadSesionAll($typeMotor,$value) {
+    public function loadSesionAll($name,$value) {
         $newdataModel = array(
-            'name' => $typeMotor,
+            'name' => $name,
             'value' => $value
         );
 

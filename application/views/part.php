@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Modelo</title>
+        <title>Pieza</title>
         <link rel="stylesheet" href="<?= base_url() ?>css/Bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
@@ -13,26 +13,27 @@
         <?php include ('menu.php'); ?>
         <br>
         <div class="container col-lg-2" style="margin-left: 20%">
-            <form id="vehicleModelForm" method="post">
+            <form id="partForm" method="post">
                 <div class="form-group">
                     <?php
                     if (isset($_POST['Submit'])) {
-                        $marca = $_SESSION['marca'];
+                        $name = $_SESSION['name'];
                         $value = $_SESSION['value'];
+                        
                         echo "<div class='container col-lg-10' style='margin-left:-4%'>
-                            <select id= 'listVehicleModel'class='form-control' name='selectVehicleModel'>
-                            <option value=$value selected>$marca</option>";
-                        foreach ($make as $row) {
-                            echo "<option value=$row->id_vehicle_make>$row->name_vehicle_make</option>";
+                            <select id= 'listCategory'class='form-control' name='selectCategory'>
+                            <option value=$value selected>$name</option>";
+                        foreach ($category as $row) {
+                            echo "<option value=$row->id_category>$row->name_category</option>";
                         }
                         echo"</select>
                     </div>";
                     } else {
                         echo "<div class='container col-lg-10' style='margin-left:-4%'>
-                            <select id= 'listVehicleModel'class='form-control' name='selectVehicleModel'>
-                            <option value='0' selected>Marcas</option>";
-                        foreach ($make as $row) {
-                            echo "<option value=$row->id_vehicle_make>$row->name_vehicle_make</option>";
+                            <select id= 'listCategory'class='form-control' name='selectCategory'>
+                            <option value='0' selected>Categorias</option>";
+                        foreach ($category as $row) {
+                            echo "<option value=$row->id_category>$row->name_category</option>";
                         }
                         echo"</select>
                     </div>";
@@ -41,17 +42,12 @@
                 </div>
                 <br>
                 <br>
-                <br>
                 <div class = "form-group">
-                    <input type = "text" class = "form-control" name = "vehicleModel" id = "idvehicleModel" value = "<?php
-                    if (isset($_POST['Submit'])) {
-                        echo $_SESSION['modelo'];
-                    }
-                    ?>" placeholder = "Modelo">
+                    <input type = "text" class = "form-control" name = "part" id = "idpart" placeholder = "Pieza">
                 </div>
                 <div id="idmensaje"></div>
                 <div>
-                    <button type="submit" class="btn btn-lg btn-primary" id="btnVehicleModel" name="Submit" onclick="insertVehicleModel()" ><span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
+                    <button type="submit" class="btn btn-lg btn-primary" id="btnPieza" name="Submit" onclick="insertPart()" ><span class="glyphicon glyphicon-ok-sign"></span> Enviar</button>
                 </div>
             </form>
             <div id="confirmation" class="alert alert-success hidden">

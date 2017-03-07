@@ -40,7 +40,7 @@ class VehicleModel_control extends CI_Controller {
         $id_vehicleModel_Sum = $this->Api_model->getMaxNUMId('vehicle_model', 'id_model') + 1;
         $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
         $name_model = $this->input->post('vehicleModel');
-        $id_vehicle_brand = $this->input->post('selectVehicleModel');
+        $id_vehicle_make = $this->input->post('selectVehicleModel');
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
@@ -52,12 +52,12 @@ class VehicleModel_control extends CI_Controller {
                 "fec_actu" => $fec_actu,
                 "mca_inh" => $mca_inh,
                 "id_username" => $user_id_exist,
-                "id_vehicle_make" => $id_vehicle_brand);
+                "id_vehicle_make" => $id_vehicle_make);
             $result = $this->Vehicle_model->createVehicleModel($datos);
             $returnValue = $this->Api_model->getException($result);
             if ($returnValue == 1) {
-                $NameMake = $this->Api_model->consultMakeName($id_vehicle_brand);
-                $this->loadSesionModel($NameMake, NULL, $id_vehicle_brand);
+                $NameMake = $this->Api_model->consultMakeName($id_vehicle_make);
+                $this->loadSesionModel($NameMake, NULL, $id_vehicle_make);
                 echo TRUE;
             } else {
                 echo FALSE;

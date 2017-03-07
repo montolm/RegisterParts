@@ -233,6 +233,21 @@ $(document).ready(function () {
     });
 });
 
+/*Actualiza los registros de las piezas por categoria*/
+$(document).ready(function () {
+    getCampEditVehicleModel("#mydataPieza", "#editPart", "#editNamePart", "#inhaPart",null,null);
+    $("#updateButtonPart").click(function (e) {
+        $.ajax({
+            url: getHostUrl('Part_control/updatePart'),
+            type: 'POST',
+            data: $("#editFormPart").serialize(),
+            success: function (respuesta) {
+                location.reload();
+            }
+        });
+    });
+});
+
 /*Inserta los tipos de vehiculos de motor*/
 $(document).ready(function () {
     $("#btnVehicleMotor").click(function (e) {
@@ -282,6 +297,14 @@ function insertTypeVehicleModel() {
     var idCamp = "#idVehicleTypeModel";
     var url = getHostUrl('VehicleType_control/createVehicleType');
     var idForm = "#typeVehicleModelForm";
+    insertRegyster(idCamp, url, idForm);
+}
+
+/*Inserta pieza por cada categoria*/
+function insertPart() {
+    var idCamp = "#idpart";
+    var url = getHostUrl('Part_control/createPart');
+    var idForm = "#partForm";
     insertRegyster(idCamp, url, idForm);
 }
 
@@ -349,10 +372,10 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-               // alert(respuesta);
+                alert(respuesta);
             },
             complete: function (jqXHR, textStatus) {
-
+ 
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $(idCamp).val('');

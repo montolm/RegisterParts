@@ -5,8 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Modelos</title>
-
+        <title>Piesas</title>
         <!-- Bootstrap -->
         <!--    <link href="css/bootstrap.min.css" rel="stylesheet">-->
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/Bootstrap.min.css"> 
@@ -25,12 +24,12 @@
 
         <div class="container">
             <?php
-            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataVehicleModel'>";
+            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataPieza'>";
             echo"<thead>";
             echo"<tr>";
             echo"<th>ID</th>";
-            echo"<th>Modelo</th>";
-            echo"<th>Marca</th>";
+            echo"<th>Pieza</th>";
+            echo"<th>Categoria</th>";
             echo"<th>Fecha de Creacion</th>";
             echo"<th>Fecha actualizacion</th>";
             echo"<th>Inhabilitado</th>";
@@ -39,17 +38,17 @@
             echo"</tr>";
             echo"</thead>";
             echo "<tbody>";
-            foreach ($vehicleModel as $row) {
+            foreach ($parts as $row) {
                 echo"<tr>
-                <td>$row->id_model</td>
-                <td>$row->model_name</td>
-                <td>$row->name_vehicle_make </td>
+                <td>$row->id_part</td>
+                <td>$row->name_part</td>
+                <td>$row->name_category </td>
                 <td>$row->creation_date </td>
                 <td>$row->fec_actu </td>
                 <td>$row->mca_inh</td>
                 <td>$row->username</td>";
                 echo"<td>";
-                echo"<a href=$row->id_model class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
+                echo"<a href=$row->id_part class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
                 echo"</td>";
                 echo"</tr>";
                 echo"</tr>";
@@ -62,22 +61,22 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Modelo</h4>
+                            <h4 class="modal-title custom_align" id="Heading">Pieza</h4>
                         </div>
-                        <form id="editFormVehicleModel" method="POST">
+                        <form id="editFormPart" method="POST">
                             <div class="modal-body">
                                 <div class="form-group hidden">
-                                    <input class="form-control " type="text" id="editVehicleModel" name="vehicleModel">
+                                    <input class="form-control " type="text" id="editPart" name="idPart">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel">
+                                    <input class="form-control " type="text" id="editNamePart" name="namePart">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control " type="text" id="inhaVehicleModel" name="inhaVehicleModel">
+                                    <input class="form-control " type="text" id="inhaPart" name="inhaPart">
                                 </div>
                             </div>
-                            <div class="modal-footer ">
-                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleModel"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonPart"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
                             </div>
                         </form>
                     </div>
@@ -96,7 +95,7 @@
         <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/overhang.min.js" type="text/javascript"></script>
         <script>
-            $('#mydataVehicleModel').dataTable({
+            $('#mydataPieza').dataTable({
                 "paging": true,
                 "ordering": true,
                 "info": false,

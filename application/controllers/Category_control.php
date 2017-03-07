@@ -35,7 +35,7 @@ class Category_control extends CI_Controller {
         redirect($this->config->item('CONSTANT_LOADVIEW_C') . 'category_c');
     }
 
-    /* Inserta categoria */
+    /* Inserta categorias de vehiculos */
 
     public function createCategory() {
         $user_name = $this->session->userdata('username');
@@ -51,7 +51,8 @@ class Category_control extends CI_Controller {
             redirect($this->config->item('CONSTANT_LOADVIEW') . 'category');
         }
     }
-
+    
+    /*Actualiza las categorias de vehiculos*/
     public function updateCategory() {
 
         $id_category = $this->input->post('editIDCategory');
@@ -80,7 +81,7 @@ class Category_control extends CI_Controller {
         }
     }
 
-    /* Retorna todas las categorias existentes */
+    /* Retorna todas las categorias de vehiculos existentes */
 
     public function consultCategory() {
         $data = array(
