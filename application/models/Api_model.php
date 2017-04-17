@@ -208,5 +208,16 @@ Class Api_model extends CI_Model {
             return FALSE;
         }
     }
+    /*Retorna */
+    public function getParts($idCategory) {
+        $query = $this->db->query("select id_part,name_part
+                                        from part
+                                       where id_category = $idCategory;");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return FALSE;
+        }
+    }
 
 }

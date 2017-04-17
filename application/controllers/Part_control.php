@@ -35,8 +35,8 @@ class Part_control extends CI_Controller {
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
-        echo $idCategory . ' eee ' . $name_part;
-        
+        //echo $idCategory . ' eee ' . $name_part;
+
         if ($user_id_exist > 0 & $idCategory != 0) {
             $datos = array('id_part' => $id_part_Sum,
                 'name_part' => $name_part,
@@ -45,10 +45,10 @@ class Part_control extends CI_Controller {
                 'mca_inh' => $mca_inh,
                 'id_username' => $user_id_exist,
                 'id_category' => $idCategory,);
-            
+
             $result = $this->Part_model->createPart($datos);
             $returnVale = $this->Api_model->getException($result);
-        
+
             if ($returnVale == 1) {
                 // Coloca estos campos en sesion 
                 $NameCategory = $this->Api_model->consultCategoryName($idCategory);
@@ -65,8 +65,8 @@ class Part_control extends CI_Controller {
             echo FALSE;
         }
     }
-    
-     /* Actualiza Marca de vehiculo */
+
+    /* Actualiza Marca de vehiculo */
 
     public function updatePart() {
         $user_name = $this->session->userdata('username');

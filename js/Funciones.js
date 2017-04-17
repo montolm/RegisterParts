@@ -186,7 +186,7 @@ $(document).ready(function () {
                 success: function (respuesta) {
                     location.reload();
                 }, error: function (jqXHR, textStatus, errorThrown) {
-                    
+
                 }
             });
         } else {
@@ -235,7 +235,7 @@ $(document).ready(function () {
 
 /*Actualiza los registros de las piezas por categoria*/
 $(document).ready(function () {
-    getCampEditVehicleModel("#mydataPieza", "#editPart", "#editNamePart", "#inhaPart",null,null);
+    getCampEditVehicleModel("#mydataPieza", "#editPart", "#editNamePart", "#inhaPart", null, null);
     $("#updateButtonPart").click(function (e) {
         $.ajax({
             url: getHostUrl('Part_control/updatePart'),
@@ -335,6 +335,46 @@ function insertGenerationModel() {
     }
 
 }
+/*Carga las piezas por categoria seleccionada*/
+$(document).ready(function () {
+    $("body").on("click", "#mydataTypeVehiclePart" + " a", function (e) {
+        e.preventDefault();
+        idsele = $(this).attr("href");
+        nameSelect = $(this).parent().parent().children("td:eq(1)").text();
+        inhaSelect = $(this).parent().parent().children("td:eq(7)").text();
+        if (idsele > 0) {
+            $("#editVehicleModel").val(idsele);
+            $("#editCategory").val($("#listCategory").val());
+            $("#editNameVehicleModel").val($('#listCategory').find("option:selected").text());
+            $("#inhaTypeVehicleModel").val(nameSelect);
+
+            $.ajax({
+                data: {id: $("#listCategory").val()},
+                url: getHostUrl('Part_vehicle_control/getParts'),
+                type: 'POST',
+                dataType: 'json',
+                beforeSend: function () {
+                },
+                success: function (resultado) {
+                    $(resultado).each(function (i, v) {
+                        $("#idcheckboxes").append('<li class="list-group-item" name ="pieza" id = "idPieza"data-checked="true" value=' + v.id_part + '>' + v.name_part + '</li>');
+                    });
+                    /*Carga los checkboxes que se encuentran en la lista*/
+                    getCheckBoxItems();
+                },
+                error: function () {
+                },
+                complete: function (jqXHR, textStatus) {
+
+                },
+                timeout: 1000
+            });
+
+        }
+        //  alert($("#editVehicleModel").val()+" "+ $("#editCategory").val());
+    });
+});
+
 
 /*Actualiza marcas de vehiculos*/
 $(document).ready(function () {
@@ -372,13 +412,13 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                alert(respuesta);
+              //  alert(respuesta);
             },
             complete: function (jqXHR, textStatus) {
- 
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $(idCamp).val('');
+                $(idCamp).val();
                 $("#idmensaje").overhang({
                     type: "error",
                     upper: false,
@@ -406,10 +446,12 @@ function getCampEdit(idDataTable, idCamp, editNameSelect, mca_inha) {
     });
 }
 
+
 /*Carga los campos deseados en el modal de tipos de vehiculos*/
 function getCampEditVehicleType(idDataTable, idCamp, editNameSelect, mca_inha) {
     $("body").on("click", idDataTable + " a", function (e) {
         e.preventDefault();
+       // alert($('#listCategory').find("option:selected").text());
         idsele = $(this).attr("href");
         nameSelect = $(this).parent().parent().children("td:eq(1)").text();
         inhaSelect = $(this).parent().parent().children("td:eq(7)").text();
@@ -417,6 +459,9 @@ function getCampEditVehicleType(idDataTable, idCamp, editNameSelect, mca_inha) {
             $(idCamp).val(idsele);
             $(editNameSelect).val(nameSelect);
             $(mca_inha).val(inhaSelect);
+            $(editNameSelect).val($('#listCategory').find("option:selected").text());
+            $(mca_inha).val(nameSelect);
+
         }
     });
 }
@@ -571,3 +616,104 @@ function hideModal(idModal) {
 function ShowModal(idModal) {
     $(idModal).modal('show');
 }
+function getCheckBoxItems() {
+    $(document).ready(function () {
+        $(function () {
+            $('.list-group.checked-list-box .list-group-item').each(function () {
+                // alert('1');
+                // Settings
+                var $widget = $(this),
+                        $checkbox = $('<input type="checkbox" class="hidden" />'),
+                        color = ($widget.data('color') ? $widget.data('color') : "primary"),
+                        style = ($widget.data('style') === "button" ? "btn-" : "list-group-item-"),
+                        settings = {
+                            on: {
+                                icon: 'glyphicon glyphicon-check'
+                            },
+                            off: {
+                                icon: 'glyphicon glyphicon-unchecked'
+                            }
+                        };
+
+                // $widget.css('cursor', 'pointer')
+                $widget.append($checkbox);
+
+                // Event Handlers
+                $widget.on('click', function () {
+                    $checkbox.prop('checked', !$checkbox.is(':checked'));
+                    $checkbox.triggerHandler('change');
+                    updateDisplay();
+                });
+                $checkbox.on('change', function () {
+                    updateDisplay();
+                });
+
+
+                // Actions
+                function updateDisplay() {
+                    var isChecked = $checkbox.is(':checked');
+
+                    // Set the button's state
+                    $widget.data('state', (isChecked) ? "on" : "off");
+
+                    // Set the button's icon
+                    $widget.find('.state-icon')
+                            .removeClass()
+                            .addClass('state-icon ' + settings[$widget.data('state')].icon);
+
+                    // Update the button's color
+                    if (isChecked) {
+                        $widget.addClass(style + color + ' active');
+                    } else {
+                        $widget.removeClass(style + color + ' active');
+                    }
+                }
+
+                // Initialization
+                function init() {
+                    if ($widget.data('checked') === true) {
+                        $checkbox.prop('checked', !$checkbox.is(':checked'));
+                    }
+
+                    updateDisplay();
+
+                    // Inject the icon if applicable
+                    if ($widget.find('.state-icon').length === 0) {
+                        $widget.prepend('<span class="state-icon ' + settings[$widget.data('state')].icon + '"></span>');
+                    }
+                }
+                init();
+            });
+
+            $('#get-checked-data').on('click', function (event) {
+                event.preventDefault();
+                var checkedItems = {}, counter = 0;
+                $("#check-list-box li.active").each(function (idx, li) {
+                    checkedItems[counter] = $(li).text();
+                    counter++;
+                });
+                $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
+            });
+        });
+    });
+}
+
+function insertPartTypeVehicle() {
+    var count = 0;
+    var idCamp = "#editVehicleModel";
+    var url = getHostUrl('Part_vehicle_control/createPartVehicle');
+    var idForm = "#partVehicleTypeForm";
+    var elementos = document.getElementsByName("pieza");
+    //  elementos.length;
+    $("input:checkbox:checked").each(function () {
+//        alert('Elementos ' + count);
+        $('#idVehiclePart').val(elementos[count].value);
+        insertRegyster(idCamp, url, idForm);
+        count = count + 1;
+
+    });
+    location.reload();
+}
+
+/*Realiza un submit se le coloca el nombre del formulario*/
+// $("#editFormTypeVehicleModel").submit();

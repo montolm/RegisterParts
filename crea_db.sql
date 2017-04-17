@@ -5,7 +5,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema montolm_registerparts
+-- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
 -- Schema montolm_registerparts
@@ -123,6 +123,25 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `montolm_registerparts`.`part_vehicle_type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `montolm_registerparts`.`part_vehicle_type` ;
+
+CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`part_vehicle_type` (
+  `id` INT(11) NOT NULL,
+  `id_category` INT(11) NOT NULL,
+  `id_vehicle_type` INT(11) NOT NULL,
+  `id_part` INT(11) NOT NULL,
+  `creation_date` DATE NOT NULL,
+  `fec_actu` DATE NOT NULL,
+  `mca_inh` VARCHAR(1) NOT NULL,
+  `id_username` INT(11) NOT NULL,
+  PRIMARY KEY (`id_category`, `id_vehicle_type`, `id_part`, `mca_inh`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `montolm_registerparts`.`type_vehicle_motor`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `montolm_registerparts`.`type_vehicle_motor` ;
@@ -196,6 +215,7 @@ CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`vehicle_type` (
   PRIMARY KEY (`name_vehicle_type`, `mca_inh`, `id_type_vehicle_motor`, `id_vehicle_make`, `id_model`, `id_generation`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

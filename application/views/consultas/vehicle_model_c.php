@@ -24,23 +24,26 @@
         <?php include ('/../menu.php'); ?>
 
         <div class="container">
-            <?php
-            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataVehicleModel'>";
-            echo"<thead>";
-            echo"<tr>";
-            echo"<th>ID</th>";
-            echo"<th>Modelo</th>";
-            echo"<th>Marca</th>";
-            echo"<th>Fecha de Creacion</th>";
-            echo"<th>Fecha actualizacion</th>";
-            echo"<th>Inhabilitado</th>";
-            echo"<th>Usuario</th>";
-            echo"<th>Editar</th>";
-            echo"</tr>";
-            echo"</thead>";
-            echo "<tbody>";
-            foreach ($vehicleModel as $row) {
-                echo"<tr>
+            <div class="featurette" id="about">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <?php
+                        echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataVehicleModel'>";
+                        echo"<thead>";
+                        echo"<tr>";
+                        echo"<th>ID</th>";
+                        echo"<th>Modelo</th>";
+                        echo"<th>Marca</th>";
+                        echo"<th>Fecha de Creacion</th>";
+                        echo"<th>Fecha actualizacion</th>";
+                        echo"<th>Inhabilitado</th>";
+                        echo"<th>Usuario</th>";
+                        echo"<th>Editar</th>";
+                        echo"</tr>";
+                        echo"</thead>";
+                        echo "<tbody>";
+                        foreach ($vehicleModel as $row) {
+                            echo"<tr>
                 <td>$row->id_model</td>
                 <td>$row->model_name</td>
                 <td>$row->name_vehicle_make </td>
@@ -48,38 +51,41 @@
                 <td>$row->fec_actu </td>
                 <td>$row->mca_inh</td>
                 <td>$row->username</td>";
-                echo"<td>";
-                echo"<a href=$row->id_model class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
-                echo"</td>";
-                echo"</tr>";
-                echo"</tr>";
-            }
-            echo"</tbody>";
-            echo"</table>";
-            ?>
-            <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Modelo</h4>
+                            echo"<td>";
+                            echo"<a href=$row->id_model class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
+                            echo"</td>";
+                            echo"</tr>";
+                            echo"</tr>";
+                        }
+                        echo"</tbody>";
+                        echo"</table>";
+                        ?>
+                        <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                        <h4 class="modal-title custom_align" id="Heading">Modelo</h4>
+                                    </div>
+                                    <form id="editFormVehicleModel" method="POST">
+                                        <div class="modal-body">
+                                            <div class="form-group hidden">
+                                                <input class="form-control " type="text" id="editVehicleModel" name="vehicleModel">
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel">
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control " type="text" id="inhaVehicleModel" name="inhaVehicleModel">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer ">
+                                            <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleModel"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <form id="editFormVehicleModel" method="POST">
-                            <div class="modal-body">
-                                <div class="form-group hidden">
-                                    <input class="form-control " type="text" id="editVehicleModel" name="vehicleModel">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control " type="text" id="editNameVehicleModel" name="nameVehicleModel">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control " type="text" id="inhaVehicleModel" name="inhaVehicleModel">
-                                </div>
-                            </div>
-                            <div class="modal-footer ">
-                                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonVehicleModel"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

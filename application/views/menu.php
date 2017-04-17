@@ -29,7 +29,7 @@
                             Crear <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">  
-                            <li><a href=<?= site_url('/category_control/urlCategory'); ?>>Categoria</a></li>
+                            <li><a href=<?= site_url('/category_control/urlCategory'); ?>>Sistema</a></li>
                             <li><a href=<?= site_url('/vehicle_motor_control/urlVehicleMotor'); ?>>Vehiculo de motor</a></li> 
                             <li><a href=<?= site_url('/combustible_control/urlCombustible'); ?>>Combustible</a></li> 
                             <li><a href=<?= site_url('/make_control/urlMake'); ?>>Marca</a></li>
@@ -38,6 +38,7 @@
                             <li><a href=<?= site_url('/generationModel_control/consultVehicleModel');?>>Generat. Modelo</a></li>
                             <li><a href=<?= site_url('/vehicleType_control/consultListOption'); ?>>Tipo Vehiculo</a></li>
                             <li><a href=<?= site_url('/part_control/consultListOption'); ?>>Pieza</a></li>  
+                            <li><a href=<?= site_url('/part_vehicle_control/consultListOption'); ?>>Pieza tip. Vehiculo</a></li> 
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -45,7 +46,7 @@
                             Consultas<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href=<?= site_url('/category_control/consultCategory'); ?>>Categorias</a></li>
+                            <li><a href=<?= site_url('/category_control/consultCategory'); ?>>Sistemas</a></li>
                             <li><a href=<?= site_url('/vehicle_motor_control/consultVehicleMotor'); ?>>Vehiculos de motor</a></li> 
                             <li><a href=<?= site_url('/combustible_control/consultCombustible'); ?>>Combustibles</a></li>
                             <li><a href=<?= site_url('/make_control/consultMake');?>>Marcas</a></li>
