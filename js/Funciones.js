@@ -176,7 +176,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     getCampEditVehicleType("#mydataTypeVehicle", "#editVehicleModel", "#editNameVehicleModel",
             "#inhaTypeVehicleModel");
-
+    
     $("#updateButtonTipoVehiculo").click(function () {
         if ($('#inhaTypeVehicleModel').val() !== '' & $('#editNameVehicleModel').val() !== '') {
             $.ajax({
@@ -227,7 +227,7 @@ $(document).ready(function () {
             type: 'POST',
             data: $("#editFormVehicleModel").serialize(),
             success: function (respuesta) {
-                //location.reload();
+                location.reload();
             }
         });
     });
@@ -454,13 +454,15 @@ function getCampEditVehicleType(idDataTable, idCamp, editNameSelect, mca_inha) {
        // alert($('#listCategory').find("option:selected").text());
         idsele = $(this).attr("href");
         nameSelect = $(this).parent().parent().children("td:eq(1)").text();
+        alert(nameSelect);
         inhaSelect = $(this).parent().parent().children("td:eq(7)").text();
         if (idsele > 0) {
             $(idCamp).val(idsele);
             $(editNameSelect).val(nameSelect);
             $(mca_inha).val(inhaSelect);
-            $(editNameSelect).val($('#listCategory').find("option:selected").text());
-            $(mca_inha).val(nameSelect);
+          //Verificar donde es que se usas esto pork estaba aqui por algo..  
+         //   $(editNameSelect).val($('#listCategory').find("option:selected").text());
+        //    $(mca_inha).val(nameSelect);
 
         }
     });

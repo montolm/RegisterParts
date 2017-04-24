@@ -41,11 +41,11 @@ class Part_model extends CI_Model{
     public function consultPart() {
         $query = $this->db->query("select a.id_part,a.name_part,b.name_category,a.creation_date,a.fec_actu,a.mca_inh,c.username
                                     from part a
-                                   inner join category b
+                                    inner join category b
                                       on a.id_category =  b.id_category
-                                   inner join user c
-                                      on a.id_username = b.id_username
-                                   order by id_part;");
+                                    inner join user c
+                                      on a.id_username = c.id_username
+                                    order by id_part;");
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {
