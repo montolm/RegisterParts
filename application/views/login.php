@@ -33,7 +33,8 @@
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary btn-lg btn-block" ><span class="glyphicon glyphicon-ok-sign"></span> Aceptar</button>
-                                <span class="pull-right"><a href="<?= site_url('/User_control/urlUser'); ?>">Registrate</a></span><span><a href="<?= site_url('/Password_control/urlPassword'); ?>">Olvide contraseña?</a></span>
+                                <span class="pull-right"><a href="<?= site_url('/User_control/urlUser'); ?>">Registrate</a>
+                                </span><span><a href="<?= site_url('/Password_control/urlPassword'); ?>">Olvide contraseña?</a></span>
                             </div>
                         </form>
                     </div>

@@ -72,12 +72,12 @@ Class Api_model extends CI_Model {
         $query = $this->db->query("select a.id_vehicle_make,a.name_vehicle_make,a.creation_date,a.fec_actu,a.mca_inh,b.username
                                     from make a
                                         inner join user b
-                                        on a.id_username = b.id_username
+                                        on  a.id_username = b.id_username
                                    order by a.id_vehicle_make;");
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {
-            return false;
+            return FALSE;
         }
     }
 
@@ -208,11 +208,30 @@ Class Api_model extends CI_Model {
             return FALSE;
         }
     }
-    /*Retorna */
+
+    /* Retorna las piezas registradas */
+
     public function getParts($idCategory) {
         $query = $this->db->query("select id_part,name_part
                                         from part
                                        where id_category = $idCategory;");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return FALSE;
+        }
+    }
+
+    /* Retorna los tipos de vehiculos dependiendo de los parametros recibidos */
+
+    public function getTypesVehicles($idVehicleMotor, $idVehicleMake, $idModel, $idGeneration) {
+        $query = $this->db->query("select a.id_vehicle_type,a.name_vehicle_type
+                                    from vehicle_type a
+                                   where a.id_type_vehicle_motor = $idVehicleMotor
+                                     and a.id_vehicle_make  = $idVehicleMake
+                                     and a.id_model    = $idModel
+                                     and a.id_generation = $idGeneration
+                                     and a.mca_inh = 'N';");
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {

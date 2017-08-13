@@ -451,10 +451,9 @@ function getCampEdit(idDataTable, idCamp, editNameSelect, mca_inha) {
 function getCampEditVehicleType(idDataTable, idCamp, editNameSelect, mca_inha) {
     $("body").on("click", idDataTable + " a", function (e) {
         e.preventDefault();
-       // alert($('#listCategory').find("option:selected").text());
         idsele = $(this).attr("href");
         nameSelect = $(this).parent().parent().children("td:eq(1)").text();
-        alert(nameSelect);
+       // alert(nameSelect);
         inhaSelect = $(this).parent().parent().children("td:eq(7)").text();
         if (idsele > 0) {
             $(idCamp).val(idsele);

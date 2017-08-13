@@ -33,7 +33,6 @@
                     </div>
                 </div>
 
-
                 <div class="form-group">
                     <label for="user" class="col-lg-2 control-label">Usuario</label>
                     <input type="text" class="form-control" name="user" id="iduser">

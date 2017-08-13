@@ -150,26 +150,26 @@
         <script src="<?php echo base_url(); ?>js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
         <script>
-                                    $('#mydataTypeVehiclePart').dataTable({
-                                        "paging": true,
-                                        "ordering": true,
-                                        "info": false,
-                                        "language": {
-                                            "sLengthMenu": "Mostrar _MENU_ registros",
-                                            "zeroRecords": "Nothing found - sorry",
-                                            "info": "Showing page _PAGE_ of _PAGES_",
-                                            "infoEmpty": "No records available",
-                                            "infoFiltered": "(filtered from _MAX_ total records)",
-                                            "sSearch": "Buscar:",
-                                            "oPaginate": {
-                                                "sFirst": "Primero",
-                                                "sLast": "Último",
-                                                "sNext": "Siguiente",
-                                                "sPrevious": "Anterior"
-                                            }
+        $('#mydataTypeVehiclePart').dataTable({
+            "paging": true,
+            "ordering": true,
+            "info": false,
+            "language": {
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "Nothing found - sorry",
+                "info": "Showing page _PAGE_ of _PAGES_",
+                "infoEmpty": "No records available",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                }
 
-                                        }
-                                    });
+            }
+        });
         </script>
     </body>
 </html>

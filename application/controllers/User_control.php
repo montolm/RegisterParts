@@ -27,8 +27,7 @@ class User_control extends CI_Controller {
             echo 'false';
         }
     }
-    
-    
+
     /* Retorna si existe el usuario via ajax */
 
     public function userExist() {
@@ -45,13 +44,13 @@ class User_control extends CI_Controller {
     /* Llama la vista user */
 
     function urlUser() {
-       //$this->load->view('user');
+        //$this->load->view('user');
         redirect($this->config->item('CONSTANT_LOADVIEW') . 'user' . '');
     }
 
     function createUser() {
-        /*falta validar que no sea nulo para entrar.*/
-        $id_userSum = $this->api_model->getMaxNUMId('user','id_username') + 1;
+        /* falta validar que no sea nulo para entrar. */
+        $id_userSum = $this->api_model->getMaxNUMId('user', 'id_username') + 1;
         $name = $this->input->post('name');
         $lastname = $this->input->post('lastname');
         $username = $this->input->post('user');
@@ -60,8 +59,8 @@ class User_control extends CI_Controller {
         $creation_date = date("Y-m-d", time());
         $fec_actu = date("Y-m-d", time());
         // echo($name.' '.$lastname.' '.$username.' '.$password.' '.$email);
-        
-        $this->user_model->createUserModel($id_userSum,$name, $lastname, $username, $password, $email,$creation_date,$fec_actu);
+
+        $this->user_model->createUserModel($id_userSum, $name, $lastname, $username, $password, $email, $creation_date, $fec_actu);
         redirect($this->config->item('CONSTANT_LOADVIEW') . 'login' . '');
     }
 
