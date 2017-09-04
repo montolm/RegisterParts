@@ -72,7 +72,8 @@ class Part_vehicle_control extends CI_Controller {
             $result = $this->Part_vehicle_model->createPartVehicle($datos);
             $returnValue = $this->Api_model->getException($result);
             if ($returnValue == 1) {
-              // $NameMake = $this->Api_model->consultMakeName($id_vehicle_make);
+
+                // $NameMake = $this->Api_model->consultMakeName($id_vehicle_make);
                 //$this->loadSesionModel($NameMake, NULL, $id_vehicle_make);
                 echo TRUE;
             } else {
