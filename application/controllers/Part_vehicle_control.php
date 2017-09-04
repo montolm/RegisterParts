@@ -60,8 +60,6 @@ class Part_vehicle_control extends CI_Controller {
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
 
-        echo $id_vehicle_type . ' rrr ' . $id_category . ' ' . $id_part;
-
         if ($user_id_exist > 0) {
             $datos = array("id" => $id_vehiclePart_Sum,
                 "id_category" => $id_category,
@@ -74,8 +72,8 @@ class Part_vehicle_control extends CI_Controller {
             $result = $this->Part_vehicle_model->createPartVehicle($datos);
             $returnValue = $this->Api_model->getException($result);
             if ($returnValue == 1) {
-//                $NameMake = $this->Api_model->consultMakeName($id_vehicle_make);
-//                $this->loadSesionModel($NameMake, NULL, $id_vehicle_make);
+              // $NameMake = $this->Api_model->consultMakeName($id_vehicle_make);
+                //$this->loadSesionModel($NameMake, NULL, $id_vehicle_make);
                 echo TRUE;
             } else {
                 echo FALSE;

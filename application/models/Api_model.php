@@ -214,7 +214,8 @@ Class Api_model extends CI_Model {
     public function getParts($idCategory) {
         $query = $this->db->query("select id_part,name_part
                                         from part
-                                       where id_category = $idCategory;");
+                                       where id_category = $idCategory
+                                          and mca_inh = 'N';");
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {
@@ -232,6 +233,41 @@ Class Api_model extends CI_Model {
                                      and a.id_model    = $idModel
                                      and a.id_generation = $idGeneration
                                      and a.mca_inh = 'N';");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return FALSE;
+        }
+    }
+
+    /* Retorna combustible por modelo seleccionado */
+
+    public function gasForModel($idModel) {
+        $query = $this->db->query("select a.id_combustible_model,type_combustible
+                                    from model_combustible a
+                              inner join combustible b
+                                     on a.id_combustible = b.id_combustible
+                               where a.id_model = $idModel
+                                 and a.mca_inh 	= 'N'
+                              order by a.id_combustible_model;");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    /* Retorna las piezas registradas por tipo y categoria */
+
+    public function getPartsVehicleType($idCategory, $idVehicleType) {
+        $query = $this->db->query("select a.id,b.name_part,a.id_category,a.id_vehicle_type,a.id_part
+                                    from  part_vehicle_type a
+                                   inner join part b
+                                      on a.id_part = b.id_part
+                                     and a.mca_inh = b.mca_inh 
+                                    where a.id_vehicle_type = $idVehicleType
+                                      and a.id_category = $idCategory
+                                      and a.mca_inh = 'N';");
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {

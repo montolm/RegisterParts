@@ -1,4 +1,5 @@
 var statusAjax = "succes";
+var globalStatus;
 
 /*Valida el campo email de la pantalla password para verificar si existe*/
 $(document).ready(function () {
@@ -176,7 +177,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     getCampEditVehicleType("#mydataTypeVehicle", "#editVehicleModel", "#editNameVehicleModel",
             "#inhaTypeVehicleModel");
-    
+
     $("#updateButtonTipoVehiculo").click(function () {
         if ($('#inhaTypeVehicleModel').val() !== '' & $('#editNameVehicleModel').val() !== '') {
             $.ajax({
@@ -357,7 +358,7 @@ $(document).ready(function () {
                 },
                 success: function (resultado) {
                     $(resultado).each(function (i, v) {
-                        $("#idcheckboxes").append('<li class="list-group-item" name ="pieza" id = "idPieza"data-checked="true" value=' + v.id_part + '>' + v.name_part + '</li>');
+                        $("#idcheckboxes").append('<li class="list-group-item" name ="pieza" id = "idPieza"data-checked="false" value=' + v.id_part + '>' + v.name_part + '</li>');
                     });
                     /*Carga los checkboxes que se encuentran en la lista*/
                     getCheckBoxItems();
@@ -405,14 +406,13 @@ $(document).ready(function () {
 
 /*Inserta registros en la DB de manera dinamica*/
 function insertRegyster(idCamp, url, idForm) {
-    //var status = "Hola";
     if ($(idCamp).val() !== "") {
         $.ajax({
             url: url,
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-              //  alert(respuesta);
+                 // alert('ENTROOO_1 '+respuesta);
             },
             complete: function (jqXHR, textStatus) {
 
@@ -453,15 +453,15 @@ function getCampEditVehicleType(idDataTable, idCamp, editNameSelect, mca_inha) {
         e.preventDefault();
         idsele = $(this).attr("href");
         nameSelect = $(this).parent().parent().children("td:eq(1)").text();
-       // alert(nameSelect);
+        // alert(nameSelect);
         inhaSelect = $(this).parent().parent().children("td:eq(7)").text();
         if (idsele > 0) {
             $(idCamp).val(idsele);
             $(editNameSelect).val(nameSelect);
             $(mca_inha).val(inhaSelect);
-          //Verificar donde es que se usas esto pork estaba aqui por algo..  
-         //   $(editNameSelect).val($('#listCategory').find("option:selected").text());
-        //    $(mca_inha).val(nameSelect);
+            //Verificar donde es que se usas esto pork estaba aqui por algo..  
+            //   $(editNameSelect).val($('#listCategory').find("option:selected").text());
+            //    $(mca_inha).val(nameSelect);
 
         }
     });
@@ -619,12 +619,16 @@ function ShowModal(idModal) {
 }
 function getCheckBoxItems() {
     $(document).ready(function () {
+
         $(function () {
-            $('.list-group.checked-list-box .list-group-item').each(function () {
-                // alert('1');
+            /*Retorna todos los valores de la lista de piezas*/
+            valueParts = document.getElementsByName('pieza');
+            value = valueParts;
+            $('.list-group.checked-list-box .list-group-item').each(function (i, v) {
+                value = valueParts[i].value;
                 // Settings
                 var $widget = $(this),
-                        $checkbox = $('<input type="checkbox" class="hidden" />'),
+                        $checkbox = $('<input type="checkbox" class="hidden" name="checkVal" value ="' + value + '"/>'),
                         color = ($widget.data('color') ? $widget.data('color') : "primary"),
                         style = ($widget.data('style') === "button" ? "btn-" : "list-group-item-"),
                         settings = {
@@ -635,20 +639,20 @@ function getCheckBoxItems() {
                                 icon: 'glyphicon glyphicon-unchecked'
                             }
                         };
-
                 // $widget.css('cursor', 'pointer')
                 $widget.append($checkbox);
 
                 // Event Handlers
                 $widget.on('click', function () {
+                    //alert('entro click 1');
                     $checkbox.prop('checked', !$checkbox.is(':checked'));
                     $checkbox.triggerHandler('change');
                     updateDisplay();
                 });
                 $checkbox.on('change', function () {
+                    // alert('entro click 2');
                     updateDisplay();
                 });
-
 
                 // Actions
                 function updateDisplay() {
@@ -700,17 +704,13 @@ function getCheckBoxItems() {
 }
 
 function insertPartTypeVehicle() {
-    var count = 0;
     var idCamp = "#editVehicleModel";
     var url = getHostUrl('Part_vehicle_control/createPartVehicle');
     var idForm = "#partVehicleTypeForm";
-    var elementos = document.getElementsByName("pieza");
-    //  elementos.length;
-    $("input:checkbox:checked").each(function () {
-//        alert('Elementos ' + count);
-        $('#idVehiclePart').val(elementos[count].value);
+    $("input:checkbox:checked").each(function (i, v) {
+       // alert('Elementos ' + v.value);
+        $('#idVehiclePart').val(v.value);
         insertRegyster(idCamp, url, idForm);
-        count = count + 1;
 
     });
     location.reload();

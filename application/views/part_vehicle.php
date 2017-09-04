@@ -130,7 +130,9 @@
                                     <div class="col-xs-4">
                                         <h3 class="text-center">Piezas por Categoria</h3>
                                         <div class="well" style="max-height: 300px;overflow: auto;" >
-                                            <ul class="list-group checked-list-box" id="idcheckboxes"></ul>
+                                            <ul class="list-group checked-list-box" id="idcheckboxes">
+                                                
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>

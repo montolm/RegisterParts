@@ -22,7 +22,7 @@ class Api_WS extends REST_Controller {
         $this->load->model('Api_model');
     }
 
-    /* Retorna los tipos de vehiculos de motor en formato Json */
+    /* Retorna los tipos de vehiculos de motor en formato Json WS */
 
     public function vehicleMotorType_get() {
         $data = array(
@@ -31,7 +31,7 @@ class Api_WS extends REST_Controller {
         $this->response($data);
     }
 
-    /* Retorna las marcas en formato Json */
+    /* Retorna las marcas en formato Json WS*/
 
     public function makes_get() {
         $data = array(
@@ -40,7 +40,7 @@ class Api_WS extends REST_Controller {
         $this->response($data);
     }
 
-    /* Retorna los modelos por marca definida en formato Json */
+    /* Retorna los modelos por marca definida en formato Json WS*/
 
     public function modelForMake_get($idMake) {
         $data = array(
@@ -49,7 +49,7 @@ class Api_WS extends REST_Controller {
         $this->response($data);
     }
 
-    /* Retorna las generaciones por modelo definida en formato Json */
+    /* Retorna las generaciones por modelo definida en formato Json WS */
 
     public function generationForModel_get($idModel) {
         $data = array(
@@ -58,7 +58,7 @@ class Api_WS extends REST_Controller {
         $this->response($data);
     }
 
-    /* Retorna las tipos de vehicuilos en formato Json */
+    /* Retorna las tipos de vehicuilos en formato Json WS */
 
     public function typeForModel_get($idModel) {
         $data = array(
@@ -66,10 +66,37 @@ class Api_WS extends REST_Controller {
         );
         $this->response($data);
     }
-    /*Retorn los tipos de vehiculos en Json dependiendo de los parametros enviados*/
+
+    /* Retorn los tipos de vehiculos en Json dependiendo de los parametros enviados */
+
     function typesVehicles_get($idVehicleMotor, $idVehicleMake, $idModel, $idGeneration) {
         $data = array(
             'typesVehicles' => $this->Api_model->getTypesVehicles($idVehicleMotor, $idVehicleMake, $idModel, $idGeneration)
+        );
+        $this->response($data);
+    }
+
+    /* Retorn los tipos de vehiculos en Json dependiendo de los parametros enviados WS */
+
+    function gasFormodel_get($idModel) {
+        $data = array(
+            'gasForModel' => $this->Api_model->gasForModel($idModel)
+        );
+        $this->response($data);
+    }
+
+    /* Retorna los systemas de los vehiculos Json ejemplo: motor, carroceria etc. WS*/
+
+    function system_get() {
+        $data = array(
+            'systems' => $this->Api_model->getListOptionCategory()
+        );
+        $this->response($data);
+    }
+    /*Retorna las piezas por tipos de vehiculos en formato Json WS*/
+    function partsForVehicleType_get($idCategory,$idVehicleType) {
+        $data = array(
+            'parts' => $this->Api_model->getPartsVehicleType($idCategory,$idVehicleType)
         );
         $this->response($data);
     }
