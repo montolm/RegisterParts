@@ -260,14 +260,21 @@ Class Api_model extends CI_Model {
     /* Retorna las piezas registradas por tipo y categoria */
 
     public function getPartsVehicleType($idCategory, $idVehicleType) {
-        $query = $this->db->query("select a.id,b.name_part,a.id_category,a.id_vehicle_type,a.id_part
+        $query = $this->db->query("select b.name_part,d.name_category,c.name_vehicle_type
                                     from  part_vehicle_type a
                                    inner join part b
                                       on a.id_part = b.id_part
                                      and a.mca_inh = b.mca_inh 
+                                    inner join vehicle_type c
+                                       on a.id_vehicle_type = c.id_vehicle_type
+                                      and a.mca_inh	 = c.mca_inh
+                                    inner join category d
+                                       on a.id_category = d.id_category
+                                      and a.mca_inh	= d.mca_inh
                                     where a.id_vehicle_type = $idVehicleType
-                                      and a.id_category = $idCategory
-                                      and a.mca_inh = 'N';");
+                                      and a.id_category     = $idCategory
+                                      and a.mca_inh = 'N'
+                                      order by b.name_part;");
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {
