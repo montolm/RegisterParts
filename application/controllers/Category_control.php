@@ -13,7 +13,7 @@
  */
 class Category_control extends CI_Controller {
 
-    //put your code here
+    //put your code here 
     public function __construct() {
         parent::__construct();
         $this->load->model('api_model');
@@ -35,7 +35,7 @@ class Category_control extends CI_Controller {
         redirect($this->config->item('CONSTANT_LOADVIEW_C') . 'category_c');
     }
 
-    /* Inserta categorias de vehiculos */
+    /* Inserta las categorias de vehiculos */
 
     public function createCategory() {
         $user_name = $this->session->userdata('username');
