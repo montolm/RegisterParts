@@ -26,7 +26,7 @@ class Api_WS extends REST_Controller {
 
     public function vehicleMotorType_get() {
         $data = array(
-            'typeMotors' => $this->Api_model->consultTypeVehicleMotor()
+            'typeMotors' => $this->Api_model->consultTypeVehicleMotorWS()
         );
         $this->response($data);
     }
@@ -35,7 +35,7 @@ class Api_WS extends REST_Controller {
 
     public function makes_get() {
         $data = array(
-            'makes' => $this->Api_model->consultMake()
+            'makes' => $this->Api_model->consultMakeWS()
         );
         $this->response($data);
     }
@@ -44,7 +44,7 @@ class Api_WS extends REST_Controller {
 
     public function modelForMake_get($idMake) {
         $data = array(
-            'models' => $this->Api_model->consultVehicleModelFormMake($idMake)
+            'models' => $this->Api_model->consultVehicleModelFormMakeWS($idMake)
         );
         $this->response($data);
     }
@@ -53,7 +53,7 @@ class Api_WS extends REST_Controller {
 
     public function generationForModel_get($idModel) {
         $data = array(
-            'generations' => $this->Api_model->consultGenerationModelForModel($idModel)
+            'generations' => $this->Api_model->consultGenerationModelForModelWS($idModel)
         );
         $this->response($data);
     }
@@ -62,7 +62,7 @@ class Api_WS extends REST_Controller {
 
     public function typeForModel_get($idModel) {
         $data = array(
-            'generations' => $this->Api_model->consultGenerationModelForModel($idModel)
+            'generations' => $this->Api_model->consultGenerationModelForModelWS($idModel)
         );
         $this->response($data);
     }
@@ -71,7 +71,7 @@ class Api_WS extends REST_Controller {
 
     function typesVehicles_get($idVehicleMotor, $idVehicleMake, $idModel, $idGeneration) {
         $data = array(
-            'typesVehicles' => $this->Api_model->getTypesVehicles($idVehicleMotor, $idVehicleMake, $idModel, $idGeneration)
+            'typesVehicles' => $this->Api_model->getTypesVehiclesWS($idVehicleMotor, $idVehicleMake, $idModel, $idGeneration)
         );
         $this->response($data);
     }
@@ -80,7 +80,7 @@ class Api_WS extends REST_Controller {
 
     function gasFormodel_get($idModel) {
         $data = array(
-            'gasForModel' => $this->Api_model->gasForModel($idModel)
+            'gasForModel' => $this->Api_model->gasForModelWS($idModel)
         );
         $this->response($data);
     }
@@ -89,14 +89,14 @@ class Api_WS extends REST_Controller {
 
     function system_get() {
         $data = array(
-            'systems' => $this->Api_model->getListOptionCategory()
+            'systems' => $this->Api_model->getListOptionCategoryWS()
         );
         $this->response($data);
     }
     /*Retorna las piezas por tipos de vehiculos en formato Json WS*/
     function partsForVehicleType_get($idCategory,$idVehicleType) {
         $data = array(
-            'parts' => $this->Api_model->getPartsVehicleType($idCategory,$idVehicleType)
+            'parts' => $this->Api_model->getPartsVehicleTypeWS($idCategory,$idVehicleType)
         );
         $this->response($data);
     }
