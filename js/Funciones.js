@@ -484,6 +484,7 @@ function getCampEditVehicleModel(idDataTable, idCamp, editNameSelect, mca_inha, 
         }
     });
 }
+/*Retorna la ruta del servidor*/
 function getHostUrl(urlControl) {
     var hostUrl = 'http://localhost/RegisterParts/index.php/'; //'http://www.devetechnologies.com/RegisterParts/index.php/';
     return hostUrl + urlControl;
