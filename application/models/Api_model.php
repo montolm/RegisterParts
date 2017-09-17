@@ -259,7 +259,7 @@ Class Api_model extends CI_Model {
     /* Retorna las piezas registradas por tipo y categoria enviados mediante Web Services */
 
     public function getPartsVehicleTypeWS($idCategory, $idVehicleType) {
-        $query = $this->db->query("select b.name_part,d.name_category,c.name_vehicle_type
+        $query = $this->db->query("select a.id_part,b.name_part,d.name_category,c.name_vehicle_type
                                     from  part_vehicle_type a
                                    inner join part b
                                       on a.id_part = b.id_part

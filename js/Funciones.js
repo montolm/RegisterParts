@@ -710,7 +710,7 @@ function insertPartTypeVehicle() {
     var idForm = "#partVehicleTypeForm";
     $("input:checkbox:checked").each(function (i, v) {
        // alert('Elementos ' + v.value);
-        $('#idVehiclePart').val(v.value);
+    $('#idVehiclePart').val(v.value);
         insertRegyster(idCamp, url, idForm);
 
     });
