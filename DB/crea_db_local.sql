@@ -36,6 +36,24 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `montolm_registerparts`.`city`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `montolm_registerparts`.`city` ;
+
+CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`city` (
+  `id_city` INT(11) NOT NULL,
+  `city` VARCHAR(25) NOT NULL,
+  `creation_date` DATE NOT NULL,
+  `date_update` DATE NOT NULL,
+  `mca_inh` VARCHAR(1) NOT NULL,
+  `id_country` INT(11) NOT NULL,
+  PRIMARY KEY (`id_city`, `city`, `creation_date`, `mca_inh`),
+  INDEX `id_country_idx` (`id_country` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `montolm_registerparts`.`combustible`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `montolm_registerparts`.`combustible` ;
@@ -48,6 +66,22 @@ CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`combustible` (
   `mca_inh` VARCHAR(1) NOT NULL,
   `id_username` INT(11) NOT NULL,
   PRIMARY KEY (`type_combustible`, `mca_inh`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `montolm_registerparts`.`country`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `montolm_registerparts`.`country` ;
+
+CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`country` (
+  `id_country` INT(11) NOT NULL COMMENT 'id del pais',
+  `country` VARCHAR(25) NOT NULL COMMENT 'nombre del pais',
+  `cretion_date` DATE NOT NULL COMMENT 'fecha creacion ',
+  `date_update` DATE NOT NULL COMMENT 'fecha actualizacion',
+  `mca_inh` VARCHAR(1) NOT NULL COMMENT 'si esta inhabilitado el campo',
+  PRIMARY KEY (`id_country`, `country`, `cretion_date`, `mca_inh`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -83,6 +117,24 @@ CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`make` (
   `mca_inh` VARCHAR(1) NOT NULL,
   `id_username` INT(11) NOT NULL,
   PRIMARY KEY (`name_vehicle_make`, `mca_inh`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `montolm_registerparts`.`make_vehicle_motor`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `montolm_registerparts`.`make_vehicle_motor` ;
+
+CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`make_vehicle_motor` (
+  `id_make_vehicle_motor` INT(11) NOT NULL,
+  `id_make` INT(11) NOT NULL,
+  `id_vehicle_motor` INT(11) NOT NULL,
+  `creation_date` DATE NOT NULL,
+  `date_update` DATE NOT NULL,
+  `mca_inh` VARCHAR(1) NOT NULL,
+  `id_user` INT(11) NOT NULL,
+  PRIMARY KEY (`id_make`, `id_vehicle_motor`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -142,6 +194,76 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `montolm_registerparts`.`replacement`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `montolm_registerparts`.`replacement` ;
+
+CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`replacement` (
+  `id_replacement` INT(11) NOT NULL,
+  `id_system` INT(11) NOT NULL,
+  `id_vehicle_type` INT(11) NOT NULL,
+  `id_gas` INT(11) NOT NULL,
+  `id_state` INT(11) NOT NULL,
+  `id_part` INT(11) NOT NULL,
+  `id_user_replacement` INT(11) NOT NULL,
+  `mca_inh` VARCHAR(1) NOT NULL,
+  `creation_date` DATE NOT NULL,
+  `date_update` DATE NOT NULL,
+  PRIMARY KEY (`id_state`, `mca_inh`, `id_part`, `id_user_replacement`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `montolm_registerparts`.`role`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `montolm_registerparts`.`role` ;
+
+CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`role` (
+  `id_role` INT(11) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `creation_date` DATE NOT NULL,
+  `date_update` DATE NOT NULL,
+  `mca_inh` VARCHAR(1) NOT NULL,
+  PRIMARY KEY (`id_role`, `creation_date`, `name`, `mca_inh`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `montolm_registerparts`.`sesion`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `montolm_registerparts`.`sesion` ;
+
+CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`sesion` (
+  `id_sesion` INT(11) NOT NULL,
+  `ini_sesion` DATETIME NOT NULL,
+  `end_sesion` DATETIME NOT NULL,
+  `mca_inh` VARCHAR(1) NOT NULL,
+  `id_user` INT(11) NOT NULL,
+  PRIMARY KEY (`id_sesion`, `ini_sesion`, `end_sesion`, `mca_inh`),
+  INDEX `id_user_idx` (`id_user` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `montolm_registerparts`.`state`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `montolm_registerparts`.`state` ;
+
+CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`state` (
+  `id_state` INT(11) NOT NULL,
+  `state_name` VARCHAR(25) NOT NULL,
+  `mca_inh` VARCHAR(1) NOT NULL,
+  `creation_date` DATE NOT NULL,
+  `date_update` DATE NOT NULL,
+  PRIMARY KEY (`state_name`, `mca_inh`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `montolm_registerparts`.`type_vehicle_motor`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `montolm_registerparts`.`type_vehicle_motor` ;
@@ -179,6 +301,35 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `montolm_registerparts`.`user_replacement`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `montolm_registerparts`.`user_replacement` ;
+
+CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`user_replacement` (
+  `id_user` INT(11) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(5000) NOT NULL,
+  `street` VARCHAR(50) NOT NULL,
+  `num_locale` INT(11) NOT NULL,
+  `latitude` FLOAT NOT NULL,
+  `longitude` FLOAT NOT NULL,
+  `creation_date` DATE NOT NULL,
+  `date_update` DATE NOT NULL,
+  `company_name` VARCHAR(25) NOT NULL,
+  `company_id` VARCHAR(15) NOT NULL,
+  `mca_inh` VARCHAR(1) NOT NULL,
+  `id_role` INT(11) NOT NULL,
+  `id_country` INT(11) NOT NULL,
+  `id_city` INT(11) NOT NULL,
+  PRIMARY KEY (`company_id`, `mca_inh`),
+  INDEX `id_role_idx` (`id_role` ASC),
+  INDEX `id_country_idx` (`id_country` ASC),
+  INDEX `id_city_idx` (`id_city` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `montolm_registerparts`.`vehicle_model`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `montolm_registerparts`.`vehicle_model` ;
@@ -191,6 +342,7 @@ CREATE TABLE IF NOT EXISTS `montolm_registerparts`.`vehicle_model` (
   `mca_inh` VARCHAR(1) NOT NULL,
   `id_username` INT(11) NOT NULL,
   `id_vehicle_make` INT(11) NOT NULL,
+  `id_type_vehicle_motor` INT(11) NOT NULL,
   PRIMARY KEY (`model_name`, `mca_inh`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
