@@ -39,7 +39,7 @@ class VehicleType_control extends CI_Controller {
         $user_name = $this->session->userdata('username');
         $id_vehicleType_Sum = $this->Api_model->getMaxNUMId('vehicle_type', 'id_vehicle_type') + 1;
         $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
-        $idTypeMotor = $this->input->post('selectTypeVehicleMotor');
+        $idTypeMotor = $this->input->post('selectVehicleMotor');
         $idMake = $this->input->post('selectMakeVM');
         $idModel = $this->input->post('selectVehicleModelMV');
         $idVehicleGeneration = $this->input->post('selectVehicleGeneration');
@@ -47,6 +47,7 @@ class VehicleType_control extends CI_Controller {
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
+        //echo $user_name . ' ' . $id_vehicleType_Sum . ' ' . $user_id_exist . ' ' . $idTypeMotor;
         if ($user_id_exist > 0 & $idTypeMotor != '' & $idMake != '' & $idModel != '' & $vehicleTypeModel != '' & $idVehicleGeneration != '') {
             $datos = array('id_vehicle_type' => $id_vehicleType_Sum,
                 'name_vehicle_type' => $vehicleTypeModel,
@@ -61,7 +62,6 @@ class VehicleType_control extends CI_Controller {
 
             $result = $this->Vehicle_type_model->createVehicleType($datos);
             $returnVale = $this->Api_model->getException($result);
-
             if ($returnVale == 1) {
                 // Coloca estos campos en sesion 
                 $nameVehicleTypeMotor = $this->Api_model->consultTypeVehicleMotorForId($idTypeMotor);
@@ -97,7 +97,7 @@ class VehicleType_control extends CI_Controller {
             $id_selectVehicleGeneration = $this->input->post('selectVehicleGeneration');
             $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
             $fec_actu = date("y-m-d", time());
-            echo $id_vehicleTypeModel . ' ' . $nam_vehicleTypeModel . ' ' . $inha_vehicleTypeModel . ' ' . $id_selectTypeVehicleMotor . ' ' .
+          //  echo $id_vehicleTypeModel . ' ' . $nam_vehicleTypeModel . ' ' . $inha_vehicleTypeModel . ' ' . $id_selectTypeVehicleMotor . ' ' .
             $id_selectMakeVM . ' ' . $id_selectVehicleModelMV . ' ' . $id_selectVehicleGeneration;
 
             if ($id_vehicleTypeModel != '' & $nam_vehicleTypeModel != '' & $inha_vehicleTypeModel != '' & $user_id_exist != '') {
@@ -118,7 +118,7 @@ class VehicleType_control extends CI_Controller {
                 if ($id_selectVehicleGeneration == 0) {
                     $id_selectVehicleGeneration = $this->getIdVehicleTypeRelationship('id_generation', $id_vehicleTypeModel);
                 }
-                
+
                 $datos = array('name_vehicle_type' => $nam_vehicleTypeModel,
                     'fec_actu' => $fec_actu,
                     'mca_inh' => $inha_vehicleTypeModel,
@@ -127,9 +127,8 @@ class VehicleType_control extends CI_Controller {
                     'id_vehicle_make' => $id_selectMakeVM,
                     'id_model' => $id_selectVehicleModelMV,
                     'id_generation' => $id_selectVehicleGeneration);
-                
+
                 echo $result = $this->Vehicle_type_model->updateVehicleTypeModel($id_vehicleTypeModel, $datos);
-                
             } else {
                 echo FALSE;
             }
@@ -177,7 +176,9 @@ class VehicleType_control extends CI_Controller {
 
     public function listVehicleModel() {
         $idMake = $this->input->post('id');
-        $value = $this->Api_model->consultVehicleModelFormMake($idMake);
+        $idVehicleMotor = $this->input->post('idVehicleMotor');
+        //'make '.$idMake.' motor '.$idVehicleMotor;
+        $value = $this->Api_model->consultVehicleModelFormMakeWS($idMake, $idVehicleMotor);
 
         header('Content-Type: application/json');
         echo json_encode($value);

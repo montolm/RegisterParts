@@ -24,9 +24,9 @@ class Api_WS extends REST_Controller {
 
     /* Retorna los tipos de vehiculos de motor en formato Json WS */
 
-    public function vehicleMotorType_get() {
+    public function vehicleMotorType_get($idMake) {
         $data = array(
-            'typeMotors' => $this->Api_model->consultTypeVehicleMotorWS()
+            'typeMotors' => $this->Api_model->consultTypeVehicleMotorWS($idMake)
         );
         $this->response($data);
     }
@@ -42,9 +42,9 @@ class Api_WS extends REST_Controller {
 
     /* Retorna los modelos por marca definida en formato Json WS*/
 
-    public function modelForMake_get($idMake) {
+    public function modelForMake_get($idMake,$idVehicleMotor) {
         $data = array(
-            'models' => $this->Api_model->consultVehicleModelFormMakeWS($idMake)
+            'models' => $this->Api_model->consultVehicleModelFormMakeWS($idMake,$idVehicleMotor)
         );
         $this->response($data);
     }

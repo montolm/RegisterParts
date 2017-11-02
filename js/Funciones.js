@@ -173,6 +173,43 @@ $(document).ready(function () {
 
 });
 
+/*Actualiza tipo de vehiculo de motor por marca seleccionada*/
+$(document).ready(function () {
+    getCampEdit("#mydataMakeVehicleMotor", "#editMakeVehicleMotor", "#editNameMakeVehicleMotor",
+            null);
+    $("#updatebuttonMakeVechicleMotor").click(function () {
+        if ($('#listVehicleMotor').val() !== '0') {
+            //alert('ajaaa');
+            $.ajax({
+                url: getHostUrl('Make_vehicle_motor_control/updateMakeVehicleMotor'),
+                type: 'POST',
+                data: $("#editFormMakeVehicleMotor").serialize(),
+                success: function (respuesta) {
+                    //alert(respuesta);
+                    location.reload();
+                }
+            });
+        } else {
+            alert('Campo Obligatorio');
+        }
+    });
+
+});
+
+/*Inserta vehiculo de motor dependiendo la marca seleccionada*/
+function insertMakeVehicleMotor() {
+    var idCampList = "#listVehicleMotor";
+    var url = getHostUrl('make_vehicle_motor_control/createMakeVehicleMotor');
+    var idForm = "#editFormMakeVehicleMotor";
+    if ($(idCampList).val() !== '0') {
+        insertRegyster(idCampList, url, idForm);
+        hideModal('#edit');
+    } else {
+        alert('Campo Combustible es Obligatorio');
+    }
+}
+
+
 /*Actualiza tipo de vehiculo*/
 $(document).ready(function () {
     getCampEditVehicleType("#mydataTypeVehicle", "#editVehicleModel", "#editNameVehicleModel",
@@ -403,7 +440,6 @@ $(document).ready(function () {
     });
 });
 
-
 /*Inserta registros en la DB de manera dinamica*/
 function insertRegyster(idCamp, url, idForm) {
     if ($(idCamp).val() !== "") {
@@ -412,7 +448,7 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                 // alert('ENTROOO_1 '+respuesta);
+                 // alert(respuesta);
             },
             complete: function (jqXHR, textStatus) {
 
@@ -514,7 +550,7 @@ $(document).ready(function () {
 
 /*Busca los modelos por marca seleccionada*/
 $(document).ready(function () {
-    $("#listMakeVM").change(function () {
+    $("#listVehicleMotor").change(function () {
         getModelsForMake();
     });
 
@@ -528,22 +564,74 @@ $(document).ready(function () {
 
 });
 
-function getModelsForMake() {
-    var vehicleModel = $('#listVehicleModelMV');
-    var make = $("#listMakeVM");
+/*Carga al metodo getVehicleMotorForMake dependiendo a marca seleccionada*/
+$(document).ready(function () {
+    $("#listMake").change(function () {
+        getVehicleMotorForMake();
+    });
 
+});
+
+/*Retorna los tipos de vehiculos de motor dependiendo la marca seleccioanda*/
+function getVehicleMotorForMake() {
+    var make = $("#listMake");
+    var vehicleMotor = $('#listVehicleMotor');
     if (make.val() !== '') {
         $.ajax({
             data: {id: make.val()},
-            url: getHostUrl('VehicleType_control/listVehicleModel'),
+            url: getHostUrl('VehicleModel_control/listVehicleMotorForMake'),
             type: 'POST',
             dataType: 'json',
             beforeSend: function () {
                 make.prop('disabled', true);
             },
             success: function (resultado) {
+                //alert(resultado);
                 console.log(resultado);
                 make.prop('disabled', false);
+                vehicleMotor.find('option').remove();
+                vehicleMotor.append('<option value="0" selected>Vehiculos de motor</option>');
+                $(resultado).each(function (i, v) {
+                    vehicleMotor.append('<option value="' + v.id_type_vehicle_motor + '">' + v.type_name_vehicle + '</option>');
+                });
+                vehicleMotor.prop('disabled', false);
+            },
+            error: function () {
+                //  alert('Ocurrio un error en el servidor ..');
+                make.prop('disabled', false);
+            },
+            complete: function (jqXHR, textStatus) {
+                //alert(textStatus);
+
+            },
+            timeout: 1000
+        });
+
+    } else {
+        vehicleMotor.find('option').remove();
+        vehicleMotor.prop('disabled', true);
+    }
+}
+
+
+/*Retorna los modelos por marca seleccioanda*/
+function getModelsForMake() {
+    var vehicleModel = $('#listVehicleModelMV');
+    var vehicleMotor = $('#listVehicleMotor');
+    var make = $("#listMake");
+    if (vehicleMotor.val() !== '') {
+        $.ajax({
+            data: {id: make.val(), idVehicleMotor: vehicleMotor.val()},
+            url: getHostUrl('VehicleType_control/listVehicleModel'),
+            type: 'POST',
+            dataType: 'json',
+            beforeSend: function () {
+                vehicleMotor.prop('disabled', true);
+            },
+            success: function (resultado) {
+                //alert(resultado);
+                console.log(resultado);
+                vehicleMotor.prop('disabled', false);
                 vehicleModel.find('option').remove();
                 vehicleModel.append('<option value="0" selected>Modelos</option>');
                 $(resultado).each(function (i, v) {
@@ -552,8 +640,8 @@ function getModelsForMake() {
                 vehicleModel.prop('disabled', false);
             },
             error: function () {
-                //alert('Ocurrio un error en el servidor ..');
-                make.prop('disabled', false);
+                alert('Ocurrio un error en el servidor ..');
+                vehicleMotor.prop('disabled', false);
             },
             complete: function (jqXHR, textStatus) {
                 //alert(textStatus);
@@ -709,8 +797,8 @@ function insertPartTypeVehicle() {
     var url = getHostUrl('Part_vehicle_control/createPartVehicle');
     var idForm = "#partVehicleTypeForm";
     $("input:checkbox:checked").each(function (i, v) {
-       // alert('Elementos ' + v.value);
-    $('#idVehiclePart').val(v.value);
+        // alert('Elementos ' + v.value);
+        $('#idVehiclePart').val(v.value);
         insertRegyster(idCamp, url, idForm);
 
     });

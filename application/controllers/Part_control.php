@@ -35,8 +35,7 @@ class Part_control extends CI_Controller {
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
-        //echo $idCategory . ' eee ' . $name_part;
-
+        //echo $user_name . ' ' . $id_part_Sum . ' ' . $user_id_exist . ' ' . $idCategory.' '.$name_part;
         if ($user_id_exist > 0 & $idCategory != 0) {
             $datos = array('id_part' => $id_part_Sum,
                 'name_part' => $name_part,

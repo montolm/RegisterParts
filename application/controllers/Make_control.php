@@ -14,7 +14,6 @@
 class Make_control extends CI_Controller {
 
     //put your code here
-    //put your code here
     public function __construct() {
         parent::__construct();
         $this->load->model('api_model');

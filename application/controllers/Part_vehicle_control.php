@@ -59,7 +59,7 @@ class Part_vehicle_control extends CI_Controller {
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
-
+        
         if ($user_id_exist > 0) {
             $datos = array("id" => $id_vehiclePart_Sum,
                 "id_category" => $id_category,

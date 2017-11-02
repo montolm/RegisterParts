@@ -150,6 +150,27 @@ Class Api_model extends CI_Model {
         }
     }
 
+    /* Retorna la lista de los tipos de vehiculos de motor por marca seleccionada */
+
+    public function consultTypeVehicleMotorForMake($idMake) {
+        $query = $this->db->query("select d.id_type_vehicle_motor,d.type_name_vehicle
+                                    from make_vehicle_motor a
+                                    inner join make b 
+                                     on a.id_make = b.id_vehicle_make
+                                    and a.mca_inh = b.mca_inh
+                                    inner join type_vehicle_motor d
+                                     on  a.id_vehicle_motor = d.id_type_vehicle_motor
+                                     and a.mca_inh = d.mca_inh
+                                    where id_make = $idMake
+                                     and a.mca_inh = 'N'
+                                    order by id_type_vehicle_motor;");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
     /* Retorna la generacion por modelo de vehiculo */
 
     public function consultGenerationModelForModel($idModel) {
@@ -283,10 +304,17 @@ Class Api_model extends CI_Model {
 
     /* Retorna los tipos de vehiculos de motor enviados mediante Web Services */
 
-    public function consultTypeVehicleMotorWS() {
-        $query = $this->db->query("select id_type_vehicle_motor,type_name_vehicle
-                                    from type_vehicle_motor
-                                     where mca_inh = 'N'
+    public function consultTypeVehicleMotorWS($idMake) {
+        $query = $this->db->query("select d.id_type_vehicle_motor,d.type_name_vehicle
+                                    from make_vehicle_motor a
+                                   inner join make b 
+                                     on a.id_make = b.id_vehicle_make
+                                    and a.mca_inh = b.mca_inh
+                                   inner join type_vehicle_motor d
+                                     on  a.id_vehicle_motor = d.id_type_vehicle_motor
+                                     and a.mca_inh = d.mca_inh
+                                   where id_make = $idMake
+                                     and a.mca_inh = 'N'
                                    order by id_type_vehicle_motor;");
         if ($query->num_rows() > 0) {
             return $query->result();
@@ -313,10 +341,11 @@ Class Api_model extends CI_Model {
 
     /* Retorna los modelos de vehiculos por marca seleccionada enviados mediante Web Services */
 
-    public function consultVehicleModelFormMakeWS($idMake) {
+    public function consultVehicleModelFormMakeWS($idMake, $idVehicleMotor) {
         $query = $this->db->query("select id_model,model_name
                                     from vehicle_model
                                      where id_vehicle_make = $idMake
+                                       and id_type_vehicle_motor = $idVehicleMotor  
                                        and mca_inh = 'N'
                                     order  by id_model;");
 
@@ -326,7 +355,7 @@ Class Api_model extends CI_Model {
             return FALSE;
         }
     }
-    
+
     /* Retorna la generacion por modelo de vehiculo */
 
     public function consultGenerationModelForModelWS($idModel) {
@@ -341,7 +370,8 @@ Class Api_model extends CI_Model {
             return false;
         }
     }
-        /* Retorna las categorias */
+
+    /* Retorna las categorias */
 
     public function getListOptionCategoryWS() {
         $query = $this->db->query("select id_category,name_category

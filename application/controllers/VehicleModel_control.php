@@ -40,11 +40,12 @@ class VehicleModel_control extends CI_Controller {
         $id_vehicleModel_Sum = $this->Api_model->getMaxNUMId('vehicle_model', 'id_model') + 1;
         $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
         $name_model = $this->input->post('vehicleModel');
-        $id_vehicle_make = $this->input->post('selectVehicleModel');
+        $id_vehicle_make = $this->input->post('selectListMake');
+        $id_type_vehicle_motor = $this->input->post('selectVehicleMotor');
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
-        
+
         if ($user_id_exist > 0 & $name_model != '') {
             $datos = array("id_model" => $id_vehicleModel_Sum,
                 "model_name" => $name_model,
@@ -52,18 +53,20 @@ class VehicleModel_control extends CI_Controller {
                 "fec_actu" => $fec_actu,
                 "mca_inh" => $mca_inh,
                 "id_username" => $user_id_exist,
-                "id_vehicle_make" => $id_vehicle_make);
+                "id_vehicle_make" => $id_vehicle_make,
+                "id_type_vehicle_motor" => $id_type_vehicle_motor);
             $result = $this->Vehicle_model->createVehicleModel($datos);
+            echo $id_vehicle_make;
             $returnValue = $this->Api_model->getException($result);
             if ($returnValue == 1) {
                 $NameMake = $this->Api_model->consultMakeName($id_vehicle_make);
                 $this->loadSesionModel($NameMake, NULL, $id_vehicle_make);
-                echo TRUE;
+               echo TRUE;
             } else {
-                echo FALSE;
+                //echo FALSE;
             }
         } else {
-            echo FALSE;
+            //echo FALSE;
         }
     }
 
@@ -112,6 +115,16 @@ class VehicleModel_control extends CI_Controller {
         /* Refactorizar mas adelante para colocar la llamada al metodo CONSTANT_LOADVIEW_C y asi esconder
           el controlador llamado para mas seguridad de la app. */
         $this->load->view('consultas/vehicle_model_c', $data);
+    }
+
+    /* Retorna la lista de los tipos de vehiculos de motor por marca seleccionada */
+
+    public function listVehicleMotorForMake() {
+        $idMake = $this->input->post('id');
+        $value = $this->Api_model->consultTypeVehicleMotorForMake($idMake);
+
+        header('Content-Type: application/json');
+        echo json_encode($value);
     }
 
     /* Retorna las Marcas de vehiculos existentes para llenar la lista en el view */

@@ -133,7 +133,6 @@ $(document).ready(function () {
         }
     });
 });
-
 /*Valida formulario correo(Olvido contraseña)*/
 $(document).ready(function () {
     $('#emailform').bootstrapValidator({
@@ -158,7 +157,6 @@ $(document).ready(function () {
 
     });
 });
-
 /*Valida formulario category*/
 $(document).ready(function () {
     $('#categoryForm').bootstrapValidator({
@@ -180,7 +178,6 @@ $(document).ready(function () {
 
     });
 });
-
 /*Valida formulario vehiculo motor*/
 $(document).ready(function () {
     $('#vehicleMotorForm').bootstrapValidator({
@@ -202,7 +199,6 @@ $(document).ready(function () {
 
     });
 });
-
 /*Valida formulario category al editar*/
 $(document).ready(function () {
     $('#editForm').bootstrapValidator({
@@ -240,11 +236,19 @@ $(document).ready(function () {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            selectVehicleModel: {
+            selectListMake: {
                 validators: {
                     greaterThan: {
                         value: 1,
                         message: 'Campo obligatorio'
+                    }
+                }
+            },
+            selectVehicleMotor: {
+                validators: {
+                    greaterThan: {
+                        value: 1,
+                        message: 'Campo obligatoriAAAA'
                     }
                 }
             },
@@ -291,10 +295,7 @@ $(document).ready(function () {
         }
 
     });
-
 });
-
-
 /*Valida formulario tipo de vehiculo*/
 $(document).ready(function () {
     $('#typeVehicleModelForm').bootstrapValidator({
@@ -348,7 +349,6 @@ $(document).ready(function () {
         }
     });
 });
-
 /*Valida formulario piezas por categorias*/
 $(document).ready(function () {
     $('#partForm').bootstrapValidator({
