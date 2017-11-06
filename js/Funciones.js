@@ -198,14 +198,14 @@ $(document).ready(function () {
 
 /*Inserta vehiculo de motor dependiendo la marca seleccionada*/
 function insertMakeVehicleMotor() {
-    var idCampList = "#listVehicleMotor";
+    var idCampList = "#listVehicleMotorSelect";
     var url = getHostUrl('make_vehicle_motor_control/createMakeVehicleMotor');
     var idForm = "#editFormMakeVehicleMotor";
     if ($(idCampList).val() !== '0') {
         insertRegyster(idCampList, url, idForm);
         hideModal('#edit');
     } else {
-        alert('Campo Combustible es Obligatorio');
+        alert('Campo Tipo vehiculo de motor es Obligatorio');
     }
 }
 

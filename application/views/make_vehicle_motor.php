@@ -75,7 +75,7 @@
                                         $marca = $_SESSION['marca'];
                                         $value = $_SESSION['value'];
                                         echo "<div class='container col-lg-4' style='margin-left:-2.5%'>
-                                              <select id= 'listVehicleMotor'class='form-control' name='selectIdVehicleMotor'>
+                                              <select id= 'listVehicleMotorSelect'class='form-control' name='selectIdVehicleMotor'>
                                               <option value=$value selected>$marca</option>";
                                         foreach ($vehicle_motor as $row) {
                                             echo "<option value=$row->id_type_vehicle_motor>$row->type_name_vehicle</option>";
@@ -84,7 +84,7 @@
                                              </div>";
                                     } else {
                                         echo "<div class='container col-lg-4' style='margin-left:-2.5%'>
-                                             <select id= 'listVehicleMotor'class='form-control' name='selectIdVehicleMotor'>
+                                             <select id= 'listVehicleMotorSelect'class='form-control' name='selectIdVehicleMotor'>
                                             <option value='0' selected>Vehiculo Motor</option>";
                                         foreach ($vehicle_motor as $row) {
                                             echo "<option value=$row->id_type_vehicle_motor>$row->type_name_vehicle</option>";
