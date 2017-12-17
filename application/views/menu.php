@@ -22,6 +22,7 @@
 
             <!-- Agrupar los enlaces de navegación, los formularios y cualquier
                  otro elemento que se pueda ocultar al minimizar la barra -->
+            
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
@@ -66,6 +67,7 @@
                         </a>
                     </li>
                 </ul>
+                
                 <ul class="nav navbar-nav navbar-right">
                     <li class="btn-link"><a href="<?= site_url('/menu_control/urlLogin'); ?>">Salir</a></li>
 
