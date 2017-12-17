@@ -13,13 +13,15 @@ class Api extends CI_Controller {
         $this->load->view($view);
     }
 
-    /*Carga las vista de las consultas*/
+    /* Carga las vista de las consultas */
+
     function loadView_c($view) {
-        $this->load->view($this->config->item('CONSTANT_CARPETA_C').$view);
+        $this->load->view($this->config->item('CONSTANT_CARPETA_C') . $view);
     }
 
     /* Coloca el usuario en sesion al loguerase */
-    function loadViewS($user) {
+
+    function loadViewS($user)  {
         $this->starSession($user);
         $this->load->view('home');
     }
@@ -50,10 +52,8 @@ class Api extends CI_Controller {
     }
 
     /* Retorna el nombre de la vista */
-
     public function viewName($ViewName) {
         return $ViewName;
     }
 
-   
 }
