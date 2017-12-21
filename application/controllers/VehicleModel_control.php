@@ -56,14 +56,15 @@ class VehicleModel_control extends CI_Controller {
                 "id_vehicle_make" => $id_vehicle_make,
                 "id_type_vehicle_motor" => $id_type_vehicle_motor);
             $result = $this->Vehicle_model->createVehicleModel($datos);
-            echo $id_vehicle_make;
             $returnValue = $this->Api_model->getException($result);
             if ($returnValue == 1) {
                 $NameMake = $this->Api_model->consultMakeName($id_vehicle_make);
                 $this->loadSesionModel($NameMake, NULL, $id_vehicle_make);
                echo TRUE;
             } else {
-                //echo FALSE;
+                $NameMake = $this->Api_model->consultMakeName($id_vehicle_make);
+                $this->loadSesionModel($NameMake, NULL, $id_vehicle_make);
+                echo FALSE;
             }
         } else {
             //echo FALSE;

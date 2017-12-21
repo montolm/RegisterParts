@@ -448,7 +448,7 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                 // alert(respuesta);
+                 alert(respuesta);
             },
             complete: function (jqXHR, textStatus) {
 
@@ -805,5 +805,3 @@ function insertPartTypeVehicle() {
     location.reload();
 }
 
-/*Realiza un submit se le coloca el nombre del formulario*/
-// $("#editFormTypeVehicleModel").submit();
