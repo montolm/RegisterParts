@@ -385,4 +385,44 @@ Class Api_model extends CI_Model {
         }
     }
 
+    /* Retorna las piezas registradas por tipo y categoria enviados mediante Web Services */
+
+    public function getPartForUserReplacementWS($idUser,$idCategory, $idmake, $idVehicleTypeMotor, $idModel) {
+        $query = $this->db->query("select g.type_name_vehicle,h.name_vehicle_make,i.model_name,concat (j.start_generation,'/',j.end_generation) as generation ,
+                                    c.name_category,e.name_part,d.state_name,k.type_combustible,a.price,a.comment,f.company_name
+                                    from replacement a
+                                  inner join vehicle_type b
+                                     on a.id_vehicle_type = b.id_vehicle_type
+                                  inner join category c
+                                     on a.id_system = c.id_category
+                                  inner join state d
+                                     on a.id_state =  d.id_state
+                                  inner join part e
+                                     on a.id_part =  e.id_part
+                                  inner join user_replacement f
+                                     on a.id_user_replacement = f.id_user
+                                  inner join type_vehicle_motor  g
+                                     on b.id_type_vehicle_motor = g.id_type_vehicle_motor
+                                  inner join make h
+                                     on b.id_vehicle_make = h.id_vehicle_make
+                                  inner join vehicle_model i
+                                     on b.id_model = i.id_model
+                                  inner join generation_model j
+                                     on b.id_generation = j.id_generation
+                                  inner join combustible k
+                                     on a.id_system = k.id_combustible
+                                  where a.id_user_replacement = ifnull($idUser,a.id_user_replacement)
+                                    and a.id_system = ifnull($idCategory,a.id_system)
+                                    and h.id_vehicle_make = ifnull($idmake,h.id_vehicle_make)
+                                    and g.id_type_vehicle_motor = ifnull($idVehicleTypeMotor,g.id_type_vehicle_motor)
+                                    and i.id_model = ifnull($idModel,i.id_model)
+                                  order by g.type_name_vehicle,h.name_vehicle_make,i.model_name,generation ,
+                                    c.name_category,e.name_part,d.state_name,k.type_combustible,a.price,a.comment,f.company_name;");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return FALSE;
+        }
+    }
+
 }
