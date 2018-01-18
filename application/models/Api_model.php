@@ -388,7 +388,7 @@ Class Api_model extends CI_Model {
     /* Retorna las piezas registradas por tipo y categoria enviados mediante Web Services */
 
     public function getPartForUserReplacementWS($idUser,$idCategory, $idmake, $idVehicleTypeMotor, $idModel) {
-        $query = $this->db->query("select g.type_name_vehicle,h.name_vehicle_make,i.model_name,concat (j.start_generation,'/',j.end_generation) as generation ,
+        $query = $this->db->query("select a.id_replacement,g.type_name_vehicle,h.name_vehicle_make,i.model_name,concat (j.start_generation,'/',j.end_generation) as generation ,
                                     c.name_category,e.name_part,d.state_name,k.type_combustible,a.price,a.comment,f.company_name
                                     from replacement a
                                   inner join vehicle_type b
