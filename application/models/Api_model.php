@@ -215,7 +215,7 @@ Class Api_model extends CI_Model {
         }
     }
 
-    /* Retorna las marcas seleccionada */
+    /* Retorna el nombre de la categoria seleccionada */
 
     public function consultCategoryName($idCategory) {
         $query = $this->db->query("select name_category
@@ -263,13 +263,13 @@ Class Api_model extends CI_Model {
     /* Retorna combustible por modelo seleccionado enviados mediante Web Services   */
 
     public function gasForModelWS($idModel) {
-        $query = $this->db->query("select a.id_combustible_model,type_combustible
+        $query = $this->db->query("select a.id_combustible,type_combustible
                                     from model_combustible a
-                              inner join combustible b
-                                     on a.id_combustible = b.id_combustible
-                               where a.id_model = $idModel
-                                 and a.mca_inh 	= 'N'
-                              order by a.id_combustible_model;");
+                                   inner join combustible b
+                                       on a.id_combustible = b.id_combustible
+                                    where a.id_model  = $idModel
+                                      and a.mca_inh   = 'N'
+                                    order by a.id_combustible_model;");
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {
@@ -410,7 +410,7 @@ Class Api_model extends CI_Model {
                                   inner join generation_model j
                                      on b.id_generation = j.id_generation
                                   inner join combustible k
-                                     on a.id_system = k.id_combustible
+                                     on a.id_gas = k.id_combustible
                                   where a.id_user_replacement = ifnull($idUser,a.id_user_replacement)
                                     and a.id_system = ifnull($idCategory,a.id_system)
                                     and h.id_vehicle_make = ifnull($idmake,h.id_vehicle_make)

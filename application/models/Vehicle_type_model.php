@@ -27,7 +27,8 @@ class Vehicle_type_model extends CI_Model {
             return 0;
         }
     }
-
+    
+    /*Actualiza modelo del vehiculo*/
     public function updateVehicleTypeModel($id_vehicleMotor, $datos) {
         $this->db->where('id_vehicle_type', $id_vehicleMotor);
         $this->db->update('vehicle_type', $datos);
@@ -38,9 +39,10 @@ class Vehicle_type_model extends CI_Model {
             return FALSE;
         }
     }
-
-    public function consultVehicleType() {
-        $query = $this->db->query(" select a.id_vehicle_type,a.name_vehicle_type,b.type_name_vehicle,c.name_vehicle_make,d.model_name,
+   
+    /*Retorna tipos de vehiculos por marca registrada*/
+    public function consultVehicleType($id_make) {
+        $query = $this->db->query("select a.id_vehicle_type,a.name_vehicle_type,b.type_name_vehicle,c.name_vehicle_make,d.model_name,
                                             concat (e.start_generation,'/',e.end_generation) generacion,a.fec_actu,a.mca_inh,f.username
                                       from vehicle_type a
                                      inner join type_vehicle_motor b
@@ -53,7 +55,8 @@ class Vehicle_type_model extends CI_Model {
                                         on a.id_generation = e.id_generation
                                      inner join user f
                                         on a.id_username = f.id_username
-                                       order by a.id_vehicle_type; ");
+                                      where a.id_vehicle_make = $id_make
+                                     order by a.id_vehicle_type; ");
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {

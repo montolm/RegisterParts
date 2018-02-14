@@ -26,13 +26,28 @@ class Part_vehicle_control extends CI_Controller {
         $this->load->view('part_vehicle');
     }
 
+    public function urlVehicleTypeConsult() {
+        $data = array(
+            'category' => $this->Api_model->getListOptionCategory(),
+            'make' => $this->Api_model->consultMake(),
+        );
+        $this->load->view('part_vehicle', $data);
+    }
+
     /* Retorna las arreglos para los listOption mostrados
       en la pantalla piezas por tipo de vehiculo */
 
     public function consultListOption() {
+        $id_category = $this->input->post('selectCategory');
+        $NameCategory = $this->Api_model->consultCategoryName($id_category);
+        $idMake = $this->input->post('selectMakeVM');
+        $NameMake = $this->Api_model->consultMakeName($idMake);
+        $this->loadSesionModel($NameMake, NULL, $idMake);
+        $this->loadSesionAll($NameCategory, $id_category);
         $data = array(
             'category' => $this->Api_model->getListOptionCategory(),
-            'vehicleType' => $this->Vehicle_type_model->consultVehicleType(),
+            'vehicleType' => $this->Vehicle_type_model->consultVehicleType($idMake),
+            'make' => $this->Api_model->consultMake()
         );
         $this->load->view('part_vehicle', $data);
     }
@@ -59,7 +74,7 @@ class Part_vehicle_control extends CI_Controller {
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
-        
+
         if ($user_id_exist > 0) {
             $datos = array("id" => $id_vehiclePart_Sum,
                 "id_category" => $id_category,

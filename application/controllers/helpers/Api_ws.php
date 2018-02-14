@@ -104,10 +104,11 @@ class Api_ws extends REST_Controller {
     
     /*Retorna las piezas por repuesto registrado formato Json WS*/
     function partForUserReplacement_get($idUser,$idCategory, $idmake, $idVehicleTypeMotor, $idModel) {
-        $data = array(
+       // echo '$idUser '.$idUser.' $idCategory '.$idCategory. ' $idmake '.$idmake.' $idVehicleTypeMotor '.$idVehicleTypeMotor.' $idModel '.$idModel;
+        $data =  array(
             'partsUserReplacement' => $this->Api_model->getPartForUserReplacementWS($idUser,$idCategory, $idmake, $idVehicleTypeMotor, $idModel)
         );
-        $this->response($data);
+        $this->response(1);
     }
 
 }

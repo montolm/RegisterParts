@@ -23,15 +23,18 @@
     <?php include ('header.php'); ?>
     <body>
         <?php include ('menu.php'); ?>
-        <div class="container col-lg-2" style="margin-left: 13%">
-            <form id="partForm" method="post">
+        <div class="container" style="margin-left: 13%">
+            <form id="partForm" method="post" action="<?= site_url('/Part_vehicle_control/consultListOption'); ?>">
                 <div class="form-group">
                     <?php
                     if (isset($_POST['Submit'])) {
                         $name = $_SESSION['name'];
                         $value = $_SESSION['value'];
-
-                        echo "<div class='container col-lg-10' style='margin-left:-4%'>
+                        
+                        if ($value == 0) {
+                            $name = 'Categorias';
+                        }
+                        echo "<div class='container col-lg-2'>
                             <select id= 'listCategory'class='form-control' name='selectCategory'>
                             <option value=$value selected>$name</option>";
                         foreach ($category as $row) {
@@ -40,7 +43,7 @@
                         echo"</select>
                     </div>";
                     } else {
-                        echo "<div class='container col-lg-10' style='margin-left:-4%'>
+                        echo "<div class='container col-lg-2'>
                             <select id= 'listCategory'class='form-control' name='selectCategory'>
                             <option value='0' selected>Categorias</option>";
                         foreach ($category as $row) {
@@ -51,8 +54,37 @@
                     }
                     ?>
                 </div>
-                <br>
-                <br>
+                <div class="form-group">
+                    <?php
+                    if (isset($_POST['Submit'])) {
+                        $marca = $_SESSION['marca'];
+                        $value = $_SESSION['value'];
+                        if ($value == 0) {
+                            $marca = 'Marcas';
+                        }
+                        echo "<div class='container col-lg-2'>
+                            <select id= 'listMake'class='form-control' name='selectMakeVM'>
+                            <option value='0' selected>$marca</option>";
+                        foreach ($make as $row) {
+                            echo "<option value=$row->id_vehicle_make>$row->name_vehicle_make</option>";
+                        }
+                        echo"</select>
+                    </div>";
+                    } else {
+                        echo "<div class='container col-lg-2'>
+                            <select id= 'listMake'class='form-control' name='selectMakeVM'>
+                            <option value='0' selected>Marcas</option>";
+                        foreach ($make as $row) {
+                            echo "<option value=$row->id_vehicle_make>$row->name_vehicle_make</option>";
+                        }
+                        echo"</select>
+                    </div>";
+                    }
+                    ?>
+                </div>
+                <div class="container col-xs-2"> 
+                    <button type="Submit" class="btn btn-primary" id="idButtonSavePart" name="Submit">Buscar</button>
+                </div>
             </form>
             <div id="confirmation" class="alert alert-success hidden">
                 <span class="glyphicon glyphicon-star"> Su registro fue guardado</span>
@@ -64,24 +96,25 @@
         <br>
         <div class="container">
             <?php
-            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataTypeVehiclePart'>";
-            echo"<thead>";
-            echo"<tr>";
-            echo"<th>ID</th>";
-            echo"<th>Tipo Vehiculo</th>";
-            echo"<th>Tipo Vehiculo Motor</th>";
-            echo"<th>Marca</th>";
-            echo"<th>Modelo</th>";
-            echo"<th>Generacion</th>";
-            echo"<th>fecha Actualizacion</th>";
-            echo"<th>Inhabilitado</th>";
-            echo"<th>usuario</th>";
-            echo"<th>Editar</th>";
-            echo"</tr>";
-            echo"</thead>";
-            echo "<tbody>";
-            foreach ($vehicleType as $row) {
-                echo"<tr>
+            if (isset($_POST['Submit'])) {
+                echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataTypeVehiclePart'>";
+                echo"<thead>";
+                echo"<tr>";
+                echo"<th>ID</th>";
+                echo"<th>Tipo Vehiculo</th>";
+                echo"<th>Tipo Vehiculo Motor</th>";
+                echo"<th>Marca</th>";
+                echo"<th>Modelo</th>";
+                echo"<th>Generacion</th>";
+                echo"<th>fecha Actualizacion</th>";
+                echo"<th>Inhabilitado</th>";
+                echo"<th>usuario</th>";
+                echo"<th>Editar</th>";
+                echo"</tr>";
+                echo"</thead>";
+                echo "<tbody>";
+                foreach ($vehicleType as $row) {
+                    echo"<tr>
                 <td>$row->id_vehicle_type</td>
                 <td>$row->name_vehicle_type </td>
                 <td>$row->type_name_vehicle</td>
@@ -91,14 +124,15 @@
                 <td>$row->fec_actu</td>
                 <td>$row->mca_inh</td>
                 <td>$row->username</td>";
-                echo"<td>";
-                echo"<a href=$row->id_vehicle_type class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
-                echo"</td>";
-                echo"</tr>";
-                echo"</tr>";
+                    echo"<td>";
+                    echo"<a href=$row->id_vehicle_type class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
+                    echo"</td>";
+                    echo"</tr>";
+                    echo"</tr>";
+                }
+                echo"</tbody>";
+                echo"</table>";
             }
-            echo"</tbody>";
-            echo"</table>";
             ?>
         </div>
         <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
@@ -131,7 +165,7 @@
                                         <h3 class="text-center">Piezas por Categoria</h3>
                                         <div class="well" style="max-height: 300px;overflow: auto;" >
                                             <ul class="list-group checked-list-box" id="idcheckboxes">
-                                                
+
                                             </ul>
                                         </div>
                                     </div>
@@ -152,26 +186,26 @@
         <script src="<?php echo base_url(); ?>js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
         <script>
-        $('#mydataTypeVehiclePart').dataTable({
-            "paging": true,
-            "ordering": true,
-            "info": false,
-            "language": {
-                "sLengthMenu": "Mostrar _MENU_ registros",
-                "zeroRecords": "Nothing found - sorry",
-                "info": "Showing page _PAGE_ of _PAGES_",
-                "infoEmpty": "No records available",
-                "infoFiltered": "(filtered from _MAX_ total records)",
-                "sSearch": "Buscar:",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast": "Último",
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior"
-                }
+                                    $('#mydataTypeVehiclePart').dataTable({
+                                        "paging": true,
+                                        "ordering": true,
+                                        "info": false,
+                                        "language": {
+                                            "sLengthMenu": "Mostrar _MENU_ registros",
+                                            "zeroRecords": "Nothing found - sorry",
+                                            "info": "Showing page _PAGE_ of _PAGES_",
+                                            "infoEmpty": "No records available",
+                                            "infoFiltered": "(filtered from _MAX_ total records)",
+                                            "sSearch": "Buscar:",
+                                            "oPaginate": {
+                                                "sFirst": "Primero",
+                                                "sLast": "Último",
+                                                "sNext": "Siguiente",
+                                                "sPrevious": "Anterior"
+                                            }
 
-            }
-        });
+                                        }
+                                    });
         </script>
     </body>
 </html>

@@ -22,26 +22,66 @@
     <?php include ('/../header.php'); ?>
     <body>
         <?php include ('/../menu.php'); ?>
+        <div class="container" style="margin-left: 13%">
+            <form id="partForm" method="post" action="<?= site_url('/vehicleType_control/consultVehicleType'); ?>">  
+                <div class="form-group">
+                    <?php
+                    if (isset($_POST['Submit'])) {
+                        $marca = $_SESSION['marca'];
+                        $value = $_SESSION['value'];
+                        if ($value == 0) {
+                            $marca = 'Marcas';
+                        }
+                        echo "<div class='container col-lg-2'>
+                            <select id= 'listMake'class='form-control' name='selectMakeVM'>
+                            <option value='0' selected>$marca</option>";
+                        foreach ($make as $row) {
+                            echo "<option value=$row->id_vehicle_make>$row->name_vehicle_make</option>";
+                        }
+                        echo"</select>
+                    </div>";
+                    } else {
+                        echo "<div class='container col-lg-2'>
+                            <select id= 'listMake'class='form-control' name='selectMakeVM'>
+                            <option value='0' selected>Marcas</option>";
+                        foreach ($make as $row) {
+                            echo "<option value=$row->id_vehicle_make>$row->name_vehicle_make</option>";
+                        }
+                        echo"</select>
+                    </div>";
+                    }
+                    ?>
+                </div> 
+                <div class="container col-xs-2"> 
+                    <button type="Submit" class="btn btn-primary" id="idButtonSavePart" name="Submit">Buscar</button>
+                </div>
+            </form>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
         <div class="container">
             <?php
-            echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataTypeVehicle'>";
-            echo"<thead>";
-            echo"<tr>";
-            echo"<th>ID</th>";
-            echo"<th>Tipo Vehiculo</th>";
-            echo"<th>Tipo Vehiculo Motor</th>";
-            echo"<th>Marca</th>";
-            echo"<th>Modelo</th>";
-            echo"<th>Generacion</th>";
-            echo"<th>fecha Actualizacion</th>";
-            echo"<th>Inhabilitado</th>";
-            echo"<th>usuario</th>";
-            echo"<th>Editar</th>";
-            echo"</tr>";
-            echo"</thead>";
-            echo "<tbody>";
-            foreach ($vehicleType as $row) {
-                echo"<tr>
+            if (isset($_POST['Submit']) & $_SESSION['value'] != 0) {
+                echo "<table class='table table-striped table-bordered table-hover table-responsive' id='mydataTypeVehicle'>";
+                echo"<thead>";
+                echo"<tr>";
+                echo"<th>ID</th>";
+                echo"<th>Tipo Vehiculo</th>";
+                echo"<th>Tipo Vehiculo Motor</th>";
+                echo"<th>Marca</th>";
+                echo"<th>Modelo</th>";
+                echo"<th>Generacion</th>";
+                echo"<th>fecha Actualizacion</th>";
+                echo"<th>Inhabilitado</th>";
+                echo"<th>usuario</th>";
+                echo"<th>Editar</th>";
+                echo"</tr>";
+                echo"</thead>";
+                echo "<tbody>";
+                foreach ($vehicleType as $row) {
+                    echo"<tr>
                 <td>$row->id_vehicle_type</td>
                 <td>$row->name_vehicle_type </td>
                 <td>$row->type_name_vehicle</td>
@@ -51,14 +91,15 @@
                 <td>$row->fec_actu</td>
                 <td>$row->mca_inh</td>
                 <td>$row->username</td>";
-                echo"<td>";
-                echo"<a href=$row->id_vehicle_type class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
-                echo"</td>";
-                echo"</tr>";
-                echo"</tr>";
+                    echo"<td>";
+                    echo"<a href=$row->id_vehicle_type class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' id='editButton'><span class='glyphicon glyphicon-pencil' data-placement='top' data-toggle='tooltip' title='Edit'></span></a>";
+                    echo"</td>";
+                    echo"</tr>";
+                    echo"</tr>";
+                }
+                echo"</tbody>";
+                echo"</table>";
             }
-            echo"</tbody>";
-            echo"</table>";
             ?>
             <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                 <div class="modal-dialog">
@@ -78,33 +119,6 @@
                                 <div class="form-group">
                                     <input class="form-control " type="text" id="inhaTypeVehicleModel" name="inhaTypeVehicleModel">
                                 </div>
-                                <div class="form-group">
-                                    <?php
-                                    if (isset($_POST['Submit'])) {
-                                        $marca = $_SESSION['name'];
-                                        $value = $_SESSION['value'];
-                                        echo "<div class='container col-lg-12' style='margin-left:-2.5%'>
-                                        <select id= 'listTypeVehicleMotor'class='form-control' name='selectTypeVehicleMotor'>
-                                        <option value=$value selected>$marca</option>";
-                                        foreach ($vehicle_motor as $row) {
-                                            echo "<option value=$row->id_type_vehicle_motor>$row->type_name_vehicle</option>";
-                                        }
-                                        echo"</select>
-                                        </div>";
-                                    } else {
-                                        echo "<div class='container col-lg-12' style='margin-left:-2.5%'>
-                                            <select id= 'listTypeVehicleMotor'class='form-control' name='selectTypeVehicleMotor'>
-                                            <option value='0' selected>Vehiculo Motor</option>";
-                                        foreach ($vehicle_motor as $row) {
-                                            echo "<option value=$row->id_type_vehicle_motor>$row->type_name_vehicle</option>";
-                                        }
-                                        echo"</select>
-                                        </div>";
-                                    }
-                                    ?>
-                                </div>
-                                <br>
-                                <br>
                                 <div class="form-group">
                                     <?php
                                     if (isset($_POST['Submit'])) {
@@ -129,23 +143,50 @@
                                      </div>";
                                     }
                                     ?>
-                                </div> 
-                                <br>
-                                <br>
-                                <div class="container col-lg-12" style="margin-left: -2.5%">
-                                    <select id="listVehicleModelMV" class="form-control" name='selectVehicleModelMV'>
-                                        <option value="0" selected>Modelos</option>
-                                    </select>
                                 </div>
                                 <br>
                                 <br>
-                                <div class="container col-lg-12" style="margin-left: -2.5%">
-                                    <select id="listVehicleGeneration" class="form-control" name='selectVehicleGeneration'>
-                                        <option value="0" selected>Generacion</option>
-                                    </select>
-                                </div>
-                                <br>
-                                <br>
+                                <div class="form-group">
+                                <?php
+                                if (isset($_POST['Submit'])) {
+                                    $typeVehiMotor = $_SESSION['name'];
+                                    $value = $_SESSION['value'];
+                                    echo "<div class='container col-lg-12' style='margin-left:-2.5%'>
+                                        <select id= 'listTypeVehicleMotor'class='form-control' name='selectTypeVehicleMotor'>
+                                        <option value=$value selected>$typeVehiMotor</option>";
+                                    foreach ($vehicle_motor as $row) {
+                                        echo "<option value=$row->id_type_vehicle_motor>$row->type_name_vehicle</option>";
+                                    }
+                                    echo"</select>
+                                        </div>";
+                                } else {
+                                    echo "<div class='container col-lg-12' style='margin-left:-2.5%'>
+                                            <select id= 'listTypeVehicleMotor'class='form-control' name='selectTypeVehicleMotor'>
+                                            <option value='0' selected>Vehiculo Motor</option>";
+                                    foreach ($vehicle_motor as $row) {
+                                        echo "<option value=$row->id_type_vehicle_motor>$row->type_name_vehicle</option>";
+                                    }
+                                    echo"</select>
+                                        </div>";
+                                }
+                                ?>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="container col-lg-12" style="margin-left: -2.5%">
+                                <select id="listVehicleModelMV" class="form-control" name='selectVehicleModelMV'>
+                                    <option value="0" selected>Modelos</option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="container col-lg-12" style="margin-left: -2.5%">
+                                <select id="listVehicleGeneration" class="form-control" name='selectVehicleGeneration'>
+                                    <option value="0" selected>Generacion</option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="updateButtonTipoVehiculo">

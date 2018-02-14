@@ -40,7 +40,7 @@
                             <li><a href=<?= site_url('/generationModel_control/consultVehicleModel'); ?>>Generat. Modelo</a></li>
                             <li><a href=<?= site_url('/vehicleType_control/consultListOption'); ?>>Tipo Vehiculo</a></li>
                             <li><a href=<?= site_url('/part_control/consultListOption'); ?>>Pieza</a></li>  
-                            <li><a href=<?= site_url('/part_vehicle_control/consultListOption'); ?>>Pieza tip. Vehiculo</a></li> 
+                            <li><a href=<?= site_url('/part_vehicle_control/urlVehicleTypeConsult'); ?>>Pieza tip. Vehiculo</a></li> 
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -56,7 +56,7 @@
                             <li><a href=<?= site_url('/vehicleModel_control/consultVehicleModel'); ?>>Modelos</a></li> 
                             <li><a href=<?= site_url('/combustibleModel_control/consultCombustibleModel'); ?>>Combus. Modelos</a></li>
                             <li><a href=<?= site_url('/generationModel_control/consultGenerationModel'); ?>>Generat. Modelos</a></li>
-                            <li><a href=<?= site_url('/vehicleType_control/consultVehicleType'); ?>>Tipos Vehiculos</a></li>
+                            <li><a href=<?= site_url('/vehicleType_control/urlVehicleTypeConsult'); ?>>Tipos Vehiculos</a></li>
                             <li><a href=<?= site_url('/part_control/consultPartCategory'); ?>>Piezas</a></li>
                         </ul>
                     </li>

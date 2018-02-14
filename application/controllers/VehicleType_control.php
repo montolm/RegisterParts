@@ -29,8 +29,15 @@ class VehicleType_control extends CI_Controller {
         redirect($this->config->item('CONSTANT_LOADVIEW') . 'vehicle_type');
     }
 
-    function urlVehicleModelConsult() {
+    public function urlVehicleModelConsult() {
         redirect($this->config->item('CONSTANT_LOADVIEW_C') . 'vehicle_type_c');
+    }
+
+    public function urlVehicleTypeConsult() {
+        $data = array(
+            'make' => $this->Api_model->consultMake(),
+        );
+        $this->load->view('consultas/vehicle_type_c', $data);
     }
 
     /* Inserta Marca de vehiculo */
@@ -97,7 +104,7 @@ class VehicleType_control extends CI_Controller {
             $id_selectVehicleGeneration = $this->input->post('selectVehicleGeneration');
             $user_id_exist = $this->Api_model->getId('user', 'username', 'id_username', $user_name);
             $fec_actu = date("y-m-d", time());
-          //  echo $id_vehicleTypeModel . ' ' . $nam_vehicleTypeModel . ' ' . $inha_vehicleTypeModel . ' ' . $id_selectTypeVehicleMotor . ' ' .
+            //  echo $id_vehicleTypeModel . ' ' . $nam_vehicleTypeModel . ' ' . $inha_vehicleTypeModel . ' ' . $id_selectTypeVehicleMotor . ' ' .
             $id_selectMakeVM . ' ' . $id_selectVehicleModelMV . ' ' . $id_selectVehicleGeneration;
 
             if ($id_vehicleTypeModel != '' & $nam_vehicleTypeModel != '' & $inha_vehicleTypeModel != '' & $user_id_exist != '') {
@@ -151,10 +158,14 @@ class VehicleType_control extends CI_Controller {
     /* Retorna las tipos de vehiculos existentes */
 
     public function consultVehicleType() {
+        $idMake = $this->input->post('selectMakeVM');
+        $NameMake = $this->Api_model->consultMakeName($idMake);
+       // $this->loadSesionAll($NameMake, $idMake);
+        $this->loadSesionModel($NameMake, NULL, $idMake);
         $data = array(
-            'vehicleType' => $this->Vehicle_type_model->consultVehicleType(),
+            'vehicleType' => $this->Vehicle_type_model->consultVehicleType($idMake),
             'make' => $this->Api_model->consultMake(),
-            'vehicle_motor' => $this->Api_model->consultTypeVehicleMotor()
+            'vehicle_motor' => $this->Api_model->consultTypeVehicleMotor(),
         );
         /* Refactorizar mas adelante para colocar la llamada al metodo CONSTANT_LOADVIEW_C y asi esconder
           el controlador llamado para mas seguridad de la app. */

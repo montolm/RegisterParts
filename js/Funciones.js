@@ -448,7 +448,7 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                 alert(respuesta);
+                 //alert(respuesta);
             },
             complete: function (jqXHR, textStatus) {
 
